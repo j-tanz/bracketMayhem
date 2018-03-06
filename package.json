@@ -1,0 +1,26 @@
+{
+  "name": "bracketmayhem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjesek/bracketMayhem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kjesek/bracketMayhem/issues"
+  },
+  "homepage": "https://github.com/kjesek/bracketMayhem#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "sequelize": "^4.35.2"
+  }
+}
