@@ -1,7 +1,3 @@
-var db = require('./connection'),
-  sequelize = db.sequelize,
-  Sequelize = db.Sequelize;
-
 
 module.exports = function(sequelize, DataTypes) {
 var liveResult = sequelize.define("liveResult", {

@@ -1,6 +1,3 @@
-var db = require('./connection'),
-  sequelize = db.sequelize,
-  Sequelize = db.Sequelize;
 
 module.exports = function (sequelize, DataTypes) {
     var userBracket = sequelize.define("userBracket", {
