@@ -1,8 +1,10 @@
 
 var Sequelize = require("sequelize");
 
-var sequelize = new Sequelize(" ", "root", "root", {
-    host: "localhost",
+
+
+var sequelize = new Sequelize("jsj3x7apas6k575e", "iphn3fzpfbvf3c8m", "zzqdyh18m3mcr2aq", {
+    host: "gp96xszpzlqupw4k.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     dialect: "mysql",
     port: 3306,
     pool: {
@@ -11,6 +13,4 @@ var sequelize = new Sequelize(" ", "root", "root", {
         idle: 10000,
     }
 });
-
-
 module.exports = sequelize;
