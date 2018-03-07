@@ -1,32 +1,19 @@
-var Sequelize = require("sequelize");
-var sequelize = require("../config/connection.js");
+var db = require('./connection'),
+  sequelize = db.sequelize,
+  Sequelize = db.Sequelize;
 
+
+module.exports = function(sequelize, DataTypes) {
 var liveResult = sequelize.define("liveResult", {
-    TeamID: {
-      type: Sequelize.NUMBER
-    },
-    game1: {
-      type: Sequelize.BOOLEAN 
-    },
-    game2: {
-      type: Sequelize.BOOLEAN 
-    },
-    game3: {
-      type: Sequelize.BOOLEAN 
-    },
-    game4: {
-      type: Sequelize.BOOLEAN 
-    },
-    game5: {
-      type: Sequelize.BOOLEAN 
-    },
-    game6: {
-      type: Sequelize.BOOLEAN 
-    }
-
-  }, {
+    TeamID: DataTypes.NUMBER,
+    game1: DataTypes.BOOLEAN, 
+    game2: DataTypes.BOOLEAN,
+    game3: DataTypes.BOOLEAN, 
+    game4: DataTypes.BOOLEAN, 
+    game5: DataTypes.BOOLEAN, 
+    game6: DataTypes.BOOLEAN,
     timestamps: false
   });
-
 liveResult.sync();
-module.exports = liveResult;
+return liveResult;
+};

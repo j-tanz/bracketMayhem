@@ -1,22 +1,18 @@
-
 var express = require("express");
 var bodyParser = require("body-parser");
-var sequelize = require("sequelize")
-var path = require("path");
+var path = require("path")
 var app = express();
+var dir = path.join(__dirname, '/public');
+var db = require("./models/connection");
 var PORT = process.env.PORT || 8080;
 
-var db = require("./models");
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
+app.use(express.static(dir));
 
-app.use(express.static("public"));
+require("./routes/html-routes")(app);
+require("./routes/api-routes")(app);
 
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
-
-db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+app.listen(PORT, function() {
+    console.log("listening on : " + PORT);
 });

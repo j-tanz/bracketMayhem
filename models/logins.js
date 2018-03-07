@@ -1,17 +1,15 @@
+var db = require('./connection'),
+  sequelize = db.sequelize,
+  Sequelize = db.Sequelize;
 
-var Sequelize = require("sequelize");
-var sequelize = require("../config/connection.js");
 
-var login = sequelize.define("login", {
-    loginEmail: {
-      type: Sequelize.STRING
-    },
-    loginPassword: {
-      type: Sequelize.STRING 
-    }
-  }, {
+module.exports = function(sequelize, DataTypes) {
+ var login = sequelize.define("login", {
+    loginEmail: DataTypes.STRING,
+    loginPassword: DataTypes.STRING, 
     timestamps: false
   });
 
 login.sync();
-module.exports = login;
+return login;
+}
