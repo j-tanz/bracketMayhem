@@ -31,32 +31,9 @@
     <script src="js/brackets.min.js"></script>
 
     <script>
-
-        let test = {
-            gameId: "r3x1",
-            awayPoints: 53,
-            homePoints: 54,
-            winner: true,
-            homeName: "Wolves",
-            awayName: "panthers",
-            status: "in progress",
-            homeTeamId: 63,
-            awayTeamId: 57,
-            gameRound: 3
-        }
-
-       let regionMap = {
-           w: 0,
-           x: 1,
-           y: 2,
-           z: 3
-       }
-
-       console.log(regionMap[test.gameId[2]]**2 + parseInt(test.gameId[3]));
-
-        rounds = [
+        let rounds = [
             //round of 64 - 32 games
-                [   
+            [
                 //region 1 
                 {
                     player1: {
@@ -835,8 +812,7 @@
             ],
 
             //final four
-            [
-                {
+            [{
                     player1: {
                         name: "Team 1", //-- name of the player
                         winner: true, //-- add class winner to player container
@@ -893,14 +869,34 @@
                 },
             ]
         ];
-        console.log("index", test.gameRound - 1);
-        console.log("round", rounds[test.gameRound - 1]);
-        console.log("region", test.gameId[2]);
-        console.log("region object number", regionMap[test.gameId[2]]**2);
-        console.log(rounds[test.gameRound - 1][regionMap[test.gameId[2]]**2 + parseInt(test.gameId[3])-1]);
+        let test = {
+                gameId: "r3x1",
+                awayPoints: 53,
+                homePoints: 54,
+                winner: true,
+                homeName: "Wolves",
+                awayName: "panthers",
+                status: "in progress",
+                homeTeamId: 63,
+                awayTeamId: 57,
+                gameRound: 3
+            }
+            let regionMap = {
+                w: 0,
+                x: 1,
+                y: 2,
+                z: 3
+            }
+        function updateTeamNames(gameId) {
 
-        rounds[test.gameRound - 1][regionMap[test.gameId[2]]**2 + parseInt(test.gameId[3])-1].player1.name = test.homeName;
-        rounds[test.gameRound - 1][regionMap[test.gameId[2]]**2 + parseInt(test.gameId[3])-1].player2.name = test.awayName;
+            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
+                parseInt(test.gameId[3]) - 1
+            ].player1.name = test.homeName;
+            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
+                parseInt(test.gameId[3]) - 1
+            ].player2.name = test.awayName;
+        }
+        updateTeamNames();
         $('selector').brackets({
             rounds: rounds //-- JSON with matches of the each round
         });
