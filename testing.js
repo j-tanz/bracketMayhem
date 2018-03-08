@@ -31,3 +31,10 @@ describe("loginTo", function () {
         expect(test("")).to.equal("a");
     });
 });
+
+describe ("updateTeamNames", function() {
+    it("if test.gameID is a string ", function()  {
+        expect(test("stringID")).to.equal("stringID");
+    },
+)
+});
