@@ -9,7 +9,6 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-
   app.get("/signup", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
@@ -17,5 +16,9 @@ module.exports = function(app) {
 
   app.get("/login", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+  app.get("/bracket", function(req, res) {
+    res.sendFile(path.join(__dirname, "../bracket/index.html"));
   });
 };
