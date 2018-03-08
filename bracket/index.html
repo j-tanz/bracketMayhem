@@ -27,6 +27,9 @@
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/brackets.min.js"></script>
     <script>
+        let titles = [
+            'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
+        ]; 
         //dont touch-will break display
         let rounds = [
             //round of 64 - 32 games
@@ -897,15 +900,14 @@
                 parseInt(test.gameId[3]) - 1
             ].player2.name = test.awayName;
         }
-        updateTeamNames();
 
         $('selector').brackets({
             rounds: rounds //-- JSON with matches of the each round
         });
 
-        let titles = [
-            'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
-        ]; 
+
+        updateTeamNames();        
+
         //dont touch-will break display
         $(".brackets").brackets({
             titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
@@ -931,6 +933,7 @@
             border_radius_player: '0px',
             border_radius_lines: '0px'
         });
+
     </script>
 
 </html>
