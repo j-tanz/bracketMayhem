@@ -1,15 +1,22 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
     <title>hey</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
+
 <body>
-    <div class ="jumbotron">
+    <div class="jumbotron">
         <h1>UserName Homepage</h1>
         <p></p>
     </div>
@@ -21,28 +28,24 @@
         </div>
         <div class="row">
             <div class="createBracket">
-                <button  type="button" id="newBracket"><a href="../bracket/index.html">Create New Bracket</a></button>
+                <button type="button" id="newBracket">
+                    <a href="../bracket/index.html">Create New Bracket</a>
+                </button>
             </div>
-        </div>        
+        </div>
         <div class="row">
             <div class="col-10-xs">
-                <div class="userBrackets"> 
+                <div class="userBrackets">
                     <p> User Bracket Lists will append here </p>
                 </div>
             </div>
         </div>
     </div>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
-
- $.get( "/api/logins", function( data ) {
-  console.log(data);
-});
-    </script>
+<script src="../node_modules/lodash/lodash.js"></script>
+<script src="./js/index.js"></script>
+</body>
 
 </html>
