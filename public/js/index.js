@@ -2,8 +2,19 @@
 const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 
 // $(document).ready(function () {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
 
-    let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/games/2018/03/07/schedule.json?"
+    if(dd<10) {
+        dd = "0" + dd;
+    }
+    if(mm<10) {
+        mm = "0" + mm;
+    }
+
+    let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/games/" + yyyy + "/" + mm + "/" + dd + "/schedule.json?"
     let finalizedGamesArr = [];
     let scheduleObj = {};
     let winnerArr = [];
@@ -27,8 +38,8 @@ const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
                 finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ?
                     winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } : winnerArr[i] = { winner: "awayTeam", didHomeTeamWin: false }
                 let mergedFinalArr = _.assign({}, finalizedGamesArr[i], winnerArr[i]);
-                console.log('mergedFinalArr: ', mergedFinalArr);
-            }         
+                 console.log('mergedFinalArr: ', mergedFinalArr);
+            }     
         });
     }
 
