@@ -53,6 +53,13 @@ p
     width: 100%; 
     justify-content: 'center';
 }
+
+.navbar{
+    margin:0 auto;
+}
+.navbar-btn {
+    margin: 8px;
+}
 /* Signup/Login Page */
 label{
     color: gray;

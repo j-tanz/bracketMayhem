@@ -1,7 +1,13 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
     <title>hey</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -12,20 +18,34 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand " href="/index">
+                Bracket Mayhem </a>
+        </div>
+        <a href="/login">
+            <button type="button" class="btn btn-default navbar-btn navbar-right">Login</button>
+        </a>
+        <a href="/signup">
+            <button type="button" class="btn btn-primary navbar-btn navbar-right">Signup!</button>
+        </a>
+    </nav>
     <div class="jumbotron">
         <h1>UserName Homepage</h1>
         <p></p>
     </div>
     <div class="container">
         <div class="row">
-                <p> Current Stats and Data Will Go Here</p>
+            <p> Current Stats and Data Will Go Here</p>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <button type="button" id="newBracket">
-                <a href="../bracket/index.html">Create New Bracket</a>
-            </button>
+            <a href="/bracket">
+                <button type="button" id="newBracket">
+                    Create New Bracket
+                </button>
+            </a>
         </div>
     </div>
 
@@ -60,7 +80,7 @@
                 </div>
             </div>
             <div class="panel panel-danger">
-                    <div class="panel-heading">
+                <div class="panel-heading">
                     <h4 class="panel-title">
                         <a class="colpsible-panel" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                             Bracket 3
@@ -71,27 +91,24 @@
                     <div class="panel-body">
                         The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
                     </div>
+
                 </div>
             </div>
         </div>
-
-
     </div>
     <!-- end container -->
 
-    </div>
-    </div>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-<script>
-    $.get("/api/logins", function (data) {
-        console.log(data);
-    });
-</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="../node_modules/lodash/lodash.js"></script>
+    <script src="./js/index.js"></script>
+    <script>
+        $.get("/api/logins", function (data) {
+            console.log(data);
+        });
+    </script>
+</body>
 
 </html>
