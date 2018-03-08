@@ -14,26 +14,25 @@
             <a class="navbar-brand " href="/index">
                 Bracket Mayhem </a>
         </div>
-
     </nav>
     <h1 class="title">Your Bracket</h1>
-
     <div class="wrapper">
         <button type="button" id="homepageButton">
             <a href="/">Go Back to Home page</a>
         </button>
         <p class="brackets">
         </p>
-
     </div>
 
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/brackets.min.js"></script>
-
     <script>
-        rounds = [
-
-            //round of 54 - 32 games
+        let titles = [
+            'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
+        ]; 
+        //dont touch-will break display
+        let rounds = [
+            //round of 64 - 32 games
             [
                 //region 1 
                 {
@@ -813,8 +812,7 @@
             ],
 
             //final four
-            [
-                {
+            [{
                     player1: {
                         name: "Team 1", //-- name of the player
                         winner: true, //-- add class winner to player container
@@ -871,15 +869,46 @@
                 },
             ]
         ];
+        let test = {
+                gameId: "r1z4",
+                awayPoints: 53,
+                homePoints: 54,
+                winner: true,
+                homeName:"Wolves",
+                awayName:"panthers",
+                status: "in progress",
+                homeTeamId: 63,
+                awayTeamId: 57,
+                gameRound: 1
+        };
+        let regionMap = {
+            w: 0,
+            x: 1,
+            y: 2,
+            z: 3
+        };
+        /*
+        * @function updateTeamNames
+        * @parameter{string}: gameId variable
+        * @return awayName, homeName
+        */
+        function updateTeamNames(gameId) {
+            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
+                parseInt(test.gameId[3]) - 1
+            ].player1.name = test.homeName;
+            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
+                parseInt(test.gameId[3]) - 1
+            ].player2.name = test.awayName;
+        }
 
         $('selector').brackets({
             rounds: rounds //-- JSON with matches of the each round
         });
 
-        var titles = ['Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion']; //-- example titles
 
-        //-- All colors can be hexadecimal or string name
+        updateTeamNames();        
 
+        //dont touch-will break display
         $(".brackets").brackets({
             titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
             rounds: rounds, //-- (Required) Array with matches ( JSON ) for each round
@@ -892,7 +921,7 @@
             border_radius_player: '10px', //-- (String) Border radius of the player container
             border_radius_lines: '10px', //-- (String) Border radius of the lines that join rounds
         });
-
+        //dont touch-will break display
         $(".brackets").brackets({
             titles: false, //-- If the value is true, then add titles automatically
             color_title: 'black',
@@ -904,6 +933,7 @@
             border_radius_player: '0px',
             border_radius_lines: '0px'
         });
+
     </script>
 
 </html>
