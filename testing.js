@@ -2,18 +2,6 @@
 var expect = require("chai").expect;
 // var disemvowel = require("./disemvowel");
 
-function createAccount(email, pass1, pass2) {
-    function getinputs() {
-        inputEmail = $("#inputEmail").text().trim();
-        inputPass1 = $("#inputPass1").text().trim();
-        inputPass2 = $("#inputPass2").text().trim();
-    }
-}
-
-function loginTo(emailInput, passInput) {
-
-}
-
 describe("createAccount", function () {
     it("if user inputs valid email and matching password", function () {
         expect(test("")).to.equal("a");
