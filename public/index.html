@@ -9,10 +9,12 @@
         crossorigin="anonymous"></script>
 
     <title>hey</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
 </head>
 
 <body>
@@ -22,30 +24,75 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-xs-8">
                 <p> Current Stats and Data Will Go Here</p>
-            </div>
         </div>
+    </div>
+    <div class="container">
         <div class="row">
-            <div class="createBracket">
-                <button type="button" id="newBracket">
-                    <a href="../bracket/index.html">Create New Bracket</a>
-                </button>
-            </div>
+            <button type="button" id="newBracket">
+                <a href="../bracket/index.html">Create New Bracket</a>
+            </button>
         </div>
-        <div class="row">
-            <div class="col-10-xs">
-                <div class="userBrackets">
-                    <p> User Bracket Lists will append here </p>
+    </div>
+
+    <div class="container">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="colpsible-panel" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Bracket 1
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="colpsible-panel" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Bracket 2
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="colpsible-panel" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Bracket 3
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    <!-- end container -->
 
 <!-- Latest compiled and minified JavaScript -->
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="../node_modules/lodash/lodash.js"></script>
 <script src="./js/index.js"></script>
+<script>
+    $.get("/api/logins", function (data) {
+        console.log(data);
+    });
+</script>
 </body>
-
 </html>
