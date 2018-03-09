@@ -20,9 +20,6 @@
     </nav>
     <h1 class="title">Your Bracket</h1>
     <div class="wrapper">
-        <button type="button" id="homepageButton">
-            <a href="/">Go Back to Home page</a>
-        </button>
         <p class="brackets">
         </p>
     </div>
@@ -870,17 +867,16 @@
                 },
             ]
         ];
-        let test = {
-                gameId: "r1z4",
+        let gameId = "r1z4";
+        let testGameObj = {
+                gameId: gameId,
                 awayPoints: 53,
                 homePoints: 54,
                 winner: true,
                 homeName:"Wolves",
                 awayName:"panthers",
-                status: "in progress",
-                homeTeamId: 63,
-                awayTeamId: 57,
-                gameRound: 1
+                homeTeamId: 4,
+                awayTeamId: 5,
         };
         let regionMap = {
             w: 0,
@@ -893,13 +889,17 @@
         * @parameter{string}: gameId variable
         * @return awayName, homeName
         */
+
         function updateTeamNames(gameId) {
-            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
-                parseInt(test.gameId[3]) - 1
-            ].player1.name = test.homeName;
-            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
-                parseInt(test.gameId[3]) - 1
-            ].player2.name = test.awayName;
+             rounds[testGameObj.gameId[1]]
+            [regionMap[testGameObj.gameId[2]] ** 2 
+            + parseInt(testGameObj.gameId[3]) - 1
+            ].player1.name = testGameObj.homeName;
+
+            rounds[testGameObj.gameId[1]]
+            [regionMap[testGameObj.gameId[2]] ** 2 
+            + parseInt(testGameObj.gameId[3]) - 1
+            ].player2.name = testGameObj.awayName;
         }
         updateTeamNames(); 
 
