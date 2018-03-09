@@ -43,7 +43,7 @@ function tourneyLookup() {
         scheduleObj = {
             allData: result
         }
-
+        console.log('scheduleObj: ', scheduleObj);
         for (let i = 1; i < scheduleObj.allData.rounds.length; i++) {
             tourneyRounds.push(_.forEach(scheduleObj.allData.rounds[i]));
         }
@@ -68,12 +68,13 @@ function tourneyLookup() {
                 }
             })
         })
-        appendIdent(gameState);
+        checkCompleted(gameState);
+        // console.log('gameState: ', gameState);
     })
 }
 
 function appendIdent(gsObj){
-    console.log('gsObj: ', gsObj);
+    // console.log('gsObj: ', gsObj);
     // for (let i =0; i<gsObj.length; i++) {
     //     if (_.includes(gsObj[i].title, "East"){
     //         placeArr
