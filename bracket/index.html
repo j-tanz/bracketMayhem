@@ -810,7 +810,8 @@
             ],
 
             //final four
-            [{
+            [
+                {
                     player1: {
                         name: "Team 1", //-- name of the player
                         winner: true, //-- add class winner to player container
@@ -867,7 +868,7 @@
                 },
             ]
         ];
-        let gameId = "r1z4";
+        let gameId = "r2w3";
         let testGameObj = {
                 gameId: gameId,
                 awayPoints: 53,
@@ -887,11 +888,10 @@
         /*
         * @function updateTeamNames
         * @parameter{string}: gameId variable
-        * @return awayName, homeName
+        * @return {string}: awayName, homeName
         */
-
         function updateTeamNames(gameId) {
-             rounds[testGameObj.gameId[1]]
+            rounds[testGameObj.gameId[1]]
             [regionMap[testGameObj.gameId[2]] ** 2 
             + parseInt(testGameObj.gameId[3]) - 1
             ].player1.name = testGameObj.homeName;
@@ -900,7 +900,7 @@
             [regionMap[testGameObj.gameId[2]] ** 2 
             + parseInt(testGameObj.gameId[3]) - 1
             ].player2.name = testGameObj.awayName;
-        }
+        };
         updateTeamNames(); 
 
         //-- JSON with matches of each round
