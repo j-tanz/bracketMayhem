@@ -1,3 +1,158 @@
+
+const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
+
+// $(document).ready(function () {
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+var tomorrow = dd++;
+
+if (dd < 10) {
+    dd = "0" + dd;
+}
+if (tomorrow < 10) {
+    tomorrow = "0" + tomorrow;
+}
+if (mm < 10) {
+    mm = "0" + mm;
+}
+
+let finalizedGamesArr = [];
+let scheduleObj = {};
+let winnerArr = [];
+let mergedFinalArr = [];
+let tomorrowScheduleArr = [];
+let sortArr = [];
+let tourneyRounds = [];
+let gameState = [];
+let masterArr =[];
+let pendingArr =[];
+let placeArr = [];
+let gamesArr = [];
+
+function tourneyLookup() {
+    let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
+    // let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
+
+    let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/tournaments/" + tournamentID + "/schedule.json?"
+
+    $.ajax({
+        url: 'https://cors-anywhere.herokuapp.com/' + getURL + apiKey,
+        method: 'GET'
+    }).done(function (result) {
+        scheduleObj = {
+            allData: result
+        }
+
+        for (let i = 1; i < scheduleObj.allData.rounds.length; i++) {
+            tourneyRounds.push(_.forEach(scheduleObj.allData.rounds[i]));
+        }
+        _.forEach(tourneyRounds, function (val, z) {
+            if (val.bracketed.length !== 0) {
+                sortArr.push(val.bracketed);
+            }
+            if (val.games.length !== 0) {
+                sortArr.push(val.games);
+            }
+        })
+        _.forEach(sortArr, function (elem, y) {
+            _.forEach(elem, function (sub) {
+                if (sub.id) {
+                    gameState.push(sub);
+                } else {
+                    _.forEach(sub.games, function (nest1) {
+                        if (nest1) {
+                            gameState.push(nest1)
+                        }
+                    })
+                }
+            })
+        })
+        checkCompleted(gameState);
+    })
+}
+let gameIdsArr = [];
+// let bracketGamesArr =[];
+let workObj = {};
+
+function appendIdent(gamesList){
+    // console.log('gamesList: ', gamesList);
+    for ( let i = 0; i < gamesList.length; i++){
+        let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
+        let num = gameNumber.slice(5);
+        // console.log("num", num);
+
+        if (_.includes(gamesList[i].title, "East")){
+            region = "W"
+        } else if 
+            (_.includes(gamesList[i].title, "West")){
+                region = "X"
+            } else if (_.includes(gamesList[i].title, "Mid")){
+                region = "Y"
+            } else region = "Z";
+            // console.log("round", gameRound);
+        
+            if (_.includes(gamesList[i].title, "First")){
+                round = "1"
+            }
+            if (_.includes(gamesList[i].title, "Second")){
+                round = "2"
+            }
+            if (_.includes(gamesList[i].title, "Sweet")){
+                round = "3"
+            }
+            if (_.includes(gamesList[i].title, "Elite")){
+                round = "4"
+            }
+            if (_.includes(gamesList[i].title, "Semifinals")){
+                round = "5"
+            }
+            if (_.includes(gamesList[i].title, "Championship")){
+                round = "6"
+            }
+            // console.log("ID ", "R",round,region,num);
+            workObj[i]={
+                gameId: "R" + "" + round + "" + region + "" + num
+            }
+            gameIdsArr.push(workObj[i]);
+            gamesArr.push(_.merge({},gamesList[i], gameIdsArr[i]));
+            let bracketGamesArr = gamesArr;
+            // console.log('bracketGamesArr: ', bracketGamesArr);
+        }
+        // console.log("bracketGamesArr", bracketGamesArr);
+        loopGameId(bracketGamesArr);
+    }
+
+
+function checkCompleted(gsObj) {
+    for (let i = 0; i < gsObj.length; i++) {
+        if (gsObj[i].status === "closed") {
+            finalizedGamesArr.push(gsObj[i]);
+        } else {
+            pendingArr.push(gsObj[i]);
+        }
+    }
+    for (let i = 0; i < finalizedGamesArr.length; i++) {
+        finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ? 
+            winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } :
+            winnerArr[i] = { winner: "awayTeam", didHomeTeamWin: false } ;
+            mergedFinalArr.push(_.assign({}, finalizedGamesArr[i], winnerArr[i]));                
+    }
+    combinedMasterArr(mergedFinalArr, pendingArr);
+    // console.log('mergedFinalArr: ', mergedFinalArr); 
+}
+function combinedMasterArr(arr1,arr2) {
+   Array.prototype.push.apply(arr1, arr2); 
+   masterArr = arr1;
+//    console.log('masterArr: ', masterArr);
+   appendIdent(masterArr);
+   return masterArr;
+}
+
+tourneyLookup();
+
+
 let titles = [
     'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
 ];
@@ -840,53 +995,53 @@ let rounds = [
         },
     ]
 ];
-let bracketGamesArr = [
-{
-    gameId: "R1W1",
-    awayPoints: 53,
-    homePoints: 54,
-    winner: true,
-    homeName: "Wolves",
-    awayName: "panthers",
-    homeTeamId: 4,
-    awayTeamId: 5,
-},
-{
-    gameId: "R1W2",
-    awayPoints: 53,
-    homePoints: 54,
-    winner: true,
-    homeName: "Dogs",
-    awayName: "Dawgs",
-    homeTeamId: 4,
-    awayTeamId: 5,
-},
-{
-    gameId: "R1W3",
-    awayPoints: 53,
-    homePoints: 54,
-    winner: true,
-    homeName: "people",
-    awayName: "aliens",
-    homeTeamId: 4,
-    awayTeamId: 5,
-}
-];
-let test = "South Regional = First Round - Game 4";
+// let bracketGamesArr = [
+// {
+//     gameId: "R1W1",
+//     awayPoints: 53,
+//     homePoints: 54,
+//     winner: true,
+//     homeName: "Wolves",
+//     awayName: "panthers",
+//     homeTeamId: 4,
+//     awayTeamId: 5,
+// },
+// {
+//     gameId: "R1W2",
+//     awayPoints: 53,
+//     homePoints: 54,
+//     winner: true,
+//     homeName: "Dogs",
+//     awayName: "Dawgs",
+//     homeTeamId: 4,
+//     awayTeamId: 5,
+// },
+// {
+//     gameId: "R1W3",
+//     awayPoints: 53,
+//     homePoints: 54,
+//     winner: true,
+//     homeName: "people",
+//     awayName: "aliens",
+//     homeTeamId: 4,
+//     awayTeamId: 5,
+// }
+// ];
+// let test = "South Regional = First Round - Game 4";
 /*
  * @function getGameNum
  * @parameter{string}: game name variable
  * @return {string}: gameId num that will be concated to the gameId
  */
-function getGameNum(test) {
-    let gameNumber = test.substring(test.indexOf("Game"), test.length);
-    console.log(gameNumber);
-    let num = gameNumber.slice(5);
-    console.log(num);
-    let newGameId = num; 
-    console.log(typeof newGameId, newGameId);
-}
-getGameNum(test);
+// function getGameNum(test) {
+//     let gameNumber = test.substring(test.indexOf("Game"), test.length);
+//     console.log(gameNumber);
+//     let num = gameNumber.slice(5);
+//     console.log(num);
+//     let newGameId = num; 
+//     console.log(typeof newGameId, newGameId);
+// }
+// getGameNum(test);
 /*
  * @function loopGameId
  * @parameter{array of strings}: gameId
@@ -898,10 +1053,14 @@ getGameNum(test);
     Y: 2,
     Z: 3
 };
-function loopGameId() {
+function loopGameId(bracketGamesArr) {
+    console.log('bracketGamesArr: ', bracketGamesArr);
     bracketGamesArr.forEach((element) =>  updateTeamNames(element));
 };
 loopGameId(bracketGamesArr);
+
+
+
 
 
 /*
@@ -909,7 +1068,10 @@ loopGameId(bracketGamesArr);
  * @parameter{string}: gameId variable
  * @return {string}: awayName, homeName
  */
+
+
 function updateTeamNames(bracketGamesArr) {
+    // console.log('bracketGamesArr: ', bracketGamesArr);
     rounds[bracketGamesArr.gameId[1]-1]
         [regionMap[bracketGamesArr.gameId[2]] ** 2 +
             parseInt(bracketGamesArr.gameId[3]) - 1
@@ -920,7 +1082,7 @@ function updateTeamNames(bracketGamesArr) {
             parseInt(bracketGamesArr.gameId[3]) - 1
         ].player2.name = bracketGamesArr.awayName;
 };
-// updateTeamNames();
+updateTeamNames();
 
 //-- JSON with matches of each round
 $('selector').brackets({
