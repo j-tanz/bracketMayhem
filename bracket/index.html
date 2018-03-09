@@ -6,6 +6,9 @@
     <title>Your bracket</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="../bracket/js/brackets.js"></script>
 </head>
 
 <body>
@@ -23,9 +26,7 @@
         <p class="brackets">
         </p>
     </div>
-
-    <script src="js/jquery-1.11.3.js"></script>
-    <script src="js/brackets.min.js"></script>
+    
     <script>
         let titles = [
             'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
@@ -900,14 +901,12 @@
                 parseInt(test.gameId[3]) - 1
             ].player2.name = test.awayName;
         }
+        updateTeamNames(); 
 
+        //-- JSON with matches of each round
         $('selector').brackets({
-            rounds: rounds //-- JSON with matches of the each round
+            rounds: rounds 
         });
-
-
-        updateTeamNames();        
-
         //dont touch-will break display
         $(".brackets").brackets({
             titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
