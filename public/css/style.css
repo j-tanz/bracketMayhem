@@ -1,6 +1,13 @@
 
 /* Coolors Exported Palette - coolors.co/1e1e24-fff8f0-6d696b-b3001b-255c99 */
 
+#jumboTitle {
+    color: rgba(179, 0, 27, 1);
+}
+.row {
+    margin: 0 auto;
+    width: 90%;
+}
 p 
 {
     border: 2px solid rgba(37, 92, 153, 1);
@@ -48,10 +55,9 @@ p
 }
 
 #newBracket {
-    margin-left: 255%;
     padding: 1%; 
-    width: 100%; 
-    justify-content: 'center';
+    width: 15%; 
+   margin:10px;
 }
 
 .navbar{
