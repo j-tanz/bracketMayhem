@@ -108,14 +108,6 @@ function combinedMasterArr(arr1,arr2) {
 }
 
 
-<<<<<<< HEAD
- // let endedGames = [...finalizedGamesArr].filter(e => e.home_points < e.away_points).map(elem => ({...elem})); 
-
- //function to create new bracket
- function newBracket(userID,){
-
- }
-=======
 // console.log('mergedFinalArr: ', mergedFinalArr);
 
 //************************************************
@@ -169,4 +161,3 @@ function combinedMasterArr(arr1,arr2) {
     // }
 // })
  // let endedGames = [...finalizedGamesArr].filter(e => e.home_points < e.away_points).map(elem => ({...elem})); 
->>>>>>> 2dd2b805ac99113561d47641d91f3fd6f3928b22
