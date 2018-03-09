@@ -46,3 +46,8 @@ const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 // })
 
  // let endedGames = [...finalizedGamesArr].filter(e => e.home_points < e.away_points).map(elem => ({...elem})); 
+
+ //function to create new bracket
+ function newBracket(userID,){
+
+ }
