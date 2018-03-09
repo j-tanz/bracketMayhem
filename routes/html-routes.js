@@ -19,10 +19,10 @@ module.exports = function(app) {
   });
 
   app.get("/bracket", function(req, res) {
-    res.sendFile(path.join(__dirname, "../bracket/index.html"));
+    res.sendFile(path.join(__dirname, "../public/bracket/index.html"));
   });
 
-  app.get("/bracket/bracket.js", function(req, res){
-    res.sendFile(path.join(__dirname, "../bracket/bracket.js"))
-  })
+  // app.get("/bracket/bracket.js", function(req, res){
+  //   res.sendFile(path.join(__dirname, "../bracket/bracket.js"))
+  // })
 };

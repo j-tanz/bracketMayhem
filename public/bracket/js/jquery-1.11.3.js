@@ -1,19 +1,18 @@
 /*!
  * jQuery JavaScript Library v1.11.3
- * http://jquery.com/
+ * http://jquery.com/S
  *
  * Includes Sizzle.js
  * http://sizzlejs.com/
  *
  * Copyright 2005, 2014 jQuery Foundation, Inc. and other contributors
- * Released under the MIT license
+ * Released under the MIT licenseß
  * http://jquery.org/license
  *
  * Date: 2015-04-28T16:19Z
  */
 
 (function( global, factory ) {
-
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
 		// For CommonJS and CommonJS-like environments where a proper window is present,
 		// execute the factory and get jQuery

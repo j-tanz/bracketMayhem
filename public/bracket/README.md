@@ -6,7 +6,6 @@ Plugin jQuery for create tournament brackets
 ```javascript
 rounds = [
     [
-
         {
             player1: {
                 name: "Player 1",               //-- name of the player
