@@ -8,7 +8,9 @@
         crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <script src="../bracket/js/brackets.js"></script>
+    <script src="./js/jquery-1.11.3.js"></script>
+    <script src="./js/brackets.min.js"></script>
+    <script src="./js/brackets.js"></script>
 </head>
 
 <body>
@@ -811,30 +813,30 @@
 
             //final four
             [{
-                    player1: {
-                        name: "Team 1", //-- name of the player
-                        winner: true, //-- add class winner to player container
-                        ID: 1, //-- player ID
-                        url: "http://custom_link.com" //-- action click to player
-                    },
-                    player2: {
-                        name: "Team 10",
-                        ID: 10
-                    }
+                player1: {
+                    name: "Team 1", //-- name of the player
+                    winner: true, //-- add class winner to player container
+                    ID: 1, //-- player ID
+                    url: "http://custom_link.com" //-- action click to player
                 },
+                player2: {
+                    name: "Team 10",
+                    ID: 10
+                }
+            },
 
-                {
-                    player1: {
-                        name: "Team 45", //-- name of the player
-                        winner: true, //-- add class winner to player container
-                        ID: 45, //-- player ID
-                        url: "http://custom_link.com" //-- action click to player
-                    },
-                    player2: {
-                        name: "Team 32",
-                        ID: 32
-                    },
+            {
+                player1: {
+                    name: "Team 45", //-- name of the player
+                    winner: true, //-- add class winner to player container
+                    ID: 45, //-- player ID
+                    url: "http://custom_link.com" //-- action click to player
                 },
+                player2: {
+                    name: "Team 32",
+                    ID: 32
+                },
+            },
             ],
 
             //championship game
@@ -939,7 +941,7 @@
             console.log(gameNumber);
             let num = gameNumber.slice(5);
             console.log(num);
-            let newGameId = num; 
+            let newGameId = num;
             console.log(typeof newGameId, newGameId);
         }
         getGameNum(test);
@@ -973,14 +975,14 @@
          */
         function updateTeamNames(gameId) {
             rounds[testGameObj.gameId[1]]
-                [regionMap[testGameObj.gameId[2]] ** 2 +
-                    parseInt(testGameObj.gameId[3]) - 1
-                ].player1.name = testGameObj.homeName;
+            [regionMap[testGameObj.gameId[2]] ** 2 +
+            parseInt(testGameObj.gameId[3]) - 1
+            ].player1.name = testGameObj.homeName;
 
             rounds[testGameObj.gameId[1]]
-                [regionMap[testGameObj.gameId[2]] ** 2 +
-                    parseInt(testGameObj.gameId[3]) - 1
-                ].player2.name = testGameObj.awayName;
+            [regionMap[testGameObj.gameId[2]] ** 2 +
+            parseInt(testGameObj.gameId[3]) - 1
+            ].player2.name = testGameObj.awayName;
         };
         // updateTeamNames();
 
@@ -1014,5 +1016,8 @@
             border_radius_lines: '0px'
         });
     </script>
+
+
+
 
 </html>

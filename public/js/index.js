@@ -43,7 +43,7 @@ function tourneyLookup() {
         scheduleObj = {
             allData: result
         }
-        console.log('scheduleObj: ', scheduleObj);
+
         for (let i = 1; i < scheduleObj.allData.rounds.length; i++) {
             tourneyRounds.push(_.forEach(scheduleObj.allData.rounds[i]));
         }
@@ -69,20 +69,60 @@ function tourneyLookup() {
             })
         })
         checkCompleted(gameState);
-        // console.log('gameState: ', gameState);
     })
 }
+let gameIdsArr = [];
+let bracketGamesArr =[];
+let workObj = {};
 
-function appendIdent(gsObj){
-    // console.log('gsObj: ', gsObj);
-    // for (let i =0; i<gsObj.length; i++) {
-    //     if (_.includes(gsObj[i].title, "East"){
-    //         placeArr
-    //     })
-    // }
+function appendIdent(gamesList){
+    // console.log('gamesList: ', gamesList);
+    for ( let i = 0; i < gamesList.length; i++){
+        let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
+        let num = gameNumber.slice(5);
+        // console.log("num", num);
 
-    // checkCompleted();
-}
+        if (_.includes(gamesList[i].title, "East")){
+            region = "W"
+        } else if 
+            (_.includes(gamesList[i].title, "West")){
+                region = "X"
+            } else if (_.includes(gamesList[i].title, "Mid")){
+                region = "Y"
+            } else region = "Z";
+            // console.log("round", gameRound);
+        
+            if (_.includes(gamesList[i].title, "First")){
+                round = "1"
+            }
+            if (_.includes(gamesList[i].title, "Second")){
+                round = "2"
+            }
+            if (_.includes(gamesList[i].title, "Sweet")){
+                round = "3"
+            }
+            if (_.includes(gamesList[i].title, "Elite")){
+                round = "4"
+            }
+            if (_.includes(gamesList[i].title, "Semifinals")){
+                round = "5"
+            }
+            if (_.includes(gamesList[i].title, "Chmpionship")){
+                round = "6"
+            }
+            // console.log("ID ", "R",round,region,num);
+            workObj[i]={
+                gameId: "R" + "" + round + "" + region + "" + num
+            }
+            gameIdsArr.push(workObj[i]);
+            bracketGamesArr.push(_.merge({},gamesList[i], gameIdsArr[i]));
+
+            // console.log('bracketGamesArr: ', bracketGamesArr);
+        }
+        console.log("bracketGamesArr", bracketGamesArr);
+
+    }
+
 
 function checkCompleted(gsObj) {
     for (let i = 0; i < gsObj.length; i++) {
@@ -104,7 +144,8 @@ function checkCompleted(gsObj) {
 function combinedMasterArr(arr1,arr2) {
    Array.prototype.push.apply(arr1, arr2); 
    masterArr = arr1;
-   console.log('masterArr: ', masterArr);
+//    console.log('masterArr: ', masterArr);
+   appendIdent(masterArr);
    return masterArr;
 }
 
