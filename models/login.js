@@ -3,7 +3,8 @@ var sequelize = require("../config/connection.js");
 
 var login = sequelize.define("login", {
   loginEmail: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    // unique: true
   },
   loginPassword: {
     type: Sequelize.STRING
