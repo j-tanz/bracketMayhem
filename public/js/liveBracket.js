@@ -74,9 +74,10 @@ function tourneyLookup() {
 }
 let gameIdsArr = [];
 // let bracketGamesArr =[];
-let workObj = {};
+
 
 function appendIdent(gamesList){
+    let bracketGamesArr = [];
     // console.log('gamesList: ', gamesList);
     for ( let i = 0; i < gamesList.length; i++){
         let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
@@ -112,16 +113,18 @@ function appendIdent(gamesList){
                 round = "6"
             }
             // console.log("ID ", "R",round,region,num);
+            let workObj = {};
             workObj[i]={
                 gameId: "R" + "" + round + "" + region + "" + num
             }
             gameIdsArr.push(workObj[i]);
-            gamesArr.push(_.merge({},gamesList[i], gameIdsArr[i]));
-            let bracketGamesArr = gamesArr;
+            
+       
+            bracketGamesArr.push(_.merge({},gamesList[i], gameIdsArr[i]));
             // console.log('bracketGamesArr: ', bracketGamesArr);
         }
         // console.log("bracketGamesArr", bracketGamesArr);
-        loopGameId(bracketGamesArr);
+        updateTeamNames(bracketGamesArr.slice(0,bracketGamesArr.length - 2));
     }
 
 
@@ -1053,11 +1056,11 @@ let rounds = [
     Y: 2,
     Z: 3
 };
-function loopGameId(bracketGamesArr) {
-    console.log('bracketGamesArr: ', bracketGamesArr);
-    bracketGamesArr.forEach((element) =>  updateTeamNames(element));
-};
-loopGameId(bracketGamesArr);
+// function loopGameId(bracketGamesArr) {
+//     console.log('bracketGamesArr: ', bracketGamesArr);
+//     bracketGamesArr.forEach((element) =>  updateTeamNames(element));
+// };
+// loopGameId(bracketGamesArr);
 
 
 
@@ -1072,17 +1075,34 @@ loopGameId(bracketGamesArr);
 
 function updateTeamNames(bracketGamesArr) {
     // console.log('bracketGamesArr: ', bracketGamesArr);
-    rounds[bracketGamesArr.gameId[1]-1]
-        [regionMap[bracketGamesArr.gameId[2]] ** 2 +
-            parseInt(bracketGamesArr.gameId[3]) - 1
-        ].player1.name = bracketGamesArr.homeName;
+    _.forEach(bracketGamesArr, function (val, z) {
+        
+        // console.log("val.gameId: ", (val));
+        // console.log("val.gameId: ", (val.gameId));
+        // console.log("val.gameId: ", (val.gameId[1]-1));
 
-    rounds[bracketGamesArr.gameId[1]-1]
-        [regionMap[bracketGamesArr.gameId[2]] ** 2 +
-            parseInt(bracketGamesArr.gameId[3]) - 1
-        ].player2.name = bracketGamesArr.awayName;
+        //console.log('val.home.name: ', val.home.name);
+        //console.log('val.away.name: ', val.away.name);
+       // console.log("rounds", rounds[val.gameId[1]-1])
+        // console.log("whole", rounds[val.gameId[1]-1])
+       
+        let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1]-1].length) / 4) + parseInt(val.gameId[3]) - 1 ;
+        index = index !== 2.5 ? index : 0;
+        console.log("what is this", index  );
+    rounds[val.gameId[1]-1]
+        [ index ].player1.name = val.home.name;
+        
+
+    rounds[val.gameId[1]-1]
+        [index].player2.name = val.away.name;
+        console.log('[index].player2.name: ', [index].player2.name);
+        // console.log('= val.away.name: ', val.away.name);
+
+        // console.log('bracketGamesArr: ', bracketGamesArr);
+
+    })
 };
-updateTeamNames();
+// updateTeamNames();
 
 //-- JSON with matches of each round
 $('selector').brackets({
