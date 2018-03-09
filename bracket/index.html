@@ -6,6 +6,9 @@
     <title>Your bracket</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="../bracket/js/brackets.js"></script>
 </head>
 
 <body>
@@ -17,19 +20,14 @@
     </nav>
     <h1 class="title">Your Bracket</h1>
     <div class="wrapper">
-        <button type="button" id="homepageButton">
-            <a href="/">Go Back to Home page</a>
-        </button>
         <p class="brackets">
         </p>
     </div>
 
-    <script src="js/jquery-1.11.3.js"></script>
-    <script src="js/brackets.min.js"></script>
     <script>
         let titles = [
             'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
-        ]; 
+        ];
         //dont touch-will break display
         let rounds = [
             //round of 64 - 32 games
@@ -869,17 +867,98 @@
                 },
             ]
         ];
-        let test = {
-                gameId: "r1z4",
-                awayPoints: 53,
-                homePoints: 54,
-                winner: true,
-                homeName:"Wolves",
-                awayName:"panthers",
-                status: "in progress",
-                homeTeamId: 63,
-                awayTeamId: 57,
-                gameRound: 1
+        let gameId = [
+            "R1W1",
+            "R1W2",
+            "R1W3",
+            "R1W4",
+            "R1W5",
+            "R1W6",
+            "R1W7",
+            "R1W8",
+            "R1X1",
+            "R1X2",
+            "R1X3",
+            "R1X4",
+            "R1X5",
+            "R1X6",
+            "R1X7",
+            "R1X8",
+            "R1Y1",
+            "R1Y2",
+            "R1Y3",
+            "R1Y4",
+            "R1Y5",
+            "R1Y6",
+            "R1Y7",
+            "R1Y8",
+            "R1Z1",
+            "R1Z2",
+            "R1Z3",
+            "R1Z4",
+            "R1Z5",
+            "R1Z6",
+            "R1Z7",
+            "R1Z8",
+            "R2W1",
+            "R2W2",
+            "R2W3",
+            "R2W4",
+            "R2X1",
+            "R2X2",
+            "R2X3",
+            "R2X4",
+            "R2Y1",
+            "R2Y2",
+            "R2Y3",
+            "R2Y4",
+            "R2Z1",
+            "R2Z2",
+            "R2Z3",
+            "R2Z4",
+            "R3W1",
+            "R3W2",
+            "R3X1",
+            "R3X2",
+            "R3Y1",
+            "R3Y2",
+            "R3Z1",
+            "R3Z2",
+            "R4W1",
+            "R4X1",
+            "R4Y1",
+            "R4Z1",
+            "R5WX",
+            "R5YZ",
+            "R6CH"
+        ];
+        console.log(gameId);
+        let test = "South Regional = First Round - Game 4";
+        function getGameNum(test) {
+            let gameNumber = test.substring(test.indexOf("Game"), test.length);
+            console.log(gameNumber);
+            let num = gameNumber.slice(5);
+            console.log(num);
+            let newGameId = num; 
+            console.log(typeof newGameId, newGameId);
+        }
+        getGameNum(test);
+
+        function loopGameId() {
+            for (let i = 0; i < gameId.length; i++) {
+                console.log(parseInt(gameId[i]++));
+            };
+        };
+        // loopGameId(gameId);
+        let testGameObj = {
+            gameId: gameId,
+            awayPoints: 53,
+            homePoints: 54,
+            winner: true,
+            homeName: "Wolves",
+            awayName: "panthers",
+            homeTeamId: 4,
+            awayTeamId: 5,
         };
         let regionMap = {
             w: 0,
@@ -888,26 +967,27 @@
             z: 3
         };
         /*
-        * @function updateTeamNames
-        * @parameter{string}: gameId variable
-        * @return awayName, homeName
-        */
+         * @function updateTeamNames
+         * @parameter{string}: gameId variable
+         * @return {string}: awayName, homeName
+         */
         function updateTeamNames(gameId) {
-            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
-                parseInt(test.gameId[3]) - 1
-            ].player1.name = test.homeName;
-            rounds[test.gameRound - 1][regionMap[test.gameId[2]] ** 2 +
-                parseInt(test.gameId[3]) - 1
-            ].player2.name = test.awayName;
-        }
+            rounds[testGameObj.gameId[1]]
+                [regionMap[testGameObj.gameId[2]] ** 2 +
+                    parseInt(testGameObj.gameId[3]) - 1
+                ].player1.name = testGameObj.homeName;
 
+            rounds[testGameObj.gameId[1]]
+                [regionMap[testGameObj.gameId[2]] ** 2 +
+                    parseInt(testGameObj.gameId[3]) - 1
+                ].player2.name = testGameObj.awayName;
+        };
+        // updateTeamNames();
+
+        //-- JSON with matches of each round
         $('selector').brackets({
-            rounds: rounds //-- JSON with matches of the each round
+            rounds: rounds
         });
-
-
-        updateTeamNames();        
-
         //dont touch-will break display
         $(".brackets").brackets({
             titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
@@ -933,7 +1013,6 @@
             border_radius_player: '0px',
             border_radius_lines: '0px'
         });
-
     </script>
 
 </html>

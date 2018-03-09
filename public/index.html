@@ -29,13 +29,20 @@
         </a>
     </nav>
     <div class="jumbotron">
-        <h1>UserName Homepage</h1>
-        <p></p>
+        <div class="row">
+            <div id ="jumboTitle" class="col-xs-8"> 
+                <h1>Bracket Mayhem</h1>
+                <h3>Make Your Madness</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <p> Current Stats and Data Will Go Here</p>
+            </div>
+        </div>
     </div>
     <div class="container">
-        <div class="row">
-            <p> Current Stats and Data Will Go Here</p>
-        </div>
+
     </div>
     <div class="container">
         <div class="row">
@@ -102,6 +109,8 @@
         crossorigin="anonymous"></script>
     <script src="../node_modules/lodash/lodash.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/jquery-1.11.3.js"></script>
+    <script src="./js/brackets.min.js"></script>
     <script>
         $.get("/api/logins", function (data) {
             console.log(data);
