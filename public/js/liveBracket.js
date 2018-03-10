@@ -72,12 +72,11 @@ function tourneyLookup() {
         checkCompleted(gameState);
     })
 }
-let gameIdsArr = [];
-// let bracketGamesArr =[];
 
 
 function appendIdent(gamesList) {
     let bracketGamesArr = [];
+    let gameIdsArr = [];
     // console.log('gamesList: ', gamesList);
     for (let i = 0; i < gamesList.length; i++) {
         let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
@@ -135,10 +134,31 @@ function appendIdent(gamesList) {
         bracketGamesArr.push(_.merge({}, gamesList[i], gameIdsArr[i]));
         // console.log('bracketGamesArr: ', bracketGamesArr);
     }
-    // console.log("bracketGamesArr", bracketGamesArr);
+    console.log(gameIdsArr);
+    
+    console.log("bracketGamesArr", bracketGamesArr);
     updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 3));
     // updateTeamNames(bracketGamesArr);
+    
+_gameIdsArr.forEach(updateTeamNames);
+var counts = {};
+gameIds.forEach(function (x) { 
+    counts[x] = (counts[x] || 0)+1;
+    console.log(counts); 
 }
+);
+function updateTeamNames(gameIdsArr){   
+    console.log(gameIdsArr);
+    console.log(counts);
+    let index = regionMap[gameIdsArr.round] * ((rounds[counts.length]) / 4) + parseInt(gameIdsArr.gameNum) - 1;
+    index = index !== 2.5 ? index : 0;
+    console.log("what is this", index);
+    rounds[gameIdsArr.round - 1][index].player1.name = bracketGamesArr.home.name;
+    rounds[gameIdsArr.round - 1][index].player2.name = bracketGamessArr.away.name;
+    console.log('rounds[val.gameId[1] - 1][index].player2.name: ', rounds[gameIdsArr.gameId[1] - 1][index].player2.name);
+};
+}
+
 
 
 function checkCompleted(gsObj) {
@@ -1010,39 +1030,7 @@ let rounds = [
         },
     ]
 ];
-// let bracketGamesArr = [
-// {
-//     gameId: "R1W1",
-//     awayPoints: 53,
-//     homePoints: 54,
-//     winner: true,
-//     homeName: "Wolves",
-//     awayName: "panthers",
-//     homeTeamId: 4,
-//     awayTeamId: 5,
-// },
-// {
-//     gameId: "R1W2",
-//     awayPoints: 53,
-//     homePoints: 54,
-//     winner: true,
-//     homeName: "Dogs",
-//     awayName: "Dawgs",
-//     homeTeamId: 4,
-//     awayTeamId: 5,
-// },
-// {
-//     gameId: "R1W3",
-//     awayPoints: 53,
-//     homePoints: 54,
-//     winner: true,
-//     homeName: "people",
-//     awayName: "aliens",
-//     homeTeamId: 4,
-//     awayTeamId: 5,
-// }
-// ];
-// let test = "South Regional = First Round - Game 4";
+
 /*
  * @function getGameNum
  * @parameter{string}: game name variable
@@ -1073,47 +1061,18 @@ let regionMap = {
 //     bracketGamesArr.forEach((element) =>  updateTeamNames(element));
 // };
 // loopGameId(bracketGamesArr);
+// console.log('(((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum)): ', (((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum)));
+// console.log('parseInt(val.round) - 1: ', parseInt(val.round) - 1);
 
 
-/*
- * @function updateTeamNames
- * @parameter{string}: gameId variable
- * @return {string}: awayName, homeName
- */
 
+  
 
-function updateTeamNames(bracketGamesArr) {
-    console.log('bracketGamesArr: ', bracketGamesArr);
-    console.log("rounds ,", rounds);
-    // console.log("rounds ,", rounds[0]);
-    // console.log("rounds ,", rounds[0][0].player1.name);
+//  * @function updateTeamNames
+//  * @parameter{string}: gameId variable
+//  * @return {string}: awayName, homeName
+ 
 
-    _.forEach(bracketGamesArr, function (val, z) {
-
-        console.log('(((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum)): ', (((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum)));
-        console.log('parseInt(val.round) - 1: ', parseInt(val.round) - 1);
-
-        rounds[parseInt(val.round) - 1][(((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player1.name = val.home.name;
-        rounds[parseInt(val.round) - 1][(((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player2.name = val.away.name;
-        
-
-        // let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
-        // index = index !== 2.5 ? index : 0;
-        // console.log("what is this", index);
-        // rounds[val.gameId[1] - 1][index].player1.name = val.home.name;
-        // rounds[val.gameId[1] - 1][index].player2.name = val.away.name;
-        
-        // console.log('rounds[val.gameId[1] - 1][index].player1.name: ', rounds[val.gameId[1] - 1][index].player1.name);
-
-        // if (val.round == "1") {
-        //     console.log('val.round: ', val.round);
-        //     if (val.region === "W") {
-                // rounds[0][parseInt(val.gameNum - 1)].player1.name = val.home.name;
-                // rounds[0][parseInt(val.gameNum - 1)].player2.name = val.away.name;
-        //     }
-
-        // }
-    })
 
 // console.log("val.gameId: ", (val));
 // console.log("val.gameId: ", (val.gameId));
@@ -1134,6 +1093,10 @@ function updateTeamNames(bracketGamesArr) {
 
 
 // updateTeamNames();
+
+//rounds[parseInt(val.round) - 1][(((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player1.name = val.home.name;
+//rounds[parseInt(val.round) - 1][(((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player2.name = val.away.name;
+
 
 //-- JSON with matches of each round
 $('selector').brackets({
@@ -1164,4 +1127,3 @@ $(".brackets").brackets({
     border_radius_player: '0px',
     border_radius_lines: '0px'
 });
-};
