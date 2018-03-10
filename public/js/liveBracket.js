@@ -1085,53 +1085,41 @@ let regionMap = {
 function updateTeamNames(bracketGamesArr) {
     console.log('bracketGamesArr: ', bracketGamesArr);
     console.log("rounds ,", rounds);
-    // console.log("rounds ,", rounds[0]);
-    // console.log("rounds ,", rounds[0][0].player1.name);
-
     _.forEach(bracketGamesArr, function (val, z) {
-
-        console.log('(((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum)): ', (((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum)));
-        console.log('parseInt(val.round) - 1: ', parseInt(val.round) - 1);
-
-        rounds[parseInt(val.round) - 1][(((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player1.name = val.home.name;
-        rounds[parseInt(val.round) - 1][(((64/(2^(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player2.name = val.away.name;
-        
-
-        // let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
-        // index = index !== 2.5 ? index : 0;
-        // console.log("what is this", index);
-        // rounds[val.gameId[1] - 1][index].player1.name = val.home.name;
-        // rounds[val.gameId[1] - 1][index].player2.name = val.away.name;
-        
-        // console.log('rounds[val.gameId[1] - 1][index].player1.name: ', rounds[val.gameId[1] - 1][index].player1.name);
-
+        let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
+        index = index !== 2.5 ? index : 0;
+        // if (parseInt(val.away.seed) < 10) { 
+        //     val.away.seed = " " + val.away.seed;
+        //     console.log('val.away.seed: ', val.away.seed);
+        // }
         // if (val.round == "1") {
-        //     console.log('val.round: ', val.round);
-        //     if (val.region === "W") {
-                // rounds[0][parseInt(val.gameNum - 1)].player1.name = val.home.name;
-                // rounds[0][parseInt(val.gameNum - 1)].player2.name = val.away.name;
-        //     }
+            rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
+            rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias; 
+
+            rounds[val.gameId[1] - 1][index].player1.winner = val.didHomeTeamWin; 
+            console.log('val.didHomeTeamWin: ', val.didHomeTeamWin);
+            // rounds[val.gameId[1] - 1][index].player2.winner = ; 
+
 
         // }
     })
 
-// console.log("val.gameId: ", (val));
-// console.log("val.gameId: ", (val.gameId));
-// console.log("val.gameId: ", (val.gameId[1]-1));
+// console.log('rounds[val.gameId[1] - 1][index].player1.name: ', rounds[val.gameId[1] - 1][index].player1.name);
 
-//console.log('val.home.name: ', val.home.name);
-//console.log('val.away.name: ', val.away.name);
-// console.log("rounds", rounds[val.gameId[1]-1])
-// console.log("whole", rounds[val.gameId[1]-1])
+// if (val.round == "1") {
+//     console.log('val.round: ', val.round);
+//     if (val.region === "W") {
+    // rounds[0][parseInt(val.gameNum - 1)].player1.name = val.home.name;
+    // rounds[0][parseInt(val.gameNum - 1)].player2.name = val.away.name;
+//     }
+// }
 
 
+// rounds[parseInt(val.round) - 1][(((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player1.name = val.home.name;
+// rounds[parseInt(val.round) - 1][(((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player2.name = val.away.name;
+        
 // rounds[val.gameId[1]-1]
 //     [index].player2.name = val.away.name;
-//     console.log('[index].player2.name: ', [0].player2.name);
-// console.log('= val.away.name: ', val.away.name);
-
-// console.log('bracketGamesArr: ', bracketGamesArr);
-
 
 // updateTeamNames();
 
