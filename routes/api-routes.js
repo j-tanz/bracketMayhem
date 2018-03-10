@@ -1,21 +1,23 @@
 var liveResult = require("../models/liveResult.js");
 var login = require("../models/login.js");
-var userData = require("../models/userBracket.js");
-
+var userBracket = require("../models/userBracket.js");
 
 module.exports = function (app) {
     app.get("/api/liveResults", function (req, res) {
         liveResult.findAll({}).then((results) => res.json(results));
     });
 
-
-
     app.get("/api/userBrackets", function (req, res) {
-        userBracket.findAll({}).then((results) => res.json(results));
+        userBracket.findAll({}).then((data) => res.json(data));
     });
-
+    app.get("/api/userBrackets/:userid", function (req, res) {
+        userBracket.findAll({
+            where: {
+                userID: req.params.userid
+            }
+        }).then((data) => res.json(data));
+    });
     // Need post route for userBrackets table
-
     //get route to get all user logins
     app.get("/api/logins", function (req, res) {
         login.findAll({
