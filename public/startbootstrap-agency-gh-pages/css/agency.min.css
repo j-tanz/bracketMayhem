@@ -592,6 +592,10 @@ body {
   .team-member p {
     margin-top: 0;
   }
+  .col-lg-12 {
+    color: rgba(37, 92, 153, 1);
+
+  }
   
   section#contact {
     background-color: #212529;
@@ -628,27 +632,27 @@ body {
   
   section#contact ::-webkit-input-placeholder {
     font-weight: 700;
-    color: #ced4da;
+    color: rgba(37, 92, 153, 1);
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
   section#contact :-moz-placeholder {
     font-weight: 700;
-    color: #ced4da;
+    color: rgba(37, 92, 153, 1);
     /* Firefox 18- */
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
   section#contact ::-moz-placeholder {
     font-weight: 700;
-    color: #ced4da;
+    color: rgba(37, 92, 153, 1);
     /* Firefox 19+ */
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
   section#contact :-ms-input-placeholder {
     font-weight: 700;
-    color: #ced4da;
+    color: rgba(37, 92, 153, 1);
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
