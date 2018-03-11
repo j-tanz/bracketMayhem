@@ -1015,12 +1015,12 @@ let rounds = [
         player1: {
             name: "",
             slot: "R5WX1",
-            advance: "R3C1",
+            advance: "R6C1",
         },
         player2: {
             name: "",
             slot: "R5WX2",
-            advance: "R3C1",
+            advance: "R6C1",
         }
     },
 
@@ -1028,12 +1028,12 @@ let rounds = [
         player1: {
             name: "",
             slot: "R5YZ1",
-            advance: "R3C2",
+            advance: "R6C2",
         },
         player2: {
             name: "",
             slot: "R5YZ2",
-            advance: "R3C2",
+            advance: "R6C2",
         },
     },
     ],
@@ -1122,7 +1122,46 @@ function renderBracket() {
     });
 }
 
-function getUserPicks() {
+$(document).on("click", ".player", function () {
+    let pick = $(this).attr("data-id");
+    let pickName = this.innerHTML;
+    let advanceTo = $(this).attr("data-advance");
+
+
+    for (let i = 1; i < rounds.length; i++) {
+        for (let j = 0; j < rounds[i].length; j++) {
+
+            if (advanceTo == rounds[i][j].player1.slot) {
+                rounds[i][j].player1.ID = pick
+                rounds[i][j].player1.name = pickName
+
+                console.log('rounds[i][j].player1.ID  ', rounds[i][j].player1.slot);
+                console.log('rounds[i][j].player1.name ', rounds[i][j].player1.slot);
+                console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
+
+            }
+            if (advanceTo == rounds[i][j].player2.slot) {
+                rounds[i][j].player2.ID = pick
+                rounds[i][j].player2.name = pickName
+                console.log('rounds[i][j].player1.ID  ', rounds[i][j].player1.slot);
+                console.log('rounds[i][j].player1.name ', rounds[i][j].player1.slot);
+                console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
+            }
+        }
+        renderBracket();
+    }
+
+})
+console.log('rounds: ', rounds);
+
+
+//Saves Bracket data once complete
+// check if whole bracket is filled out
+// posts request to database
+$(".save-bracket-btn").click(saveBracket);
+function saveBracket(evt) {
+    evt.preventDefault();
+    var inputBracketName = $("#bracketNameInput").val().trim();
     let pickR2W1 = $("#R2W1").attr('data-id');
     let pickR2W2 = $("#R2W2").attr('data-id');
     let pickR2W3 = $("#R2W3").attr('data-id');
@@ -1197,187 +1236,73 @@ function getUserPicks() {
     let pickR6C2 = $("#R6C2").attr('data-id');
 
     let pickCHAMP = $("#CHAMP").attr('data-id');
-
-    $.post("/api/userBrackets", pickR2W1)
-    $.post("/api/userBrackets", pickR2W2)
-    $.post("/api/userBrackets", pickR2W3)
-    $.post("/api/userBrackets", pickR2W4)
-    $.post("/api/userBrackets", pickR2W5)
-    $.post("/api/userBrackets", pickR2W6)
-    $.post("/api/userBrackets", pickR2W7)
-    $.post("/api/userBrackets", pickR2W8)
-
-    $.post("/api/userBrackets", pickR2X1)
-    $.post("/api/userBrackets", pickR2X2)
-    $.post("/api/userBrackets", pickR2X3)
-    $.post("/api/userBrackets", pickR2X4)
-    $.post("/api/userBrackets", pickR2X5)
-    $.post("/api/userBrackets", pickR2X6)
-    $.post("/api/userBrackets", pickR2X7)
-    $.post("/api/userBrackets", pickR2X8)
-
-    $.post("/api/userBrackets", pickR2Y1)
-    $.post("/api/userBrackets", pickR2Y2)
-    $.post("/api/userBrackets", pickR2Y3)
-    $.post("/api/userBrackets", pickR2Y4)
-    $.post("/api/userBrackets", pickR2Y5)
-    $.post("/api/userBrackets", pickR2Y6)
-    $.post("/api/userBrackets", pickR2Y7)
-    $.post("/api/userBrackets", pickR2Y8)
-
-    $.post("/api/userBrackets", pickR2Z1)
-    $.post("/api/userBrackets", pickR2Z2)
-    $.post("/api/userBrackets", pickR2Z3)
-    $.post("/api/userBrackets", pickR2Z4)
-    $.post("/api/userBrackets", pickR2Z5)
-    $.post("/api/userBrackets", pickR2Z6)
-    $.post("/api/userBrackets", pickR2Z7)
-    $.post("/api/userBrackets", pickR2Z8)
-
-    $.post("/api/userBrackets", pickR3W1)
-    $.post("/api/userBrackets", pickR3W2)
-    $.post("/api/userBrackets", pickR3W3)
-    $.post("/api/userBrackets", pickR3W4)
-
-    $.post("/api/userBrackets", pickR3X1)
-    $.post("/api/userBrackets", pickR3X2)
-    $.post("/api/userBrackets", pickR3X3)
-    $.post("/api/userBrackets", pickR3X4)
-
-    $.post("/api/userBrackets", pickR3Y1)
-    $.post("/api/userBrackets", pickR3Y2)
-    $.post("/api/userBrackets", pickR3Y3)
-    $.post("/api/userBrackets", pickR3Y4)
-
-    $.post("/api/userBrackets", pickR3Z1)
-    $.post("/api/userBrackets", pickR3Z2)
-    $.post("/api/userBrackets", pickR3Z3)
-    $.post("/api/userBrackets", pickR3Z4)
-
-    $.post("/api/userBrackets", pickR4W1)
-    $.post("/api/userBrackets", pickR4W2)
-    $.post("/api/userBrackets", pickR4X1)
-    $.post("/api/userBrackets", pickR4X2)
-    $.post("/api/userBrackets", pickR4Y1)
-    $.post("/api/userBrackets", pickR4Y2)
-    $.post("/api/userBrackets", pickR4Z1)
-    $.post("/api/userBrackets", pickR4Z2)
-
-    $.post("/api/userBrackets", pickR5WX1)
-    $.post("/api/userBrackets", pickR5WX2)
-    $.post("/api/userBrackets", pickR5YZ1)
-    $.post("/api/userBrackets", pickR5YZ2)
-
-    $.post("/api/userBrackets", pickR6C1)
-    $.post("/api/userBrackets", pickR6C2)
-
-    $.post("/api/userBrackets", pickCHAMP)
-}
-
-$(document).on("click", ".player", function () {
-    let pick = $(this).attr("data-id");
-    let pickName = this.innerHTML;
-    let advanceTo = $(this).attr("data-advance");
-
-
-    for (let i = 1; i < rounds.length; i++) {
-        for (let j = 0; j < rounds[i].length; j++) {
-
-            if (advanceTo == rounds[i][j].player1.slot) {
-                rounds[i][j].player1.ID = pick
-                rounds[i][j].player1.name = pickName
-
-                // console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
-
-            }
-            if (advanceTo == rounds[i][j].player2.slot) {
-                rounds[i][j].player2.ID = pick
-                rounds[i][j].player2.name = pickName
-                // console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
-            }
-        }
-        renderBracket();
-    }
-
-})
-console.log('rounds: ', rounds);
-
-
-//Saves Bracket data once complete
-// check if whole bracket is filled out
-// post request to database
-$(".save-bracket-btn").click(saveBracket);
-function saveBracket(evt) {
-    evt.preventDefault();
-    var inputBracketName = $("#bracketNameInput").val().trim();
-
     console.log(inputBracketName)
     postBracketData({
         userID: 1,
         bracketName: inputBracketName,
-        winner1: "tbd",
-        winner2: "tbd",
-        winner3: "tbd",
-        winner4: "tbd",
-        winner5: "tbd",
-        winner6: "tbd",
-        winner7: "tbd",
-        winner8: "tbd",
-        winner9: "tbd",
-        winner10: "tbd",
-        winner11: "tbd",
-        winner12: "tbd",
-        winner13: "tbd",
-        winner14: "tbd",
-        winner15: "tbd",
-        winner16: "tbd",
-        winner17: "tbd",
-        winner18: "tbd",
-        winner19: "tbd",
-        winner20: "tbd",
-        winner21: "tbd",
-        winner22: "tbd",
-        winner23: "tbd",
-        winner24: "tbd",
-        winner25: "tbd",
-        winner26: "tbd",
-        winner27: "tbd",
-        winner28: "tbd",
-        winner29: "tbd",
-        winner30: "tbd",
-        winner31: "tbd",
-        winner32: "tbd",
-        winner33: "tbd",
-        winner34: "tbd",
-        winner35: "tbd",
-        winner36: "tbd",
-        winner37: "tbd",
-        winner38: "tbd",
-        winner39: "tbd",
-        winner40: "tbd",
-        winner41: "tbd",
-        winner42: "tbd",
-        winner43: "tbd",
-        winner44: "tbd",
-        winner45: "tbd",
-        winner46: "tbd",
-        winner47: "tbd",
-        winner48: "tbd",
-        winner49: "tbd",
-        winner50: "tbd",
-        winner51: "tbd",
-        winner52: "tbd",
-        winner53: "tbd",
-        winner54: "tbd",
-        winner55: "tbd",
-        winner56: "tbd",
-        winner57: "tbd",
-        winner58: "tbd",
-        winner59: "tbd",
-        winner60: "tbd",
-        winner61: "tbd",
-        winner62: "tbd",
-        winner63: "tbd"
+        winner1: pickR2W1,
+        winner2: pickR2W2,
+        winner3: pickR2W3,
+        winner4: pickR2W4,
+        winner5: pickR2W5,
+        winner6: pickR2W6,
+        winner7: pickR2W7,
+        winner8: pickR2W8,
+        winner9: pickR2X1,
+        winner10: pickR2X2,
+        winner11: pickR2X3,
+        winner12: pickR2X4,
+        winner13: pickR2X5,
+        winner14: pickR2X6,
+        winner15: pickR2X7,
+        winner16: pickR2X8,
+        winner17: pickR2Y1,
+        winner18: pickR2Y2,
+        winner19: pickR2Y3,
+        winner20: pickR2Y4,
+        winner21: pickR2Y5,
+        winner22: pickR2Y6,
+        winner23: pickR2Y7,
+        winner24: pickR2Y8,
+        winner25: pickR3Z1,
+        winner26: pickR3Z2,
+        winner27: pickR3Z3,
+        winner28: pickR3Z4,
+        winner29: pickR2Z5,
+        winner30: pickR2Z6,
+        winner31: pickR2Z7,
+        winner32: pickR2Z8,
+        winner33: pickR3W1,
+        winner34: pickR3W2,
+        winner35: pickR3W3,
+        winner36: pickR3W4,
+        winner37: pickR3X1,
+        winner38: pickR3X2,
+        winner39: pickR3X3,
+        winner40: pickR3X4,
+        winner41: pickR3Y1,
+        winner42: pickR3Y2,
+        winner43: pickR3Y3,
+        winner44: pickR3Y4,
+        winner45: pickR3Z1,
+        winner46: pickR3Z2,
+        winner47: pickR3Z3,
+        winner48: pickR3Z4,
+        winner49: pickR4W1,
+        winner50: pickR4W2,
+        winner51: pickR4X1,
+        winner52: pickR4X2,
+        winner53: pickR4Y1,
+        winner54: pickR4Y2,
+        winner55: pickR4Z1,
+        winner56: pickR4Z2,
+        winner57: pickR5WX1,
+        winner58: pickR5WX2,
+        winner59: pickR5YZ1,
+        winner60: pickR5YZ2,
+        winner61: pickR6C1,
+        winner62: pickR6C2,
+        winner63: pickCHAMP
     });
 }
 function postBracketData(newbracketData) {
