@@ -1066,6 +1066,7 @@ let regionMap = {
 
 
 
+<<<<<<< HEAD
   
 
 //  * @function updateTeamNames
@@ -1077,13 +1078,28 @@ let regionMap = {
 // console.log("val.gameId: ", (val));
 // console.log("val.gameId: ", (val.gameId));
 // console.log("val.gameId: ", (val.gameId[1]-1));
+=======
+function updateTeamNames(bracketGamesArr) {
+    console.log('bracketGamesArr: ', bracketGamesArr);
+    console.log("rounds ,", rounds);
+    _.forEach(bracketGamesArr, function (val, z) {
+        let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
+        index = index !== 2.5 ? index : 0;
+        // if (parseInt(val.away.seed) < 10) { 
+        //     val.away.seed = " " + val.away.seed;
+        //     console.log('val.away.seed: ', val.away.seed);
+        // }
+>>>>>>> 8eb964505a542ba6fd98c1f6effba2408428e736
 
-//console.log('val.home.name: ', val.home.name);
-//console.log('val.away.name: ', val.away.name);
-// console.log("rounds", rounds[val.gameId[1]-1])
-// console.log("whole", rounds[val.gameId[1]-1])
+        rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
+        rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias;
 
+        rounds[val.gameId[1] - 1][index].player1.winner = val.didHomeTeamWin;
+        console.log('val.didHomeTeamWin: ', val.didHomeTeamWin);
+        // rounds[val.gameId[1] - 1][index].player2.winner = ; 
+    })
 
+<<<<<<< HEAD
 // rounds[val.gameId[1]-1]
 //     [index].player2.name = val.away.name;
 //     console.log('[index].player2.name: ', [0].player2.name);
@@ -1127,3 +1143,53 @@ $(".brackets").brackets({
     border_radius_player: '0px',
     border_radius_lines: '0px'
 });
+=======
+    // console.log('rounds[val.gameId[1] - 1][index].player1.name: ', rounds[val.gameId[1] - 1][index].player1.name);
+
+    // if (val.round == "1") {
+    //     console.log('val.round: ', val.round);
+    //     if (val.region === "W") {
+    // rounds[0][parseInt(val.gameNum - 1)].player1.name = val.home.name;
+    // rounds[0][parseInt(val.gameNum - 1)].player2.name = val.away.name;
+    //     }
+    // }
+
+    // rounds[parseInt(val.round) - 1][(((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player1.name = val.home.name;
+    // rounds[parseInt(val.round) - 1][(((64/(2**(parseInt(val.round) + 2)))*parseInt(val.regionNum)) + parseInt(val.gameNum))].player2.name = val.away.name;
+
+    // rounds[val.gameId[1]-1]
+    //     [index].player2.name = val.away.name;
+
+    // updateTeamNames();
+
+    //-- JSON with matches of each round
+    $('selector').brackets({
+        rounds: rounds
+    });
+    //dont touch-will break display
+    $(".brackets").brackets({
+        titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
+        rounds: rounds, //-- (Required) Array with matches ( JSON ) for each round
+        color_title: 'black', //-- (String) Color of the title text
+        border_color: '#00F', //-- (String) Border color of the line of brackets
+        color_player: 'black', //-- (String) Color of the player text (name)
+        bg_player: 'white', //-- (String) Background color of the player container
+        color_player_hover: 'white', //-- (String) Color of the player text (name) when mouse is hover
+        bg_player_hover: 'blue', //-- (String) Background color of the player container when mouse is hover
+        border_radius_player: '10px', //-- (String) Border radius of the player container
+        border_radius_lines: '10px', //-- (String) Border radius of the lines that join rounds
+    });
+    //dont touch-will break display
+    $(".brackets").brackets({
+        titles: false, //-- If the value is true, then add titles automatically
+        color_title: 'black',
+        border_color: 'black',
+        color_player: 'black',
+        bg_player: 'white',
+        color_player_hover: 'black',
+        bg_player_hover: 'white',
+        border_radius_player: '0px',
+        border_radius_lines: '0px'
+    });
+};
+>>>>>>> 8eb964505a542ba6fd98c1f6effba2408428e736
