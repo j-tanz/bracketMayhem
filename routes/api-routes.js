@@ -18,6 +18,11 @@ module.exports = function (app) {
         }).then((data) => res.json(data));
     });
     // Need post route for userBrackets table
+    app.post("/api/userBrackets", function (req, res) {
+        userBracket.create(req.body).then(function (dbuserBracket) {
+            res.json(dbuserBracket);
+        });
+    });
     //get route to get all user logins
     app.get("/api/logins", function (req, res) {
         login.findAll({
@@ -33,11 +38,11 @@ module.exports = function (app) {
         }).then((data) => res.json(data));
     })
 
-// Need post route for to add new user to logins table
-app.post("/api/logins", function (req, res) {
-    login.create(req.body).then(function (dblogin) {
-        res.json(dblogin);
+    // Need post route for to add new user to logins table
+    app.post("/api/logins", function (req, res) {
+        login.create(req.body).then(function (dblogin) {
+            res.json(dblogin);
+        });
     });
-});
 
 }
