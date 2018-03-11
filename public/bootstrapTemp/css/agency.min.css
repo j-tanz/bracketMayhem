@@ -130,7 +130,13 @@ body {
     color: white;
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
-  
+  #createBtn {
+    margin: 0 auto; 
+    width: 20%;
+    padding: 1%; 
+    border: 1px solid rgba(179, 0, 27, 1);
+    border-radius: 15%;
+  }
   #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
    color: rgba(179, 0, 27, 1);
   }
