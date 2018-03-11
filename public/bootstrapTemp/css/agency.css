@@ -10,6 +10,14 @@ p {
 a {
     color: rgba(179, 0, 27, 1);
 }
+#mainNav{
+  margin:0 auto;
+  background-color: #212529;
+
+}
+.navbar-btn {
+  margin: 2px;
+}
 
 a:hover {
     color: rgba(179, 0, 27, 1);
@@ -90,17 +98,9 @@ section h3.section-subheading {
   text-shadow: none;
 }
 
-img::selection {
-  background: transparent;
-}
 
-img::-moz-selection {
-  background: transparent;
-}
 
-#mainNav {
-  background-color: #212529;
-}
+
 
 #mainNav .navbar-toggler {
   font-size: 12px;
@@ -116,6 +116,12 @@ img::-moz-selection {
 #mainNav .navbar-brand {
   color: #fed136;
   font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
+  background-color: #212529;
+
+}
+.nav {
+  background-color: #212529;
+
 }
 
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
@@ -143,7 +149,6 @@ img::-moz-selection {
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
     border: none;
-    background-color: transparent;
   }
   #mainNav .navbar-brand {
     font-size: 1.75em;
@@ -353,7 +358,6 @@ header.masthead .intro-text .intro-heading {
   width: 75px;
   height: 75px;
   cursor: pointer;
-  background-color: transparent;
 }
 
 .portfolio-modal .close-modal:hover {
