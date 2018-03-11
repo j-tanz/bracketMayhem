@@ -21,7 +21,6 @@ var userBracket = sequelize.define("userBracket", {
     winner4: {
         type: Sequelize.INTEGER
     },
-
     winner5: {
         type: Sequelize.INTEGER
     },
@@ -250,7 +249,7 @@ var userBracket = sequelize.define("userBracket", {
     winner62: {
         type: Sequelize.INTEGER
     },
-    
+
     winner63: {
         type: Sequelize.INTEGER
     }
