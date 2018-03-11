@@ -1122,7 +1122,7 @@ function renderBracket() {
     });
 }
 
-function getUserPicks(){
+function getUserPicks() {
     let pickR2W1 = $("#R2W1").attr('data-id');
     let pickR2W2 = $("#R2W2").attr('data-id');
     let pickR2W3 = $("#R2W3").attr('data-id');
@@ -1149,7 +1149,7 @@ function getUserPicks(){
     let pickR2Y6 = $("#R2Y6").attr('data-id');
     let pickR2Y7 = $("#R2Y7").attr('data-id');
     let pickR2Y8 = $("#R2Y8").attr('data-id');
-    
+
     let pickR2Z1 = $("#R2Z1").attr('data-id');
     let pickR2Z2 = $("#R2Z2").attr('data-id');
     let pickR2Z3 = $("#R2Z3").attr('data-id');
@@ -1158,27 +1158,27 @@ function getUserPicks(){
     let pickR2Z6 = $("#R2Z6").attr('data-id');
     let pickR2Z7 = $("#R2Z7").attr('data-id');
     let pickR2Z8 = $("#R2Z8").attr('data-id');
-    
+
     let pickR3W1 = $("#R3W1").attr('data-id');
     let pickR3W2 = $("#R3W2").attr('data-id');
     let pickR3W3 = $("#R3W3").attr('data-id');
     let pickR3W4 = $("#R3W4").attr('data-id');
-    
+
     let pickR3X1 = $("#R3X1").attr('data-id');
     let pickR3X2 = $("#R3X2").attr('data-id');
     let pickR3X3 = $("#R3X3").attr('data-id');
     let pickR3X4 = $("#R3X4").attr('data-id');
-    
+
     let pickR3Y1 = $("#R3X1").attr('data-id');
     let pickR3Y2 = $("#R3Y2").attr('data-id');
     let pickR3Y3 = $("#R3Y3").attr('data-id');
     let pickR3Y4 = $("#R3Y4").attr('data-id');
-    
+
     let pickR3Z1 = $("#R3Z1").attr('data-id');
     let pickR3Z2 = $("#R3Z2").attr('data-id');
     let pickR3Z3 = $("#R3Z3").attr('data-id');
     let pickR3Z4 = $("#R3Z4").attr('data-id');
-    
+
     let pickR4W1 = $("#R4W1").attr('data-id');
     let pickR4W2 = $("#R4W2").attr('data-id');
     let pickR4X1 = $("#R4X1").attr('data-id');
@@ -1192,12 +1192,12 @@ function getUserPicks(){
     let pickR5WX2 = $("#R5WX2").attr('data-id');
     let pickR5YZ1 = $("#R5YZ1").attr('data-id');
     let pickR5YZ2 = $("#R5YZ2").attr('data-id');
-    
+
     let pickR6C1 = $("#R6C1").attr('data-id');
     let pickR6C2 = $("#R6C2").attr('data-id');
 
     let pickCHAMP = $("#CHAMP").attr('data-id');
-    
+
     $.post("/api/userBrackets", pickR2W1)
     $.post("/api/userBrackets", pickR2W2)
     $.post("/api/userBrackets", pickR2W3)
@@ -1224,7 +1224,7 @@ function getUserPicks(){
     $.post("/api/userBrackets", pickR2Y6)
     $.post("/api/userBrackets", pickR2Y7)
     $.post("/api/userBrackets", pickR2Y8)
-    
+
     $.post("/api/userBrackets", pickR2Z1)
     $.post("/api/userBrackets", pickR2Z2)
     $.post("/api/userBrackets", pickR2Z3)
@@ -1274,8 +1274,6 @@ function getUserPicks(){
     $.post("/api/userBrackets", pickCHAMP)
 }
 
-
-
 $(document).on("click", ".player", function () {
     let pick = $(this).attr("data-id");
     let pickName = this.innerHTML;
@@ -1304,4 +1302,85 @@ $(document).on("click", ".player", function () {
 })
 console.log('rounds: ', rounds);
 
+
+//Saves Bracket data once complete
+// check if whole bracket is filled out
+// post request to database
+$(".save-bracket-btn").click(saveBracket);
+function saveBracket(evt) {
+    evt.preventDefault();
+    var inputBracketName = $("#bracketNameInput").val().trim();
+
+    console.log(inputBracketName)
+    postBracketData({
+        userID: 1,
+        bracketName: inputBracketName,
+        winner1: "tbd",
+        winner2: "tbd",
+        winner3: "tbd",
+        winner4: "tbd",
+        winner5: "tbd",
+        winner6: "tbd",
+        winner7: "tbd",
+        winner8: "tbd",
+        winner9: "tbd",
+        winner10: "tbd",
+        winner11: "tbd",
+        winner12: "tbd",
+        winner13: "tbd",
+        winner14: "tbd",
+        winner15: "tbd",
+        winner16: "tbd",
+        winner17: "tbd",
+        winner18: "tbd",
+        winner19: "tbd",
+        winner20: "tbd",
+        winner21: "tbd",
+        winner22: "tbd",
+        winner23: "tbd",
+        winner24: "tbd",
+        winner25: "tbd",
+        winner26: "tbd",
+        winner27: "tbd",
+        winner28: "tbd",
+        winner29: "tbd",
+        winner30: "tbd",
+        winner31: "tbd",
+        winner32: "tbd",
+        winner33: "tbd",
+        winner34: "tbd",
+        winner35: "tbd",
+        winner36: "tbd",
+        winner37: "tbd",
+        winner38: "tbd",
+        winner39: "tbd",
+        winner40: "tbd",
+        winner41: "tbd",
+        winner42: "tbd",
+        winner43: "tbd",
+        winner44: "tbd",
+        winner45: "tbd",
+        winner46: "tbd",
+        winner47: "tbd",
+        winner48: "tbd",
+        winner49: "tbd",
+        winner50: "tbd",
+        winner51: "tbd",
+        winner52: "tbd",
+        winner53: "tbd",
+        winner54: "tbd",
+        winner55: "tbd",
+        winner56: "tbd",
+        winner57: "tbd",
+        winner58: "tbd",
+        winner59: "tbd",
+        winner60: "tbd",
+        winner61: "tbd",
+        winner62: "tbd",
+        winner63: "tbd"
+    });
+}
+function postBracketData(newbracketData) {
+    $.post("/api/userBrackets", newbracketData);
+}
 
