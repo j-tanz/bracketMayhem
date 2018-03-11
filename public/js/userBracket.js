@@ -129,13 +129,10 @@ function appendIdent(gamesList) {
             gameNum: num
         }
         gameIdsArr.push(workObj[i]);
-
-
         bracketGamesArr.push(_.merge({}, gamesList[i], gameIdsArr[i]));
     }
     updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31));
 }
-
 
 function checkCompleted(gsObj) {
     for (let i = 0; i < gsObj.length; i++) {
@@ -156,7 +153,6 @@ function checkCompleted(gsObj) {
 function combinedMasterArr(arr1, arr2) {
     Array.prototype.push.apply(arr1, arr2);
     masterArr = arr1;
-    //    console.log('masterArr: ', masterArr);
     appendIdent(masterArr);
     return masterArr;
 }
@@ -1048,12 +1044,12 @@ let rounds = [
         {
             player1: {
                 name: "",
-                slot: "R3C1",
+                slot: "R6C1",
                 advance: "CHAMP",
             },
             player2: {
                 name: "",
-                slot: "R3C2",
+                slot: "R6C2",
                 advance: "CHAMP",
             },
         },
@@ -1088,16 +1084,8 @@ function updateTeamNames(bracketGamesArr) {
         //     console.log('val.away.seed: ', val.away.seed);
         // }
         // if (val.round == "1") {
-            rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
-            rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias;
-
-            // rounds[val.gameId[1] - 1][index].player1.winner = val.didHomeTeamWin;
-
-            // console.log('val.didHomeTeamWin: ', val.didHomeTeamWin);
-            // rounds[val.gameId[1] - 1][index].player2.winner = ; 
-
-
-        // }
+        rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
+        rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias;
     })
     renderBracket();
 };
@@ -1134,82 +1122,186 @@ function renderBracket() {
     });
 }
 
+function getUserPicks(){
+    let pickR2W1 = $("#R2W1").attr('data-id');
+    let pickR2W2 = $("#R2W2").attr('data-id');
+    let pickR2W3 = $("#R2W3").attr('data-id');
+    let pickR2W4 = $("#R2W4").attr('data-id');
+    let pickR2W5 = $("#R2W5").attr('data-id');
+    let pickR2W6 = $("#R2W6").attr('data-id');
+    let pickR2W7 = $("#R2W7").attr('data-id');
+    let pickR2W8 = $("#R2W8").attr('data-id');
+
+    let pickR2X1 = $("#R2X1").attr('data-id');
+    let pickR2X2 = $("#R2X2").attr('data-id');
+    let pickR2X3 = $("#R2X3").attr('data-id');
+    let pickR2X4 = $("#R2X4").attr('data-id');
+    let pickR2X5 = $("#R2X5").attr('data-id');
+    let pickR2X6 = $("#R2X6").attr('data-id');
+    let pickR2X7 = $("#R2X7").attr('data-id');
+    let pickR2X8 = $("#R2X8").attr('data-id');
+
+    let pickR2Y1 = $("#R2Y1").attr('data-id');
+    let pickR2Y2 = $("#R2Y2").attr('data-id');
+    let pickR2Y3 = $("#R2Y3").attr('data-id');
+    let pickR2Y4 = $("#R2Y4").attr('data-id');
+    let pickR2Y5 = $("#R2Y5").attr('data-id');
+    let pickR2Y6 = $("#R2Y6").attr('data-id');
+    let pickR2Y7 = $("#R2Y7").attr('data-id');
+    let pickR2Y8 = $("#R2Y8").attr('data-id');
+    
+    let pickR2Z1 = $("#R2Z1").attr('data-id');
+    let pickR2Z2 = $("#R2Z2").attr('data-id');
+    let pickR2Z3 = $("#R2Z3").attr('data-id');
+    let pickR2Z4 = $("#R2Z4").attr('data-id');
+    let pickR2Z5 = $("#R2Z5").attr('data-id');
+    let pickR2Z6 = $("#R2Z6").attr('data-id');
+    let pickR2Z7 = $("#R2Z7").attr('data-id');
+    let pickR2Z8 = $("#R2Z8").attr('data-id');
+    
+    let pickR3W1 = $("#R3W1").attr('data-id');
+    let pickR3W2 = $("#R3W2").attr('data-id');
+    let pickR3W3 = $("#R3W3").attr('data-id');
+    let pickR3W4 = $("#R3W4").attr('data-id');
+    
+    let pickR3X1 = $("#R3X1").attr('data-id');
+    let pickR3X2 = $("#R3X2").attr('data-id');
+    let pickR3X3 = $("#R3X3").attr('data-id');
+    let pickR3X4 = $("#R3X4").attr('data-id');
+    
+    let pickR3Y1 = $("#R3X1").attr('data-id');
+    let pickR3Y2 = $("#R3Y2").attr('data-id');
+    let pickR3Y3 = $("#R3Y3").attr('data-id');
+    let pickR3Y4 = $("#R3Y4").attr('data-id');
+    
+    let pickR3Z1 = $("#R3Z1").attr('data-id');
+    let pickR3Z2 = $("#R3Z2").attr('data-id');
+    let pickR3Z3 = $("#R3Z3").attr('data-id');
+    let pickR3Z4 = $("#R3Z4").attr('data-id');
+    
+    let pickR4W1 = $("#R4W1").attr('data-id');
+    let pickR4W2 = $("#R4W2").attr('data-id');
+    let pickR4X1 = $("#R4X1").attr('data-id');
+    let pickR4X2 = $("#R4X2").attr('data-id');
+    let pickR4Y1 = $("#R4Y1").attr('data-id');
+    let pickR4Y2 = $("#R4Y2").attr('data-id');
+    let pickR4Z1 = $("#R4Z1").attr('data-id');
+    let pickR4Z2 = $("#R4Z2").attr('data-id');
+
+    let pickR5WX1 = $("#R5WX1").attr('data-id');
+    let pickR5WX2 = $("#R5WX2").attr('data-id');
+    let pickR5YZ1 = $("#R5YZ1").attr('data-id');
+    let pickR5YZ2 = $("#R5YZ2").attr('data-id');
+    
+    let pickR6C1 = $("#R6C1").attr('data-id');
+    let pickR6C2 = $("#R6C2").attr('data-id');
+
+    let pickCHAMP = $("#CHAMP").attr('data-id');
+    
+    $.post("/api/userBrackets", pickR2W1)
+    $.post("/api/userBrackets", pickR2W2)
+    $.post("/api/userBrackets", pickR2W3)
+    $.post("/api/userBrackets", pickR2W4)
+    $.post("/api/userBrackets", pickR2W5)
+    $.post("/api/userBrackets", pickR2W6)
+    $.post("/api/userBrackets", pickR2W7)
+    $.post("/api/userBrackets", pickR2W8)
+
+    $.post("/api/userBrackets", pickR2X1)
+    $.post("/api/userBrackets", pickR2X2)
+    $.post("/api/userBrackets", pickR2X3)
+    $.post("/api/userBrackets", pickR2X4)
+    $.post("/api/userBrackets", pickR2X5)
+    $.post("/api/userBrackets", pickR2X6)
+    $.post("/api/userBrackets", pickR2X7)
+    $.post("/api/userBrackets", pickR2X8)
+
+    $.post("/api/userBrackets", pickR2Y1)
+    $.post("/api/userBrackets", pickR2Y2)
+    $.post("/api/userBrackets", pickR2Y3)
+    $.post("/api/userBrackets", pickR2Y4)
+    $.post("/api/userBrackets", pickR2Y5)
+    $.post("/api/userBrackets", pickR2Y6)
+    $.post("/api/userBrackets", pickR2Y7)
+    $.post("/api/userBrackets", pickR2Y8)
+    
+    $.post("/api/userBrackets", pickR2Z1)
+    $.post("/api/userBrackets", pickR2Z2)
+    $.post("/api/userBrackets", pickR2Z3)
+    $.post("/api/userBrackets", pickR2Z4)
+    $.post("/api/userBrackets", pickR2Z5)
+    $.post("/api/userBrackets", pickR2Z6)
+    $.post("/api/userBrackets", pickR2Z7)
+    $.post("/api/userBrackets", pickR2Z8)
+
+    $.post("/api/userBrackets", pickR3W1)
+    $.post("/api/userBrackets", pickR3W2)
+    $.post("/api/userBrackets", pickR3W3)
+    $.post("/api/userBrackets", pickR3W4)
+
+    $.post("/api/userBrackets", pickR3X1)
+    $.post("/api/userBrackets", pickR3X2)
+    $.post("/api/userBrackets", pickR3X3)
+    $.post("/api/userBrackets", pickR3X4)
+
+    $.post("/api/userBrackets", pickR3Y1)
+    $.post("/api/userBrackets", pickR3Y2)
+    $.post("/api/userBrackets", pickR3Y3)
+    $.post("/api/userBrackets", pickR3Y4)
+
+    $.post("/api/userBrackets", pickR3Z1)
+    $.post("/api/userBrackets", pickR3Z2)
+    $.post("/api/userBrackets", pickR3Z3)
+    $.post("/api/userBrackets", pickR3Z4)
+
+    $.post("/api/userBrackets", pickR4W1)
+    $.post("/api/userBrackets", pickR4W2)
+    $.post("/api/userBrackets", pickR4X1)
+    $.post("/api/userBrackets", pickR4X2)
+    $.post("/api/userBrackets", pickR4Y1)
+    $.post("/api/userBrackets", pickR4Y2)
+    $.post("/api/userBrackets", pickR4Z1)
+    $.post("/api/userBrackets", pickR4Z2)
+
+    $.post("/api/userBrackets", pickR5WX1)
+    $.post("/api/userBrackets", pickR5WX2)
+    $.post("/api/userBrackets", pickR5YZ1)
+    $.post("/api/userBrackets", pickR5YZ2)
+
+    $.post("/api/userBrackets", pickR6C1)
+    $.post("/api/userBrackets", pickR6C2)
+
+    $.post("/api/userBrackets", pickCHAMP)
+}
+
+
+
 $(document).on("click", ".player", function () {
     let pick = $(this).attr("data-id");
     let pickName = this.innerHTML;
     let advanceTo = $(this).attr("data-advance");
 
 
-for (let i = 1; i < rounds.length; i++ ) {
-    for(let j = 0; j < rounds[i].length; j++) {
-        
-        if(advanceTo == rounds[i][j].player1.slot){
-            rounds[i][j].player1.ID = pick
-            rounds[i][j].player1.name = pickName
-            
-            // console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
-            
+    for (let i = 1; i < rounds.length; i++) {
+        for (let j = 0; j < rounds[i].length; j++) {
+
+            if (advanceTo == rounds[i][j].player1.slot) {
+                rounds[i][j].player1.ID = pick
+                rounds[i][j].player1.name = pickName
+
+                // console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
+
+            }
+            if (advanceTo == rounds[i][j].player2.slot) {
+                rounds[i][j].player2.ID = pick
+                rounds[i][j].player2.name = pickName
+                // console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
+            }
         }
-        if(advanceTo == rounds[i][j].player2.slot ){
-            rounds[i][j].player2.ID = pick
-            rounds[i][j].player2.name = pickName
-            // console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
-        }
+        renderBracket();
     }
-renderBracket();
-}
 
 })
-
-    // console.log('round[1].player1.slot: ', rounds[1][1].player1.slot, typeof(rounds[1][1].player1.slot));
-    // _.forEach(rounds, function (round, z) {
-        console.log('rounds: ', rounds);
-    //     // console.log('advanceTo: ', advanceTo);
-    //     for (let i = 1; i < round.length; i++){
-    //         if( round[i].player1.slot  ==  advanceTo )
-    //             console.log('round[1].player1.slot ', round[i].player1.slot );
-    //             console.log("advanceTo ", advanceTo);
-
-    //     }
-
-    // })
-    
-
-    // })
-
-    //     console.log("FUCK", round[i])
-        // console.log('look.slot ==', look.slot);
-        // return look.slot == '' + advanceTo + '';
-    
-
-    // _.find(round, function (look) {
-    //     console.log('look.slot ==', look.slot);
-    //     return look.slot == '' + advanceTo + '';
-    // })
+console.log('rounds: ', rounds);
 
 
-
-
-
-
-    // console.log("rounds", rounds);
-    // console.log("slot exist?", rounds[1][0].player1.slot)
-
-
-
-    // obj = _.forEach(rounds, _.find(elem, function(elem){
-    //     return elem.slot == '' + advanceTo + '';
-    // }))
-    // console.log("obj", obj)
-
-    // console.log('_find(rounds, advanceTo): ', _.find(rounds, {"slot": '' + advanceTo + ''}));
-
-    // console.log('pick: ', pick);
-
-
-    // if (_.includes($(this).attr("data-id"), "W")){
-
-    // }
-
-
-    // console.log(_.includes($(this).attr("data-id"), "W"))
