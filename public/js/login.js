@@ -1,5 +1,3 @@
-function loginTo(emailInput, passInput) {
-}
 function correctPassword(evt) {
     evt.preventDefault();
     var inputEmail = $("#loginInputEmail1").val().trim();
@@ -10,14 +8,14 @@ function correctPassword(evt) {
         console.log(data.loginPassword);
         if (data.loginPassword !== inputPass) {
             console.log("bad pw");
-            return true
+            return;
         }
         console.log("yay pw correct");
         var userBracketQueryURL = "/api/userBrackets/" + data.id;
-        $.get(userBracketQueryURL, function(bracketdata){
+        $.get(userBracketQueryURL, function (bracketdata) {
             console.log(bracketdata);
         })
-
+        location.replace("https://www.w3schools.com");
     })
 }
 
