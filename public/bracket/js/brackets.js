@@ -5,8 +5,10 @@
     var get_html_player = function(player){
             var winner = player.winner ? 'winner' : '';
             var ID = player.ID ? player.ID : '';
+            var nextRound = player.advance ? player.advance : '';
+            var thisSlot = player.slot ? player.slot : '';
 
-            var html_player = '       <div class="player ' + winner + ' player-' + ID + '" data-id="' + ID + '">';
+            var html_player = '       <div class="player ' + winner + ' player-' + ID + '" data-id="' + ID + '" data-advance= "' + nextRound + '" data-slot="' + thisSlot + '">';
 
             if( player.url ){
                 html_player += '        <a class="name" href="' + player.url + '">';
