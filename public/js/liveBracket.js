@@ -83,16 +83,16 @@ function appendIdent(gamesList) {
         let num = gameNumber.slice(5);
         // console.log("num", num);
 
-        if (_.includes(gamesList[i].title, "East")) {
+        if (_.includes(gamesList[i].title, "South")) {
             region = "W";
             regionNum = "0";
         } if (_.includes(gamesList[i].title, "West")) {
             region = "X";
             regionNum = "1";
-        } if (_.includes(gamesList[i].title, "Mid")) {
+        } if (_.includes(gamesList[i].title, "East")) {
             region = "Y";
             regionNum = "2";
-        } if (_.includes(gamesList[i].title, "South")) {
+        } if (_.includes(gamesList[i].title, "Midwest")) {
             region = "Z";
             regionNum = "3";
         } if (_.includes(gamesList[i].title, "Championship")) {

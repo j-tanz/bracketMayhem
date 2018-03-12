@@ -1,15 +1,13 @@
 
 const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 
+// $(document).ready(function () {
 var today = new Date();
-
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
 var tomorrow = dd++;
 
-// $(document).ready(function () {
-var today = new Date();
 if (dd < 10) {
     dd = "0" + dd;
 }
@@ -34,8 +32,8 @@ let placeArr = [];
 let gamesArr = [];
 
 function tourneyLookup() {
-    // let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
-    let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
+    let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
+    // let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
 
     let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/tournaments/" + tournamentID + "/schedule.json?"
 
@@ -644,7 +642,7 @@ let rounds = [
         //region 1    
         {
             player1: {
-                name: "",
+                name: "BLAH BLAH",
                 slot: "R2W1",
                 advance: "R3W1",
             },
@@ -1092,6 +1090,10 @@ function updateTeamNames(bracketGamesArr) {
     renderBracket();
 };
 
+
+
+
+
 function renderBracket() {
     //-- JSON with matches of each round
     $('selector').brackets({
@@ -1123,216 +1125,3 @@ function renderBracket() {
         border_radius_lines: '0px'
     });
 }
-
-$(document).on("click", ".player", function () {
-    let pick = $(this).attr("data-id");
-    let pickName = this.innerText;
-    let advanceTo = $(this).attr("data-advance");
-
-
-    for (let i = 1; i < rounds.length; i++) {
-        for (let j = 0; j < rounds[i].length; j++) {
-
-            if (advanceTo == rounds[i][j].player1.slot) {
-                rounds[i][j].player1.ID = pick
-                rounds[i][j].player1.name = "" + pickName
-                rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
-                '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
-            }
-            console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
-            if (advanceTo == rounds[i][j].player2.slot) {
-                rounds[i][j].player2.ID = pick
-                rounds[i][j].player2.name = pickName
-            }
-        }
-        renderBracket();
-    }
-})
-
-
-// BROKEN   
-
-$(document).on("click", ".game", function(e){
-    e.preventDefault();
-    $('.popMe').popover('toggle');
-    console.log("working??????")
-    return false;
-})
-
-
-
-
-
-
-
-
-
-console.log('rounds: ', rounds);
-
-// $(document).ready(function () {
-//     $('a[rel=popover]').popover();
-// });
-
-
-
-
-
-console.log('rounds: ', rounds);
-
-
-//Saves Bracket data once complete
-// check if whole bracket is filled out
-// posts request to database
-$(".save-bracket-btn").click(saveBracket);
-function saveBracket(evt) {
-    evt.preventDefault();
-    var inputBracketName = $("#bracketNameInput").val().trim();
-    let pickR2W1 = $("#R2W1").attr('data-id');
-    let pickR2W2 = $("#R2W2").attr('data-id');
-    let pickR2W3 = $("#R2W3").attr('data-id');
-    let pickR2W4 = $("#R2W4").attr('data-id');
-    let pickR2W5 = $("#R2W5").attr('data-id');
-    let pickR2W6 = $("#R2W6").attr('data-id');
-    let pickR2W7 = $("#R2W7").attr('data-id');
-    let pickR2W8 = $("#R2W8").attr('data-id');
-
-    let pickR2X1 = $("#R2X1").attr('data-id');
-    let pickR2X2 = $("#R2X2").attr('data-id');
-    let pickR2X3 = $("#R2X3").attr('data-id');
-    let pickR2X4 = $("#R2X4").attr('data-id');
-    let pickR2X5 = $("#R2X5").attr('data-id');
-    let pickR2X6 = $("#R2X6").attr('data-id');
-    let pickR2X7 = $("#R2X7").attr('data-id');
-    let pickR2X8 = $("#R2X8").attr('data-id');
-
-    let pickR2Y1 = $("#R2Y1").attr('data-id');
-    let pickR2Y2 = $("#R2Y2").attr('data-id');
-    let pickR2Y3 = $("#R2Y3").attr('data-id');
-    let pickR2Y4 = $("#R2Y4").attr('data-id');
-    let pickR2Y5 = $("#R2Y5").attr('data-id');
-    let pickR2Y6 = $("#R2Y6").attr('data-id');
-    let pickR2Y7 = $("#R2Y7").attr('data-id');
-    let pickR2Y8 = $("#R2Y8").attr('data-id');
-
-    let pickR2Z1 = $("#R2Z1").attr('data-id');
-    let pickR2Z2 = $("#R2Z2").attr('data-id');
-    let pickR2Z3 = $("#R2Z3").attr('data-id');
-    let pickR2Z4 = $("#R2Z4").attr('data-id');
-    let pickR2Z5 = $("#R2Z5").attr('data-id');
-    let pickR2Z6 = $("#R2Z6").attr('data-id');
-    let pickR2Z7 = $("#R2Z7").attr('data-id');
-    let pickR2Z8 = $("#R2Z8").attr('data-id');
-
-    let pickR3W1 = $("#R3W1").attr('data-id');
-    let pickR3W2 = $("#R3W2").attr('data-id');
-    let pickR3W3 = $("#R3W3").attr('data-id');
-    let pickR3W4 = $("#R3W4").attr('data-id');
-
-    let pickR3X1 = $("#R3X1").attr('data-id');
-    let pickR3X2 = $("#R3X2").attr('data-id');
-    let pickR3X3 = $("#R3X3").attr('data-id');
-    let pickR3X4 = $("#R3X4").attr('data-id');
-
-    let pickR3Y1 = $("#R3X1").attr('data-id');
-    let pickR3Y2 = $("#R3Y2").attr('data-id');
-    let pickR3Y3 = $("#R3Y3").attr('data-id');
-    let pickR3Y4 = $("#R3Y4").attr('data-id');
-
-    let pickR3Z1 = $("#R3Z1").attr('data-id');
-    let pickR3Z2 = $("#R3Z2").attr('data-id');
-    let pickR3Z3 = $("#R3Z3").attr('data-id');
-    let pickR3Z4 = $("#R3Z4").attr('data-id');
-
-    let pickR4W1 = $("#R4W1").attr('data-id');
-    let pickR4W2 = $("#R4W2").attr('data-id');
-    let pickR4X1 = $("#R4X1").attr('data-id');
-    let pickR4X2 = $("#R4X2").attr('data-id');
-    let pickR4Y1 = $("#R4Y1").attr('data-id');
-    let pickR4Y2 = $("#R4Y2").attr('data-id');
-    let pickR4Z1 = $("#R4Z1").attr('data-id');
-    let pickR4Z2 = $("#R4Z2").attr('data-id');
-
-    let pickR5WX1 = $("#R5WX1").attr('data-id');
-    let pickR5WX2 = $("#R5WX2").attr('data-id');
-    let pickR5YZ1 = $("#R5YZ1").attr('data-id');
-    let pickR5YZ2 = $("#R5YZ2").attr('data-id');
-
-    let pickR6C1 = $("#R6C1").attr('data-id');
-    let pickR6C2 = $("#R6C2").attr('data-id');
-
-    let pickCHAMP = $("#CHAMP").attr('data-id');
-    console.log(inputBracketName)
-    userID=JSON.parse(localStorage.getItem("userID"));
-    console.log("userid: ", userID);
-    postBracketData({
-        userID: userID,
-        bracketName: inputBracketName,
-        winner1: pickR2W1,
-        winner2: pickR2W2,
-        winner3: pickR2W3,
-        winner4: pickR2W4,
-        winner5: pickR2W5,
-        winner6: pickR2W6,
-        winner7: pickR2W7,
-        winner8: pickR2W8,
-        winner9: pickR2X1,
-        winner10: pickR2X2,
-        winner11: pickR2X3,
-        winner12: pickR2X4,
-        winner13: pickR2X5,
-        winner14: pickR2X6,
-        winner15: pickR2X7,
-        winner16: pickR2X8,
-        winner17: pickR2Y1,
-        winner18: pickR2Y2,
-        winner19: pickR2Y3,
-        winner20: pickR2Y4,
-        winner21: pickR2Y5,
-        winner22: pickR2Y6,
-        winner23: pickR2Y7,
-        winner24: pickR2Y8,
-        winner25: pickR3Z1,
-        winner26: pickR3Z2,
-        winner27: pickR3Z3,
-        winner28: pickR3Z4,
-        winner29: pickR2Z5,
-        winner30: pickR2Z6,
-        winner31: pickR2Z7,
-        winner32: pickR2Z8,
-        winner33: pickR3W1,
-        winner34: pickR3W2,
-        winner35: pickR3W3,
-        winner36: pickR3W4,
-        winner37: pickR3X1,
-        winner38: pickR3X2,
-        winner39: pickR3X3,
-        winner40: pickR3X4,
-        winner41: pickR3Y1,
-        winner42: pickR3Y2,
-        winner43: pickR3Y3,
-        winner44: pickR3Y4,
-        winner45: pickR3Z1,
-        winner46: pickR3Z2,
-        winner47: pickR3Z3,
-        winner48: pickR3Z4,
-        winner49: pickR4W1,
-        winner50: pickR4W2,
-        winner51: pickR4X1,
-        winner52: pickR4X2,
-        winner53: pickR4Y1,
-        winner54: pickR4Y2,
-        winner55: pickR4Z1,
-        winner56: pickR4Z2,
-        winner57: pickR5WX1,
-        winner58: pickR5WX2,
-        winner59: pickR5YZ1,
-        winner60: pickR5YZ2,
-        winner61: pickR6C1,
-        winner62: pickR6C2,
-        winner63: pickCHAMP
-    });
-}
-function postBracketData(newbracketData) {
-    $.post("/api/userBrackets", newbracketData);
-}
-
