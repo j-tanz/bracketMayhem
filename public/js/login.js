@@ -2,20 +2,17 @@ function correctPassword(evt) {
     evt.preventDefault();
     var inputEmail = $("#loginInputEmail1").val().trim();
     var inputPass = $("#loginInputPassword1").val().trim();
-    console.log(inputEmail, inputPass);
+    // console.log(inputEmail, inputPass);
     var loginQueryURL = "/api/logins/" + inputEmail;
     $.get(loginQueryURL, function (data) {
-        console.log(data.loginPassword);
+        // console.log(data.loginPassword);
         if (data.loginPassword !== inputPass) {
             console.log("bad pw");
             return;
         }
-        console.log("yay pw correct");
-        var userBracketQueryURL = "/api/userBrackets/" + data.id;
-        $.get(userBracketQueryURL, function (bracketdata) {
-            console.log(bracketdata);
-        })
-        location.replace("https://www.w3schools.com");
+        localStorage.setItem("userID", JSON.stringify(data.id));
+        location.replace("/index");
+
     })
 }
 

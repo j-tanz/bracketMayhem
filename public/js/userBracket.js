@@ -1256,8 +1256,10 @@ function saveBracket(evt) {
 
     let pickCHAMP = $("#CHAMP").attr('data-id');
     console.log(inputBracketName)
+    userID=JSON.parse(localStorage.getItem("userID"));
+    console.log("userid: ", userID);
     postBracketData({
-        userID: 1,
+        userID: userID,
         bracketName: inputBracketName,
         winner1: pickR2W1,
         winner2: pickR2W2,
