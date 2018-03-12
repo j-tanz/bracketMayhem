@@ -2,94 +2,202 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>hey</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-        <script src="bracket/js/brackets.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Bracket Mayhem</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/agency.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+  <title>Bracket Mayhem</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="css/style.css" type="text/css"> -->
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
 </head>
 
-<body>
-    <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <a class="navbar-brand " href="/index">
-                Bracket Mayhem </a>
-        </div>
-        <a href="/login">
-            <button type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
-        </a>
+<body id="page-top">
 
-    </nav>
-    <div class="jumbotron">
-        <div class="row">
-            <div id="jumboTitle" class="col-xs-8">
-                <h1>Bracket Mayhem</h1>
-                <h3>Make Your Madness</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                <p> Current Stats and Data Will Go Here</p>
-            </div>
-        </div>
-    </div>
+  <!-- Navigation -->
+  <nav class="nav navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Bracket Mayhem</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#services">Create A Bracket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Saved Brackets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">Pools</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    </div>
+  <!-- Header -->
+  <header class="masthead">
     <div class="container">
-        <div class="row">
-            <a href="/newbracket">
+      <div class="intro-text">
+        <div class="intro-lead-in">March Madness Bracket Mayhem</div>
+        <div class="intro-heading text-uppercase">Create All of Your Bracket Madness</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Start Here</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Create a bracket</h2>
+          <h3 class="section-subheading text-muted">
+            <div class="row">
+              <a id="createBtn" href="../bracket/userBracket.html">
                 Create New Bracket
-            </a>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="panel-group user-brackets-panels " id="accordion">
-            <!-- <div class="panel panel-primary hide">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        Bracket 1
-
-                        <a class="colpsible-panel pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
-                    </div>
-                </div> -->
+              </a>
             </div>
-    
+          </h3>
         </div>
+      </div>
+
     </div>
-    <!-- end container -->
+  </section>
 
-    <!-- Latest compiled and minified JavaScript -->
+  <!-- Portfolio Grid -->
+  <section class="bg-light" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">See Your Saved Brackets</h2>
+          <h3 class="section-subheading text-muted">Add Bracket Panels Here.</h3>
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  Bracket 1
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script src="js/lodash/lodash.js"></script>
-    <script src="js/index.js"></script>
-    <script src="bracket/js/jquery-1.11.3.js"></script>
-    <script src="bracket/js/brackets.min.js"></script>
-    <script src="bracket/js/brackets.js"></script>
-    <!-- <script>
-        $.get("/api/logins", function (data) {
-            console.log(data);
-        });
-    </script> -->
+                  <a class="colpsible-panel pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a class="colpsible-panel" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    Bracket 2
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                  The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a class="colpsible-panel" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    Bracket 3
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                  The panel content comes here where you may use text, images and even videos. You may also place HTML tables, list etc here.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Pool</h2>
+          <h3 class="section-subheading text-muted">Find Players to Join Your Pool</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="copyright">Copyright &copy; 2018 Bracket Mayhem</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="vendor/lodash/lodash.js"></script>
+  <script src="js/index.js"></script>
+  <!-- <script src="bracket/js/jquery-1.11.3.js"></script> -->
+  <!-- <script src="bracket/js/brackets.min.js"></script> -->
+  <script src="bracket/js/brackets.js"></script>
+  <script>
+    $.get("/api/logins", function (data) {
+      console.log(data);
+    });
+  </script>
+  <!-- Custom scripts for this template -->
+  <script src="js/agency.min.js"></script>
+
+
 </body>
 
 </html>
