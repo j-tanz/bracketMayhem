@@ -1124,7 +1124,7 @@ function renderBracket() {
 
 $(document).on("click", ".player", function () {
     let pick = $(this).attr("data-id");
-    let pickName = this.innerHTML;
+    let pickName = this.innerText;
     let advanceTo = $(this).attr("data-advance");
 
 
@@ -1133,25 +1133,34 @@ $(document).on("click", ".player", function () {
 
             if (advanceTo == rounds[i][j].player1.slot) {
                 rounds[i][j].player1.ID = pick
-                rounds[i][j].player1.name = pickName
-
-                console.log('rounds[i][j].player1.ID  ', rounds[i][j].player1.slot);
-                console.log('rounds[i][j].player1.name ', rounds[i][j].player1.slot);
-                console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
-
+                rounds[i][j].player1.name = "" + pickName
+                // rounds[i][j].player1.name += '<a href="#" data-toggle="popover" title="STATS" data-content="SHIT GOES HERE" data-container="body"><img src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
             }
+            console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
             if (advanceTo == rounds[i][j].player2.slot) {
                 rounds[i][j].player2.ID = pick
                 rounds[i][j].player2.name = pickName
-                console.log('rounds[i][j].player1.ID  ', rounds[i][j].player1.slot);
-                console.log('rounds[i][j].player1.name ', rounds[i][j].player1.slot);
-                console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
             }
         }
         renderBracket();
     }
-
 })
+
+
+// BROKEN   
+$(document).ready(function () {
+    $('[data-toggle="popover"]').popover('');
+});
+console.log('rounds: ', rounds);
+
+// $(document).ready(function () {
+//     $('a[rel=popover]').popover();
+// });
+
+
+
+
+
 console.log('rounds: ', rounds);
 
 
