@@ -1134,7 +1134,8 @@ $(document).on("click", ".player", function () {
             if (advanceTo == rounds[i][j].player1.slot) {
                 rounds[i][j].player1.ID = pick
                 rounds[i][j].player1.name = "" + pickName
-                // rounds[i][j].player1.name += '<a href="#" data-toggle="popover" title="STATS" data-content="SHIT GOES HERE" data-container="body"><img src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+                rounds[i][j].player1.name += '<a href="#" data-toggle="popover" title="STATS" data-content="SHIT GOES heightHERE" data-container="body"><img id="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+                '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
             }
             console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
             if (advanceTo == rounds[i][j].player2.slot) {
@@ -1148,9 +1149,18 @@ $(document).on("click", ".player", function () {
 
 
 // BROKEN   
-$(document).ready(function () {
-    $('[data-toggle="popover"]').popover('');
-});
+
+$("#game").on("click", function() { $('#teamInfo').toggleClass('.hide');
+    console.log("WORKING/?");
+})
+
+
+
+
+
+
+
+
 console.log('rounds: ', rounds);
 
 // $(document).ready(function () {
