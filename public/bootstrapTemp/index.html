@@ -8,7 +8,6 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bracket Mayhem</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,11 +56,6 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">Pools</a>
           </li>
-          <li>
-            <a href="login.html">
-                <button type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
-            </a>
-        </li>
         </ul>
       </div>
     </div>
@@ -171,7 +165,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <span class="copyright">Copyright &copy; 2018 Bracket Mayhem</span>
+          <span class="copyright">Copyright &copy; 2018</span>
         </div>
       </div>
     </div>
@@ -189,11 +183,11 @@
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
-  <script src="vendor/lodash/lodash.js"></script>
-  <script src="js/index.js"></script>
-  <!-- <script src="bracket/js/jquery-1.11.3.js"></script> -->
-  <!-- <script src="bracket/js/brackets.min.js"></script> -->
-  <script src="bracket/js/brackets.js"></script>
+  <script src="../js/lodash/lodash.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="../bracket/js/jquery-1.11.3.js"></script>
+  <script src="../bracket/js/brackets.min.js"></script>
+  <script src="../bracket/js/brackets.js"></script>
   <script>
     $.get("/api/logins", function (data) {
       console.log(data);
