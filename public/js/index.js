@@ -1,5 +1,31 @@
 
 
+function getUserBrackets(userid){
+    let queryURL="/api/userBrackets/"+userid;
+    $.get(queryURL, function (data) {
+        for (var i=0; i<data.length; i++){
+            console.log(data[i].bracketName, data[i].winner63)
+            bracketName=data[i].bracketName
+            var panelBracketClass = "panel-" + bracketName.split(" ").join("-");
+            console.log(panelBracketClass);
+            var newPanel = $("<div class ='panel panel-primary'> <div class='panel-heading'><h2 class='panel-title " +panelBracketClass + "'>")
+            console.log(newPanel)
+
+            $(".user-brackets-panels").append(newPanel);
+            $("h2."+panelBracketClass).text(bracketName); 
+
+        }
+    });
+
+}
+
+function renderUserBrackets(userid){
+    getUserBrackets(userid);
+//    $(".user-brackets-panels").
+}
+
+renderUserBrackets(1);
+ 
 // console.log('mergedFinalArr: ', mergedFinalArr);
 
 //************************************************
