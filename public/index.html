@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-
     <title>hey</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
+        <script src="bracket/js/brackets.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-default">
         <div class="navbar-header">
@@ -24,11 +26,11 @@
         <a href="/login">
             <button type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
         </a>
-       
+
     </nav>
     <div class="jumbotron">
         <div class="row">
-            <div id ="jumboTitle" class="col-xs-8"> 
+            <div id="jumboTitle" class="col-xs-8">
                 <h1>Bracket Mayhem</h1>
                 <h3>Make Your Madness</h3>
             </div>
@@ -45,7 +47,7 @@
     <div class="container">
         <div class="row">
             <a href="/newbracket">
-                    Create New Bracket
+                Create New Bracket
             </a>
         </div>
     </div>
@@ -55,7 +57,7 @@
             <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                            Bracket 1
+                        Bracket 1
 
                         <a class="colpsible-panel pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                             <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
@@ -106,16 +108,16 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-    <script src="../node_modules/lodash/lodash.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="../bracket/js/jquery-1.11.3.js"></script>
-    <script src="../bracket/js/brackets.min.js"></script>
-    <script src="../bracket/js/brackets.js"></script>
-    <script>
+    <script src="js/lodash/lodash.js"></script>
+    <script src="js/index.js"></script>
+    <script src="bracket/js/jquery-1.11.3.js"></script>
+    <script src="bracket/js/brackets.min.js"></script>
+    <script src="bracket/js/brackets.js"></script>
+    <!-- <script>
         $.get("/api/logins", function (data) {
             console.log(data);
         });
-    </script>
+    </script> -->
 </body>
 
 </html>
