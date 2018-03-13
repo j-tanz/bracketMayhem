@@ -9,248 +9,248 @@ var userBracket = sequelize.define("userBracket", {
     bracketName: {
         type: Sequelize.STRING
     },
-    winner1: {
+    R2W1: {
         type: Sequelize.STRING
     },
-    winner2: {
+    R2W2: {
         type: Sequelize.STRING
     },
-    winner3: {
+    R2W3: {
         type: Sequelize.STRING
     },
-    winner4: {
+    R2W4: {
         type: Sequelize.STRING
     },
-    winner5: {
-        type: Sequelize.STRING
-    },
-
-    winner6: {
+    R2W5: {
         type: Sequelize.STRING
     },
 
-    winner7: {
+    R2W6: {
         type: Sequelize.STRING
     },
 
-    winner8: {
+    R2W7: {
         type: Sequelize.STRING
     },
 
-    winner9: {
+    R2W8: {
         type: Sequelize.STRING
     },
 
-    winner10: {
+    R2X1: {
         type: Sequelize.STRING
     },
 
-    winner11: {
+    R2X2: {
         type: Sequelize.STRING
     },
 
-    winner12: {
-        type: Sequelize.STRING
-    },
-    winner13: {
-        type: Sequelize.STRING
-    },
-    winner14: {
+    R2X3: {
         type: Sequelize.STRING
     },
 
-    winner15: {
+    R2X4: {
+        type: Sequelize.STRING
+    },
+    R2X5: {
+        type: Sequelize.STRING
+    },
+    R2X6: {
         type: Sequelize.STRING
     },
 
-    winner16: {
+    R2X7: {
         type: Sequelize.STRING
     },
 
-    winner17: {
+    R2X8: {
         type: Sequelize.STRING
     },
 
-    winner18: {
+    R2Y1: {
         type: Sequelize.STRING
     },
 
-    winner19: {
+    R2Y2: {
         type: Sequelize.STRING
     },
 
-    winner20: {
+    R2Y3: {
         type: Sequelize.STRING
     },
 
-    winner21: {
+    R2Y4: {
         type: Sequelize.STRING
     },
 
-    winner22: {
+    R2Y5: {
         type: Sequelize.STRING
     },
 
-    winner23: {
+    R2Y6: {
         type: Sequelize.STRING
     },
 
-    winner24: {
+    R2Y7: {
         type: Sequelize.STRING
     },
 
-    winner25: {
+    R2Y8: {
         type: Sequelize.STRING
     },
 
-    winner26: {
+    R2Z1: {
         type: Sequelize.STRING
     },
 
-    winner27: {
+    R2Z2: {
         type: Sequelize.STRING
     },
 
-    winner28: {
+    R2Z3: {
         type: Sequelize.STRING
     },
 
-    winner29: {
+    R2Z4: {
         type: Sequelize.STRING
     },
 
-    winner30: {
+    R2Z5: {
         type: Sequelize.STRING
     },
 
-    winner31: {
+    R2Z6: {
         type: Sequelize.STRING
     },
 
-    winner32: {
+    R2Z7: {
         type: Sequelize.STRING
     },
 
-    winner33: {
+    R2Z8: {
         type: Sequelize.STRING
     },
 
-    winner34: {
+    R3W1: {
         type: Sequelize.STRING
     },
 
-    winner35: {
+    R3W2: {
         type: Sequelize.STRING
     },
 
-    winner36: {
+    R3W3: {
         type: Sequelize.STRING
     },
 
-    winner37: {
+    R3W4: {
         type: Sequelize.STRING
     },
 
-    winner38: {
+    R3X1: {
         type: Sequelize.STRING
     },
 
-    winner39: {
+    R3X2: {
         type: Sequelize.STRING
     },
 
-    winner40: {
+    R3X3: {
         type: Sequelize.STRING
     },
 
-    winner41: {
+    R3X4: {
         type: Sequelize.STRING
     },
 
-    winner42: {
+    R3Y1: {
         type: Sequelize.STRING
     },
 
-    winner43: {
+    R3Y2: {
         type: Sequelize.STRING
     },
 
-    winner44: {
+    R3Y3: {
         type: Sequelize.STRING
     },
 
-    winner45: {
+    R3Y4: {
         type: Sequelize.STRING
     },
 
-    winner46: {
+    R3Z1: {
         type: Sequelize.STRING
     },
 
-    winner47: {
+    R3Z2: {
         type: Sequelize.STRING
     },
 
-    winner48: {
+    R3Z3: {
         type: Sequelize.STRING
     },
 
-    winner49: {
+    R3Z4: {
         type: Sequelize.STRING
     },
 
-    winner50: {
+    R4W1: {
         type: Sequelize.STRING
     },
 
-    winner51: {
+    R4W2: {
         type: Sequelize.STRING
     },
 
-    winner52: {
-        type: Sequelize.STRING
-    },
-    winner53: {
+    R4X1: {
         type: Sequelize.STRING
     },
 
-    winner54: {
+    R4X2: {
+        type: Sequelize.STRING
+    },
+    R4Y1: {
         type: Sequelize.STRING
     },
 
-    winner55: {
+    R4Y2: {
         type: Sequelize.STRING
     },
 
-    winner56: {
+    R4Z1: {
         type: Sequelize.STRING
     },
 
-    winner57: {
+    R4Z2: {
         type: Sequelize.STRING
     },
 
-    winner58: {
+    R5WX1: {
         type: Sequelize.STRING
     },
 
-    winner59: {
+    R5WX2: {
         type: Sequelize.STRING
     },
 
-    winner60: {
+    R5YZ1: {
         type: Sequelize.STRING
     },
 
-    winner61: {
+    R5YZ2: {
         type: Sequelize.STRING
     },
 
-    winner62: {
+    R6C1: {
         type: Sequelize.STRING
     },
 
-    winner63: {
+    R6C1: {
+        type: Sequelize.STRING
+    },
+
+    CHAMP: {
         type: Sequelize.STRING
     }
 },

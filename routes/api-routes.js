@@ -17,6 +17,15 @@ module.exports = function (app) {
             }
         }).then((data) => res.json(data));
     });
+
+    app.get("/api/userBrackets/:userid/:bracketname", function (req, res) {
+        userBracket.findAll({
+            where: {
+                // userID: req.params.userid,
+                bracketName: req.params.bracketname
+            }
+        }).then((data) => res.json(data));
+    });
     // Need post route for userBrackets table
     app.post("/api/userBrackets", function (req, res) {
         userBracket.create(req.body).then(function (dbuserBracket) {

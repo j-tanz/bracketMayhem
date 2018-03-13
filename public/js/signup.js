@@ -15,8 +15,12 @@ $(document).ready(function () {
                     loginEmail: email,
                     loginPassword: pass
                 });
+                localStorage.setItem("userID", JSON.stringify(data.id));
+
             } else {
-                console.log(" > email already exist");
+                $("#signup-alert").text("This email is already in use.");
+                $("#signup-alert").removeClass("hidden");
+                // console.log(" > email already exist");
             }
         })
     }
@@ -32,14 +36,17 @@ $(document).ready(function () {
         var inputEmail = $("#signupInputEmail").val().trim();
         var inputPass1 = $("#signupInputPassword1").val().trim();
         var inputPass2 = $("#signupInputPassword2").val().trim();
-
-        console.log(inputEmail, inputPass1, inputPass2);
+        // console.log(inputEmail, inputPass1, inputPass2);
         if (validateEmail(inputEmail) === false) {
-            console.log("please enter a valid email");
+            $("#signup-alert").text("Please enter a valid email address.");
+            $("#signup-alert").removeClass("hidden");
+            // console.log("please enter a valid email");
             return;
         }
         if (!inputEmail || !inputPass1 || !inputPass2) {
-            console.log("please fill out all the fields")
+            $("#signup-alert").text("Please fill in all the required fields.");
+            $("#signup-alert").removeClass("hidden");
+            // console.log("please fill out all the fields")
             return;
         }
         if (inputPass1 !== inputPass2) {

@@ -2,8 +2,14 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
 var liveResult = sequelize.define("liveResult", {
-  TeamID: {
-    type: Sequelize.INTEGER
+  Seed_Alias: {
+    type: Sequelize.STRING
+  },
+  Region_Seed: {
+    type: Sequelize.STRING
+  },
+  TeamName: {
+    type: Sequelize.STRING
   },
   game1: {
     type: Sequelize.BOOLEAN
