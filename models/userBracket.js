@@ -258,5 +258,9 @@ var userBracket = sequelize.define("userBracket", {
         timestamps: false
     });
 
+userBracket.associate = function(models) {
+    userBracket.belongsTo(models.keyFile)
+}
+
 userBracket.sync();
 module.exports = userBracket;

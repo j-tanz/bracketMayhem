@@ -1122,17 +1122,41 @@ function renderBracket() {
         border_radius_lines: '0px'
     });
 }
+let userPicks = {};
+// console.log('userPicks: ', userPicks);
+let masterKey = {};
+// console.log('masterKey: ', masterKey);
+function evalPicks() {
 
-function getBracketData(){
+
+
+
+}
+
+function getBracketData() {
     var userID = JSON.parse(localStorage.getItem("userID"));
-    console.log(selectedBracketName)
+    // console.log(selectedBracketName)
     var selectedBracketName = JSON.parse(localStorage.getItem("selectedBracketName")).trim();
     console.log(selectedBracketName);
 
-    var userBracketQueryURL = "/api/userBrackets/" + userID +"/"+ selectedBracketName;
-    console.log(userBracketQueryURL)
+    var userBracketQueryURL = "/api/userBrackets/" + userID + "/" + selectedBracketName;
+    // console.log(userBracketQueryURL)
     $.get(userBracketQueryURL, function (bracketdata) {
-        console.log(bracketdata);
+        // console.log(bracketdata);
+        var userPicks = bracketdata;
+        
+        // console.log(bracketdata[0].CHAMP);
+        // return bracketdata;
+        getMasterkey();
+    })
+}
+// var userPicks = userPickData;
+
+function getMasterkey() {
+    $.get("/api/masterKey", function (keyData) {
+        console.log(keyData);
+        masterKey = keyData;
+        evalPicks();
     })
 }
 getBracketData();

@@ -1,6 +1,7 @@
 var liveResult = require("../models/liveResult.js");
 var login = require("../models/login.js");
 var userBracket = require("../models/userBracket.js");
+var masterKey = require("../models/keyFile.js")
 
 module.exports = function (app) {
     app.get("/api/liveResults", function (req, res) {
@@ -45,7 +46,7 @@ module.exports = function (app) {
                 loginEmail: req.params.loginEmail
             }
         }).then((data) => res.json(data));
-    })
+    });
 
     // Need post route for to add new user to logins table
     app.post("/api/logins", function (req, res) {
@@ -53,5 +54,9 @@ module.exports = function (app) {
             res.json(dblogin);
         });
     });
+
+    app.get("/api/masterKey", function(req, res) {
+        masterKey.findAll({}).then((data) => res.json(data));
+    } )
 
 }
