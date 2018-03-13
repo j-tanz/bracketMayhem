@@ -2,7 +2,7 @@ function getUserBrackets(userid) {
     let queryURL = "/api/userBrackets/" + userid;
     $.get(queryURL, function (data) {
         for (var i = 0; i < data.length; i++) {
-            console.log(data[i].bracketName, data[i].winner63)
+            console.log(data[i].bracketName)
             bracketName = data[i].bracketName
             var panelBracketClass = "panel-" + bracketName.split(" ").join("-");
             console.log(panelBracketClass);
@@ -33,7 +33,7 @@ function clickBracketBtn(){
     console.log("this",$(this).text().trim());
     bracketName=$(this).text();
     localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
-    location.assign("/savedBracket")
+    location.assign("../bracket/savedBracket.html")
 }
 
 

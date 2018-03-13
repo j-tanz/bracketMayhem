@@ -15,7 +15,7 @@
                 // html_player += '        <a class="name" href="' + player.url + '">';
                 html_player += '           ' + player.name;
                 // html_player += '        </a>';
-                html_player += '        <a href="#" data-toggle="popover" title="STATS" data-content="SHIT GOES HERE" data-container="body"><img src="../../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+                // html_player += '        <a href="#" data-toggle="popover" title="STATS" data-content="SHIT GOES HERE" data-container="body"><img src="../../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
 
             }else{
                 html_player += '           ' + player.name;

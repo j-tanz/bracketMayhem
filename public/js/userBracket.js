@@ -1,13 +1,15 @@
 
 const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 
-// $(document).ready(function () {
 var today = new Date();
+
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
 var tomorrow = dd++;
 
+// $(document).ready(function () {
+var today = new Date();
 if (dd < 10) {
     dd = "0" + dd;
 }
@@ -84,16 +86,16 @@ function appendIdent(gamesList) {
         let num = gameNumber.slice(5);
         // console.log("num", num);
 
-        if (_.includes(gamesList[i].title, "East")) {
+        if (_.includes(gamesList[i].title, "South")) {
             region = "W";
             regionNum = "0";
         } if (_.includes(gamesList[i].title, "West")) {
             region = "X";
             regionNum = "1";
-        } if (_.includes(gamesList[i].title, "Mid")) {
+        } if (_.includes(gamesList[i].title, "East")) {
             region = "Y";
             regionNum = "2";
-        } if (_.includes(gamesList[i].title, "South")) {
+        } if (_.includes(gamesList[i].title, "Midwest")) {
             region = "Z";
             regionNum = "3";
         } if (_.includes(gamesList[i].title, "Championship")) {
@@ -1134,7 +1136,8 @@ $(document).on("click", ".player", function () {
             if (advanceTo == rounds[i][j].player1.slot) {
                 rounds[i][j].player1.ID = pick
                 rounds[i][j].player1.name = "" + pickName
-                // rounds[i][j].player1.name += '<a href="#" data-toggle="popover" title="STATS" data-content="SHIT GOES HERE" data-container="body"><img src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+                rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+                '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
             }
             console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
             if (advanceTo == rounds[i][j].player2.slot) {
@@ -1148,9 +1151,22 @@ $(document).on("click", ".player", function () {
 
 
 // BROKEN   
-$(document).ready(function () {
-    $('[data-toggle="popover"]').popover('');
-});
+
+$(document).on("click", ".game", function(e){
+    e.preventDefault();
+    $('.popMe').popover('toggle');
+    console.log("working??????")
+    return false;
+})
+
+
+
+
+
+
+
+
+
 console.log('rounds: ', rounds);
 
 // $(document).ready(function () {
