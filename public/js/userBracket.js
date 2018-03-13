@@ -1320,10 +1320,3 @@ function postBracketData(newbracketData) {
     $.post("/api/userBrackets", newbracketData);
 }
 
-function getBracketData(bracketName){
-    let userID = JSON.parse(localStorage.getItem("userID"));
-    var userBracketQueryURL = "/api/userBrackets/" + userID +"/"+ bracketName;
-    $.get(userBracketQueryURL, function (bracketdata) {
-        console.log(bracketdata);
-    })
-}

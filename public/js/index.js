@@ -8,11 +8,16 @@ function getUserBrackets(userid) {
             console.log(panelBracketClass);
             var newPanel = $("<div class ='panel panel-primary bracket-btn'> <div class='panel-heading'><h2 class='panel-title " + panelBracketClass + "'>")
             console.log(newPanel)
+            // var bracketBtn = $("<button class='brac-btn'>");
+            // $(bracketBtn).text("hi");
+            // $("#portfolio").append(bracketBtn);
 
             $(".user-brackets-panels").append(newPanel);
             $("h2." + panelBracketClass).text(bracketName);
 
         }
+        $(".bracket-btn").on("click", clickBracketBtn);
+
     });
 }
 
@@ -25,9 +30,11 @@ console.log("userid: ", userID);
 renderUserBrackets(userID);
 
 function clickBracketBtn(){
-    console.log("this",this);
+    console.log("this",$(this).text().trim());
+    bracketName=$(this).text();
+    localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
+    location.assign("/savedBracket")
 }
-$(".bracket-btn").click(clickBracketBtn);
 
 
 

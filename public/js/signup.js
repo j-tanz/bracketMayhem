@@ -15,6 +15,8 @@ $(document).ready(function () {
                     loginEmail: email,
                     loginPassword: pass
                 });
+                localStorage.setItem("userID", JSON.stringify(data.id));
+
             } else {
                 $("#signup-alert").text("This email is already in use.");
                 $("#signup-alert").removeClass("hidden");

@@ -18,12 +18,11 @@ module.exports = function (app) {
         }).then((data) => res.json(data));
     });
 
-    app.get("/api/savedBracket/:userid/:bracketName", function (req, res) {
+    app.get("/api/userBrackets/:userid/:bracketname", function (req, res) {
         userBracket.findAll({
             where: {
-                userid: req.params.userid,
-                bracketName: req.params.bracketName
-
+                // userID: req.params.userid,
+                bracketName: req.params.bracketname
             }
         }).then((data) => res.json(data));
     });
