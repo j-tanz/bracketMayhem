@@ -33,7 +33,7 @@ function clickBracketBtn(){
     console.log("this",$(this).text().trim());
     bracketName=$(this).text();
     localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
-    location.assign("/savedbracket")
+    location.assign("../bracket/savedBracket.html")
 }
 
 
