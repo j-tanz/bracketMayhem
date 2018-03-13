@@ -26,7 +26,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/bracket/userBracket.html"));
   });
   app.get("/savedbracket", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/savedBracket.html"));
+    res.sendFile(path.join(__dirname, "../public/bracket/savedBracket.html"));
   });
 
 };

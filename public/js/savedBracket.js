@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 
@@ -31,6 +30,7 @@ let masterArr = [];
 let pendingArr = [];
 let placeArr = [];
 let gamesArr = [];
+let gameIdsArr = [];
 
 function tourneyLookup() {
     let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
@@ -73,9 +73,6 @@ function tourneyLookup() {
         checkCompleted(gameState);
     })
 }
-let gameIdsArr = [];
-// let bracketGamesArr =[];
-
 
 function appendIdent(gamesList) {
     let bracketGamesArr = [];
@@ -1075,8 +1072,6 @@ let regionMap = {
 };
 
 function updateTeamNames(bracketGamesArr) {
-    console.log('bracketGamesArr: ', bracketGamesArr);
-    // console.log("rounds ,", rounds);
     _.forEach(bracketGamesArr, function (val, z) {
         let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
         index = index !== 2.5 ? index : 0;
@@ -1126,7 +1121,6 @@ function renderBracket() {
         border_radius_lines: '0px'
     });
 }
-=======
 function getBracketData(){
     var userID = JSON.parse(localStorage.getItem("userID"));
     console.log(selectedBracketName)
@@ -1140,4 +1134,3 @@ function getBracketData(){
     })
 }
 getBracketData();
->>>>>>> 12b2b05e4f76f8cf76ed20f727e5eb822588a86f
