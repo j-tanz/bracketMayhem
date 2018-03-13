@@ -12,7 +12,6 @@ function correctPassword(evt) {
         }
         localStorage.setItem("userID", JSON.stringify(data.id));
         location.replace("/index");
-
     })
 }
 
