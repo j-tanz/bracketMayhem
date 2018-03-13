@@ -2,6 +2,9 @@ var liveResult = require("../models/liveResult.js");
 var login = require("../models/login.js");
 var userBracket = require("../models/userBracket.js");
 var masterKey = require("../models/keyFile.js")
+var massey = require("../models/massey_ordinal.js");
+var ncaaSeedRoundSlot = require("../models/ncaa_seed_round_slot.js");
+var ncaa_tourney_result = require("../models/ncaa_tourney_result.js");
 
 module.exports = function (app) {
     app.get("/api/liveResults", function (req, res) {
@@ -59,4 +62,26 @@ module.exports = function (app) {
         masterKey.findAll({}).then((data) => res.json(data));
     } )
 
+    
+    // app.get("/api/ncaa_seed_round_slot", function (req, res) {
+    //     ncaa_seed_round_slot.findAll({
+    //     }).then((results) => res.json(results));
+    // });
+    app.get("/api/ncaa_tourney_result", function (req, res) {
+        ncaa_tourney_result.findAll({
+        }).then((results) => res.json(results));
+    });
+    app.get("/api/ncaaSeedRoundSlot", function (req, res) {
+        ncaaSeedRoundSlot.findAll({
+        }).then((results) => res.json(results));
+    });
+    app.get("/api/massey", function (req, res) {
+        massey.findAll({
+        }).then((results) => res.json(results));
+    });
+    // app.get("/api/tourney/:loginEmail", function (req, res) {
+    //    .findAll({
+    //         attributes: ['foo', 'bar']
+    //       }).then((data) => res.json(data));
+    // })
 }
