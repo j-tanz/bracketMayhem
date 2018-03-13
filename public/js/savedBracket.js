@@ -1,13 +1,15 @@
 
 const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 
-// $(document).ready(function () {
 var today = new Date();
+
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
 var tomorrow = dd++;
 
+// $(document).ready(function () {
+var today = new Date();
 if (dd < 10) {
     dd = "0" + dd;
 }
@@ -30,11 +32,10 @@ let masterArr = [];
 let pendingArr = [];
 let placeArr = [];
 let gamesArr = [];
-let gameIdsArr = [];
 
 function tourneyLookup() {
-    let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
-    // let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
+    // let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
+    let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
 
     let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/tournaments/" + tournamentID + "/schedule.json?"
 
@@ -73,6 +74,9 @@ function tourneyLookup() {
         checkCompleted(gameState);
     })
 }
+let gameIdsArr = [];
+// let bracketGamesArr =[];
+
 
 function appendIdent(gamesList) {
     let bracketGamesArr = [];
@@ -640,7 +644,7 @@ let rounds = [
         //region 1    
         {
             player1: {
-                name: "BLAH BLAH",
+                name: "",
                 slot: "R2W1",
                 advance: "R3W1",
             },
@@ -1072,6 +1076,7 @@ let regionMap = {
 };
 
 function updateTeamNames(bracketGamesArr) {
+    // console.log("rounds ,", rounds);
     _.forEach(bracketGamesArr, function (val, z) {
         let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
         index = index !== 2.5 ? index : 0;
@@ -1085,10 +1090,6 @@ function updateTeamNames(bracketGamesArr) {
     })
     renderBracket();
 };
-
-
-
-
 
 function renderBracket() {
     //-- JSON with matches of each round
@@ -1121,6 +1122,7 @@ function renderBracket() {
         border_radius_lines: '0px'
     });
 }
+
 function getBracketData(){
     var userID = JSON.parse(localStorage.getItem("userID"));
     console.log(selectedBracketName)
