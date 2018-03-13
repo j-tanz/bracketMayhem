@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 
@@ -1125,3 +1126,18 @@ function renderBracket() {
         border_radius_lines: '0px'
     });
 }
+=======
+function getBracketData(){
+    var userID = JSON.parse(localStorage.getItem("userID"));
+    console.log(selectedBracketName)
+    var selectedBracketName = JSON.parse(localStorage.getItem("selectedBracketName")).trim();
+    console.log(selectedBracketName);
+
+    var userBracketQueryURL = "/api/userBrackets/" + userID +"/"+ selectedBracketName;
+    console.log(userBracketQueryURL)
+    $.get(userBracketQueryURL, function (bracketdata) {
+        console.log(bracketdata);
+    })
+}
+getBracketData();
+>>>>>>> 12b2b05e4f76f8cf76ed20f727e5eb822588a86f

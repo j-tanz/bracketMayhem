@@ -1,5 +1,3 @@
-
-
 function getUserBrackets(userid) {
     let queryURL = "/api/userBrackets/" + userid;
     $.get(queryURL, function (data) {
@@ -8,12 +6,18 @@ function getUserBrackets(userid) {
             bracketName = data[i].bracketName
             var panelBracketClass = "panel-" + bracketName.split(" ").join("-");
             console.log(panelBracketClass);
-            var newPanel = $("<div class ='panel panel-primary'> <div class='panel-heading'><h2 class='panel-title " + panelBracketClass + "'>")
+            var newPanel = $("<div class ='panel panel-primary bracket-btn'> <div class='panel-heading'><h2 class='panel-title " + panelBracketClass + "'>")
             console.log(newPanel)
+            // var bracketBtn = $("<button class='brac-btn'>");
+            // $(bracketBtn).text("hi");
+            // $("#portfolio").append(bracketBtn);
 
             $(".user-brackets-panels").append(newPanel);
             $("h2." + panelBracketClass).text(bracketName);
+
         }
+        $(".bracket-btn").on("click", clickBracketBtn);
+
     });
 }
 
@@ -25,6 +29,12 @@ userID = JSON.parse(localStorage.getItem("userID"));
 console.log("userid: ", userID);
 renderUserBrackets(userID);
 
+function clickBracketBtn(){
+    console.log("this",$(this).text().trim());
+    bracketName=$(this).text();
+    localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
+    location.assign("/savedBracket")
+}
 
 
 
