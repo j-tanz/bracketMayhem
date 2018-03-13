@@ -54,7 +54,7 @@
     </div>
     <div class="master">
         <!--   REGION 1  -->
-        <div class="region1">
+        <div class="region" id="region1">
             <div class="wrapper">
                 <div class="columns column1">
                     <div class="matchup">
@@ -132,7 +132,7 @@
             </div>
         </div>
         <!--   REGION 2  -->
-        <div class="region2">
+        <div class="region" id="region2">
             <div class="wrapper">
                 <div class="columns column5">
                     <div class="matchup">
@@ -210,7 +210,7 @@
             </div>
         </div>
         <!--   REGION 3  -->
-        <div class="region3">
+        <div class="region" id="region3">
             <div class="wrapper">
                 <div class="columns column1">
                     <div class="matchup">
@@ -288,7 +288,7 @@
             </div>
         </div>
         <!--   REGION 4  -->
-        <div class="region4">
+        <div class="region" id="region4">
             <div class="wrapper">
                 <div class="columns column5">
                     <div class="matchup">
@@ -408,6 +408,7 @@
             display: grid;
             grid-auto-rows: 35%;
             grid-gap: .5em;
+            width: 90%;
 
             /* border: 1px solid black; */
         }
@@ -467,6 +468,12 @@
         .master {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
+            margin: 10%;
+            padding: 5%;
+        }
+        .region {
+            margin: 1%;
+            padding: 1%;
         }
 
         /*-------- Mobile media breakpoint ---------*/
