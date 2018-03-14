@@ -468,6 +468,8 @@
             width: 80%;
             margin: 0 auto;
             font-weight: 300%;
+            overflow: auto;
+            overflow-y: hidden;
 
         }
 
@@ -497,6 +499,9 @@
             margin: -20%;
             padding: -5%;
         }
+        .matchup {
+            border: 1px solid rgba(37, 92, 153, 1);
+        }
 
         .matchup>div {
             padding: 8px;
@@ -521,6 +526,7 @@
             width: 25%;
             height: 85%;
             margin: 1%;
+            
         }
 
         @font-face {
@@ -582,10 +588,13 @@
         .region {
             margin: 1%;
             padding: 1%;
-            width: 85%;
+            width: 100%;
             font-weight: 300%;
             display: none;
-
+            white-space: nowrap;
+            zoom: 260%;
+            overflow-y: scroll;
+            height: 140px;
             /* background-color: rgba(179, 0, 27, 1); */
         }
 
@@ -593,9 +602,8 @@
             background-color: rgba(37, 92, 153, 1);
             width: 20%;
             font-weight: 300%;
-
             color: white;
-            font-size: 400%;
+            font-size: 390%;
             padding: 4%;
             margin: 1%;
             border-radius: 20%;
