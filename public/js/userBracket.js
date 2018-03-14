@@ -1074,36 +1074,71 @@ function updateTeamNames(bracketGamesArr) {
 };
 
 function renderBracket() {
-    $("#W01").text(rounds[0][0].player1.name)
+    // $("#W01").text(rounds[0][0].player1.name)
+
     for (let i = 1; i < 17; i++) {
         let ii = i;
         if (ii < 10) {
             ii = "0" + ii;
         }
         for (let j = 0; j < rounds[0].length; j++) {
-            // console.log('"#W" + ii: ', "#W" + ii);
-            // console.log('rounds[0][j].ID: ', rounds[0][j].player1.ID);
-            // console.log('rounds[0][j].ID: ', rounds[0][j].player2.ID);
             if (rounds[0][j].player1.ID == "W" + ii) {
-                $("#W" + ii).text(rounds[0][j].player1.ID);
+                $("#W" + ii).text(rounds[0][j].player1.name);
             } if (rounds[0][j].player2.ID == "W" + ii) {
-                $("#W" + ii).text(rounds[0][j].player2.ID);
+                $("#W" + ii).text(rounds[0][j].player2.name);
             }
-
-
+            if (rounds[0][j].player1.ID == "X" + ii) {
+                $("#X" + ii).text(rounds[0][j].player1.name);
+            } if (rounds[0][j].player2.ID == "X" + ii) {
+                $("#X" + ii).text(rounds[0][j].player2.name);
+            }
+            if (rounds[0][j].player1.ID == "Y" + ii) {
+                $("#Y" + ii).text(rounds[0][j].player1.name);
+            } if (rounds[0][j].player2.ID == "Y" + ii) {
+                $("#Y" + ii).text(rounds[0][j].player2.name);
+            }
+            if (rounds[0][j].player1.ID == "Z" + ii) {
+                $("#Z" + ii).text(rounds[0][j].player1.name);
+            } if (rounds[0][j].player2.ID == "Z" + ii) {
+                $("#Z" + ii).text(rounds[0][j].player2.name);
+            }
         }
     }
 }
-    // $("#W"+ii).text(rounds[0][])
-    // console.log('"#W"+ii: ', "#W" +ii);
+
+$(document).on("click", ".matchup", function () {
+    let pick = $(this).attr("data-id");
+    let pickName = this.innerText;
+    let advanceTo = $(this).attr("data-advance");
+
+
+    for (let i = 1; i < rounds.length; i++) {
+        for (let j = 0; j < rounds[i].length; j++) {
+
+            if (advanceTo == rounds[i][j].player1.slot) {
+                rounds[i][j].player1.ID = pick
+                rounds[i][j].player1.name = "" + pickName
+                rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+                '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
+            }
+            console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
+            if (advanceTo == rounds[i][j].player2.slot) {
+                rounds[i][j].player2.ID = pick
+                rounds[i][j].player2.name = pickName
+            }
+        }
+        renderBracket();
+    }
+})
 
 
 
+//******************************** */
+// Save for livebracket
+// for (let h = 0; h < rounds.length; h++) {
+//     console.log("h len", (rounds[h].length)/2 +1)
 
 
-// if (dd < 10) {
-//     dd = "0" + dd;
-// }
 
 // function renderBracket() {
 //-- JSON with matches of each round
