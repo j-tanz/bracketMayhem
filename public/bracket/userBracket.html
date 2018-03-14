@@ -385,6 +385,37 @@
             </div>
         </div>
 
+        <button onclick="$( '#champ' ).toggle('hide');" id="four">
+                Final Four to Champion
+            </button>
+            <div class="region" id="champ">
+                <div class="wrapper">
+                
+               
+                    <div class="columns column3">
+                        <div class="matchup three-one">
+                            <div class="team" id="R3S1">Team</div>
+                            <div class="team" id="R3S2">Team</div>
+                        </div>
+                        <div class="matchup three-two">
+                            <div class="team" id="R3S3">Team</div>
+                            <div class="team" id="R3S4">Team</div>
+                        </div>
+                    </div>
+                    <div class="columns column4">
+                        <div class="matchup">
+                            <div class="team" id="R4S1">Team</div>
+                            <div class="team" id="R4S2">Team</div>
+                        </div>
+                    </div>
+                    <div class="columns column5">
+                        <div class="matchup">
+                            <div class="team" id="R521">Team</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
     </div>
     </div>
@@ -499,8 +530,9 @@
         .master {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            margin: 10%;
+            margin: 0 auto;
             padding: 5%;
+
         }
 
         .region {
@@ -514,11 +546,18 @@
         button {
             background-color: rgba(37, 92, 153, 1);
             width: 10%;
-            height: 35%;
             color: white;
             font-size: 400%;
             padding: 4%;
             margin: 4%;
+        }
+        #champ{
+            width: 40%;
+            font-size: 800%;
+            padding: 3%;
+            margin: 3%;
+            height: 50%;
+            line-height: 800%;
         }
 
 
@@ -560,6 +599,9 @@
     });
     $('#region4').on("click", function () {
         $('region4').show();
+    });
+    $('#four').on("click", function () {
+        $('champ').show();
     });
 </script>
 </body>
