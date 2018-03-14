@@ -55,7 +55,7 @@
     <div class="master">
         <!--   REGION 1  -->
         <div class="left">
-            <button onclick="$( '#region1' ).toggle('hide');" id="south">
+            <button onclick="$( '#region1' ).toggle('show');" id="south">
                 South
             </button>
             <div class="region" id="region1">
@@ -137,8 +137,8 @@
             </div>
 
             <!--   REGION 2  -->
-            <button onclick="$( '#region2' ).toggle('hide');" id="east">
-                east
+            <button onclick="$( '#region2' ).toggle('show');" id="east">
+                East
             </button>
             <div class="region" id="region2">
                 <div class="wrapper">
@@ -221,8 +221,8 @@
 
         <div class="right">
             <!--   REGION 4  -->
-            <button onclick="$( '#region4' ).toggle('hide');" id="west">
-                west
+            <button onclick="$( '#region4' ).toggle('show');" id="west">
+                West
             </button>
             <div class="region" id="region4">
                 <div class="wrapper">
@@ -303,8 +303,8 @@
             </div>
 
             <!--   REGION 3  -->
-            <button onclick="$( '#region3' ).toggle('hide');" id="midwest">
-                midwest
+            <button onclick="$( '#region3' ).toggle('show');" id="midwest">
+                Midwest
             </button>
             <div class="region" id="region3">
                 <div class="wrapper">
@@ -385,7 +385,7 @@
             </div>
         </div>
 
-        <button onclick="$( '#champ' ).toggle('hide');" id="four">
+        <button onclick="$( '#champ' ).toggle('show');" id="four">
                 Final Four to Champion
             </button>
             <div class="region" id="champ">
@@ -506,15 +506,15 @@
 
         }
         #south, #east, #west, #midwest {
-            font-size: 800%;
+            font-size: 400%;
             width: 25%;
             height: 85%;
             margin: 1%;
         }
         #four {
-            margin-right: 50%;
-            width: 20%;
-            font-size: 800%;
+            margin-right: 40%;
+            width: 40%;
+            font-size: 300%;
         }
         .two-one {
             margin-top: 6.5em;
@@ -561,6 +561,7 @@
             padding: 1%;
             width: 85%;
             font-weight: 300%;
+            display:none;
 
             /* background-color: rgba(179, 0, 27, 1); */
 
