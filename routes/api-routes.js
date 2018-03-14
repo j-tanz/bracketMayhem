@@ -1,5 +1,6 @@
 var liveResult = require("../models/liveResult.js");
 var login = require("../models/login.js");
+var userBracket = require("../models/userBracket.js");
 var massey = require("../models/massey_ordinal.js");
 var ncaaSeedRoundSlot = require("../models/ncaa_seed_round_slot.js");
 var ncaa_tourney_result = require("../models/ncaa_tourney_result.js");
