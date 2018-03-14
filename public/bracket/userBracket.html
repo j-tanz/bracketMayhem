@@ -22,16 +22,24 @@
                 Bracket Mayhem </a>
         </div>
     </nav>
-    <h1 class="title">Your Bracket</h1>
+
     <div class="container">
         <form>
             <div class="form-group">
                 <label for="bracketName">BRACKET NAME</label>
-                <input class="form-control" id="bracketNameInput" placeholder="My Bracket">
+                <div class="row">
+
+                    <div class="col-xs-7 col-sm-9 col-md-10 col-lg-11">
+                        <input class="form-control" id="bracketNameInput" placeholder="My Bracket">
+                    </div>
+                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-1">
+                        <button type="submit" class="btn btn-default save-bracket-btn">
+                            Save My Bracket
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-default save-bracket-btn">
-                Save My Bracket
-            </button>
+
         </form>
     </div>
     <br>
@@ -502,6 +510,7 @@
             margin: -20%;
             padding: -5%;
         }
+
         .matchup {
             border: 1px solid rgba(37, 92, 153, 1);
         }
@@ -529,7 +538,7 @@
             width: 25%;
             height: 85%;
             margin: 1%;
-            
+
         }
 
         @font-face {
@@ -610,6 +619,10 @@
             margin: 1%;
             border-radius: 20%;
             margin: 0 auto;
+        }
+
+        .save-bracket-btn {
+            width: 130px;
         }
 
         #champ {
