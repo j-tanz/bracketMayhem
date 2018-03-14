@@ -852,7 +852,7 @@ let rounds = [
         //region 1 
         {
             player1: {
-                name: "",
+                name: "hfdsjkfahsdkjfshfkjlhfsdlkds",
                 slot: "R3W1",
                 advance: "R4W1",
             },
@@ -1122,41 +1122,47 @@ function renderBracket() {
         border_radius_lines: '0px'
     });
 }
+
 let userPicks = {};
 // console.log('userPicks: ', userPicks);
 let masterKey = {};
 // console.log('masterKey: ', masterKey);
-function evalPicks() {
 
 
-
+function evalPicks(userPicks, masterKey) {
+    console.log('pick: ', userPicks, "key: ", masterKey);
+    
 
 }
+
 
 function getBracketData() {
     var userID = JSON.parse(localStorage.getItem("userID"));
     // console.log(selectedBracketName)
     var selectedBracketName = JSON.parse(localStorage.getItem("selectedBracketName")).trim();
-    console.log(selectedBracketName);
+    // console.log(selectedBracketName);
 
     var userBracketQueryURL = "/api/userBrackets/" + userID + "/" + selectedBracketName;
     // console.log(userBracketQueryURL)
-    $.get(userBracketQueryURL, function (bracketdata) {
+    $.get(userBracketQueryURL, function(bracketdata) {
         // console.log(bracketdata);
-        var userPicks = bracketdata;
-        
+        userPicks = bracketdata;
+        // console.log('userPicks: ', userPicks);
+        // evalPicks(userPicks);
         // console.log(bracketdata[0].CHAMP);
         // return bracketdata;
-        getMasterkey();
+        getMasterkey(userPicks);
     })
 }
 // var userPicks = userPickData;
 
-function getMasterkey() {
+function getMasterkey(input) {
     $.get("/api/masterKey", function (keyData) {
-        console.log(keyData);
+        // console.log(keyData);
         masterKey = keyData;
-        evalPicks();
+        // console.log('masterKey: ', masterKey);
+        evalPicks(input, masterKey);
     })
 }
 getBracketData();
+
