@@ -1070,12 +1070,16 @@ function updateTeamNames(bracketGamesArr) {
         rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
         rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias;
     })
-    renderBracket();
+    populateBracket();
 };
 
-function renderBracket() {
+function populateBracket() {
+    
     // $("#W01").text(rounds[0][0].player1.name)
-
+    //******************************** */
+// Save for livebracket
+// for (let h = 0; h < rounds.length; h++) {
+//     console.log("h len", (rounds[h].length)/2 +1)
     for (let i = 1; i < 17; i++) {
         let ii = i;
         if (ii < 10) {
@@ -1084,60 +1088,91 @@ function renderBracket() {
         for (let j = 0; j < rounds[0].length; j++) {
             if (rounds[0][j].player1.ID == "W" + ii) {
                 $("#W" + ii).text(rounds[0][j].player1.name);
+                $("#W" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance                  
+                })           
             } if (rounds[0][j].player2.ID == "W" + ii) {
                 $("#W" + ii).text(rounds[0][j].player2.name);
+                $("#W" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
             }
             if (rounds[0][j].player1.ID == "X" + ii) {
                 $("#X" + ii).text(rounds[0][j].player1.name);
+                $("#X" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance
+                })
             } if (rounds[0][j].player2.ID == "X" + ii) {
                 $("#X" + ii).text(rounds[0][j].player2.name);
+                $("#X" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
             }
             if (rounds[0][j].player1.ID == "Y" + ii) {
                 $("#Y" + ii).text(rounds[0][j].player1.name);
+                $("#Y" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance
+                })
             } if (rounds[0][j].player2.ID == "Y" + ii) {
                 $("#Y" + ii).text(rounds[0][j].player2.name);
+                $("#Y" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
             }
             if (rounds[0][j].player1.ID == "Z" + ii) {
                 $("#Z" + ii).text(rounds[0][j].player1.name);
+                $("#Z" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance
+                })
             } if (rounds[0][j].player2.ID == "Z" + ii) {
                 $("#Z" + ii).text(rounds[0][j].player2.name);
+                $("#Z" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
             }
         }
     }
 }
 
-$(document).on("click", ".matchup", function () {
+$(document).on("click", ".team", function () {
     let pick = $(this).attr("data-id");
     let pickName = this.innerText;
     let advanceTo = $(this).attr("data-advance");
+    console.log('advanceTo: ', advanceTo);
 
-
-    for (let i = 1; i < rounds.length; i++) {
+    for (let i = 0; i < rounds.length; i++) {
         for (let j = 0; j < rounds[i].length; j++) {
-
-            if (advanceTo == rounds[i][j].player1.slot) {
+            console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
+            console.log('+ rounds[i][j].player1.advance +"": ', '#'+ rounds[i][j].player1.advance +"");
+            if (advanceTo == rounds[i][j].player1.slot) {       
                 rounds[i][j].player1.ID = pick
                 rounds[i][j].player1.name = "" + pickName
                 rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
-                '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
+                $('#'+ advanceTo +"").text("" + pickName);
+                $('#'+ advanceTo +"").attr({
+                    "data-advance": rounds[i][j].player1.advance
+                })
             }
-            console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
             if (advanceTo == rounds[i][j].player2.slot) {
                 rounds[i][j].player2.ID = pick
-                rounds[i][j].player2.name = pickName
+                rounds[i][j].player2.name = "" + pickName
+                rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+                $('#'+ advanceTo +"").text("" + pickName);
+                $('#'+ advanceTo +"").attr({
+                    "data-advance": rounds[i][j].player2.advance
+                })
             }
         }
-        renderBracket();
     }
 })
-
-
-
-//******************************** */
-// Save for livebracket
-// for (let h = 0; h < rounds.length; h++) {
-//     console.log("h len", (rounds[h].length)/2 +1)
-
 
 
 // function renderBracket() {
