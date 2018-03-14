@@ -1,25 +1,6 @@
 
 const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
 
-var today = new Date();
-
-var dd = today.getDate();
-var mm = today.getMonth() + 1;
-var yyyy = today.getFullYear();
-var tomorrow = dd++;
-
-// $(document).ready(function () {
-var today = new Date();
-if (dd < 10) {
-    dd = "0" + dd;
-}
-if (tomorrow < 10) {
-    tomorrow = "0" + tomorrow;
-}
-if (mm < 10) {
-    mm = "0" + mm;
-}
-
 let finalizedGamesArr = [];
 let scheduleObj = {};
 let winnerArr = [];
@@ -162,9 +143,9 @@ function combinedMasterArr(arr1, arr2) {
 tourneyLookup();
 
 
-let titles = [
-    'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
-];
+// let titles = [
+//     'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
+// ];
 //dont touch-will break display
 let rounds = [
     //round of 64 - 32 games
@@ -1093,66 +1074,98 @@ function updateTeamNames(bracketGamesArr) {
 };
 
 function renderBracket() {
-    //-- JSON with matches of each round
-    $('selector').brackets({
-        rounds: rounds
-    });
-    //dont touch-will break display
-    $(".brackets").brackets({
-        titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
-        rounds: rounds, //-- (Required) Array with matches ( JSON ) for each round
-        // color_title: 'black', //-- (String) Color of the title text
-        // border_color: '#00F', //-- (String) Border color of the line of brackets
-        // color_player: 'black', //-- (String) Color of the player text (name)
-        // bg_player: 'white', //-- (String) Background color of the player container
-        // color_player_hover: 'white', //-- (String) Color of the player text (name) when mouse is hover
-        // bg_player_hover: 'blue', //-- (String) Background color of the player container when mouse is hover
-        border_radius_player: '10px', //-- (String) Border radius of the player container
-        border_radius_lines: '10px', //-- (String) Border radius of the lines that join rounds
-    });
-    //dont touch-will break display
-    $(".brackets").brackets({
-        titles: false, //-- If the value is true, then add titles automatically
-        color_title: 'black',
-        border_color: 'black',
-        color_player: 'black',
-        bg_player: 'white',
-        color_player_hover: 'black',
-        bg_player_hover: 'white',
-        border_radius_player: '0px',
-        border_radius_lines: '0px'
-    });
-}
-
-$(document).on("click", ".player", function () {
-    let pick = $(this).attr("data-id");
-    let pickName = this.innerText;
-    let advanceTo = $(this).attr("data-advance");
-
-
-    for (let i = 1; i < rounds.length; i++) {
-        for (let j = 0; j < rounds[i].length; j++) {
-
-            if (advanceTo == rounds[i][j].player1.slot) {
-                rounds[i][j].player1.ID = pick
-                rounds[i][j].player1.name = "" + pickName
-                rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
-                '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
-            }
-            console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
-            if (advanceTo == rounds[i][j].player2.slot) {
-                rounds[i][j].player2.ID = pick
-                rounds[i][j].player2.name = pickName
-            }
+    $("#W01").text(rounds[0][0].player1.name)
+    for (let i = 1; i < 17; i++) {
+        let ii = i;
+        if (ii < 10) {
+            ii = "0" + ii;
         }
-        renderBracket();
+        for (let j = 0; j < rounds[0].length; j++) {
+            // console.log('"#W" + ii: ', "#W" + ii);
+            // console.log('rounds[0][j].ID: ', rounds[0][j].player1.ID);
+            // console.log('rounds[0][j].ID: ', rounds[0][j].player2.ID);
+            if (rounds[0][j].player1.ID == "W" + ii) {
+                $("#W" + ii).text(rounds[0][j].player1.ID);
+            } if (rounds[0][j].player2.ID == "W" + ii) {
+                $("#W" + ii).text(rounds[0][j].player2.ID);
+            }
+
+
+        }
     }
-})
+}
+    // $("#W"+ii).text(rounds[0][])
+    // console.log('"#W"+ii: ', "#W" +ii);
+
+
+
+
+
+// if (dd < 10) {
+//     dd = "0" + dd;
+// }
+
+// function renderBracket() {
+//-- JSON with matches of each round
+// $('selector').brackets({
+//     rounds: rounds
+// });
+//dont touch-will break display
+// $(".brackets").brackets({
+//     titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
+//     rounds: rounds, //-- (Required) Array with matches ( JSON ) for each round
+// color_title: 'black', //-- (String) Color of the title text
+// border_color: '#00F', //-- (String) Border color of the line of brackets
+// color_player: 'black', //-- (String) Color of the player text (name)
+// bg_player: 'white', //-- (String) Background color of the player container
+// color_player_hover: 'white', //-- (String) Color of the player text (name) when mouse is hover
+// bg_player_hover: 'blue', //-- (String) Background color of the player container when mouse is hover
+// border_radius_player: '10px', //-- (String) Border radius of the player container
+// border_radius_lines: '10px', //-- (String) Border radius of the lines that join rounds
+// });
+//dont touch-will break display
+//     $(".brackets").brackets({
+//         titles: false, //-- If the value is true, then add titles automatically
+//         color_title: 'black',
+//         border_color: 'black',
+//         color_player: 'black',
+//         bg_player: 'white',
+//         color_player_hover: 'black',
+//         bg_player_hover: 'white',
+//         border_radius_player: '0px',
+//         border_radius_lines: '0px'
+//     });
+// }
+
+// $(document).on("click", ".player", function () {
+//     let pick = $(this).attr("data-id");
+//     let pickName = this.innerText;
+//     let advanceTo = $(this).attr("data-advance");
+
+
+//     for (let i = 1; i < rounds.length; i++) {
+//         for (let j = 0; j < rounds[i].length; j++) {
+
+//             if (advanceTo == rounds[i][j].player1.slot) {
+//                 rounds[i][j].player1.ID = pick
+//                 rounds[i][j].player1.name = "" + pickName
+//                 rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
+//                 '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
+//             }
+//             console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
+//             if (advanceTo == rounds[i][j].player2.slot) {
+//                 rounds[i][j].player2.ID = pick
+//                 rounds[i][j].player2.name = pickName
+//             }
+//         }
+//         renderBracket();
+//     }
+// })
 
 
 // BROKEN   
 
-$(document).on("click", ".game", function(e){
+$(document).on("click", ".game", function (e) {
     e.preventDefault();
     $('.popMe').popover('toggle');
     console.log("working??????")
@@ -1167,7 +1180,7 @@ $(document).on("click", ".game", function(e){
 
 
 
-console.log('rounds: ', rounds);
+// console.log('rounds: ', rounds);
 
 // $(document).ready(function () {
 //     $('a[rel=popover]').popover();
@@ -1262,7 +1275,7 @@ function saveBracket(evt) {
 
     let pickCHAMP = $("#CHAMP").attr('data-id');
     console.log(inputBracketName)
-    userID=JSON.parse(localStorage.getItem("userID"));
+    userID = JSON.parse(localStorage.getItem("userID"));
     console.log("userid: ", userID);
     postBracketData({
         userID: userID,
@@ -1335,4 +1348,3 @@ function saveBracket(evt) {
 function postBracketData(newbracketData) {
     $.post("/api/userBrackets", newbracketData);
 }
-
