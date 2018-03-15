@@ -6,7 +6,7 @@ function getUserBrackets(userid) {
             bracketName = data[i].bracketName
             var panelBracketClass = "panel-" + bracketName.split(" ").join("-");
             console.log(panelBracketClass);
-            var newPanel = $("<div class ='panel panel-primary bracket-btn'> <div class='panel-heading'><h2 class='panel-title " + panelBracketClass + "'>")
+            var newPanel = $("<div class ='panel panel-primary bracket-btn'> <div class='panel-heading' style='width:50%; margin: 0 auto;'><h2 class='panel-title " + panelBracketClass + "'>")
             console.log(newPanel)
             // var bracketBtn = $("<button class='brac-btn'>");
             // $(bracketBtn).text("hi");
