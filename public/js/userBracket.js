@@ -1,4 +1,3 @@
-
 const apiKey = "api_key=gmz5hfe68mvuuh7tbfx7sxxn";
 
 let finalizedGamesArr = [];
@@ -56,8 +55,6 @@ function tourneyLookup() {
     })
 }
 let gameIdsArr = [];
-// let bracketGamesArr =[];
-
 
 function appendIdent(gamesList) {
     let bracketGamesArr = [];
@@ -141,7 +138,6 @@ function combinedMasterArr(arr1, arr2) {
 }
 
 tourneyLookup();
-
 
 // let titles = [
 //     'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
@@ -1058,7 +1054,6 @@ let regionMap = {
 
 function updateTeamNames(bracketGamesArr) {
     console.log('bracketGamesArr: ', bracketGamesArr);
-    // console.log("rounds ,", rounds);
     _.forEach(bracketGamesArr, function (val, z) {
         let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
         index = index !== 2.5 ? index : 0;
@@ -1146,17 +1141,14 @@ $(document).on("click", ".team", function () {
     let pick = $(this).attr("data-id");
     let pickName = this.innerText;
     let advanceTo = $(this).attr("data-advance");
-    // console.log('advanceTo: ', advanceTo);
 
     for (let i = 0; i < rounds.length; i++) {
         for (let j = 0; j < rounds[i].length; j++) {
-            // console.log('rounds[i][j].player1.slot: ', rounds[i][j].player1.slot);
-            // console.log('+ rounds[i][j].player1.advance +"": ', '#'+ rounds[i][j].player1.advance +"");
             if (advanceTo == rounds[i][j].player1.slot) {
                 rounds[i][j].player1.ID = pick
                 rounds[i][j].player1.name = "" + pickName
-                rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
-                $('#' + advanceTo + "").text("" + pickName);
+                $('#' + advanceTo + "").html('<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>') 
+                // $('#' + advanceTo + "").text("" + pickName);
                 $('#' + advanceTo + "").attr({
                     "data-advance": rounds[i][j].player1.advance
                 })
@@ -1164,13 +1156,12 @@ $(document).on("click", ".team", function () {
             if (advanceTo == rounds[i][j].player2.slot) {
                 rounds[i][j].player2.ID = pick
                 rounds[i][j].player2.name = "" + pickName
-                rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
-                $('#' + advanceTo + "").text("" + pickName);
+                $('#' + advanceTo + "").html("" + pickName + '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>') 
+                // $('#' + advanceTo + "").text("" + pickName);
                 $('#' + advanceTo + "").attr({
                     "data-advance": rounds[i][j].player2.advance
                 })
             }
-
         }
         $('#R5WX1a').text($("#R5WX1").text());
         $('#R5WX2a').text($('#R5WX2').text())
@@ -1179,67 +1170,6 @@ $(document).on("click", ".team", function () {
     }
 })
 
-
-// function renderBracket() {
-//-- JSON with matches of each round
-// $('selector').brackets({
-//     rounds: rounds
-// });
-//dont touch-will break display
-// $(".brackets").brackets({
-//     titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
-//     rounds: rounds, //-- (Required) Array with matches ( JSON ) for each round
-// color_title: 'black', //-- (String) Color of the title text
-// border_color: '#00F', //-- (String) Border color of the line of brackets
-// color_player: 'black', //-- (String) Color of the player text (name)
-// bg_player: 'white', //-- (String) Background color of the player container
-// color_player_hover: 'white', //-- (String) Color of the player text (name) when mouse is hover
-// bg_player_hover: 'blue', //-- (String) Background color of the player container when mouse is hover
-// border_radius_player: '10px', //-- (String) Border radius of the player container
-// border_radius_lines: '10px', //-- (String) Border radius of the lines that join rounds
-// });
-//dont touch-will break display
-//     $(".brackets").brackets({
-//         titles: false, //-- If the value is true, then add titles automatically
-//         color_title: 'black',
-//         border_color: 'black',
-//         color_player: 'black',
-//         bg_player: 'white',
-//         color_player_hover: 'black',
-//         bg_player_hover: 'white',
-//         border_radius_player: '0px',
-//         border_radius_lines: '0px'
-//     });
-// }
-
-// $(document).on("click", ".player", function () {
-//     let pick = $(this).attr("data-id");
-//     let pickName = this.innerText;
-//     let advanceTo = $(this).attr("data-advance");
-
-
-//     for (let i = 1; i < rounds.length; i++) {
-//         for (let j = 0; j < rounds[i].length; j++) {
-
-//             if (advanceTo == rounds[i][j].player1.slot) {
-//                 rounds[i][j].player1.ID = pick
-//                 rounds[i][j].player1.name = "" + pickName
-//                 rounds[i][j].player1.name += '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>'
-//                 '<div class="hide" id="teamInfo" style="background-color: salmon; width:30px; height: 20px;"></div>'
-//             }
-//             console.log('rounds[i][j].player2.slot: ', rounds[i][j].player2.slot);
-//             if (advanceTo == rounds[i][j].player2.slot) {
-//                 rounds[i][j].player2.ID = pick
-//                 rounds[i][j].player2.name = pickName
-//             }
-//         }
-//         renderBracket();
-//     }
-// })
-
-
-// BROKEN   
-
 $(document).on("click", ".game", function (e) {
     e.preventDefault();
     $('.popMe').popover('toggle');
@@ -1247,26 +1177,7 @@ $(document).on("click", ".game", function (e) {
     return false;
 })
 
-
-
-
-
-
-
-
-
-// console.log('rounds: ', rounds);
-
-// $(document).ready(function () {
-//     $('a[rel=popover]').popover();
-// });
-
-
-
-
-
 console.log('rounds: ', rounds);
-
 
 //Saves Bracket data once complete
 // check if whole bracket is filled out

@@ -476,26 +476,34 @@
             </button>
             <div class="region" id="champ">
               <div class="wrapper">
-                <div class="columns column3">
-                  <div class="matchup three-one">
+                <div class="columns">
+                  <div class="matchup matchup-middle final-four">
                     <div class="team" id="R5WX1">Team</div>
                     <div class="team" id="R5WX2">Team</div>
                   </div>
-                  <div class="matchup three-two">
-                    <div class="team" id="R5YZ1">Team</div>
-                    <div class="team" id="R5YZ2">Team</div>
-                  </div>
+
                 </div>
-                <div class="columns column4">
-                  <div class="matchup">
+                <div class="columns">
+                  <div class="matchup matchup-middle finals">
                     <div class="team" id="R6C1">Team</div>
-                    <div class="team" id="R6C2">Team</div>
+                    
                   </div>
                 </div>
-                <div class="columns column5">
-                  <div class="matchup">
+                <div class="columns">
+                  <div class="matchup matchup-middle national-champ">
                     <div class="team" id="CHAMP">Team</div>
                   </div>
+                </div>
+                <div class="columns">
+                  <div class="matchup matchup-middle finals">
+                      <div class="team" id="R6C2">Team</div>
+                  </div>
+                </div>
+                <div class="columns">
+                    <div class="matchup matchup-middle final-four">
+                        <div class="team" id="R5YZ1">Team</div>
+                        <div class="team" id="R5YZ2">Team</div>
+                      </div>
                 </div>
               </div>
             </div>
@@ -674,6 +682,7 @@
           margin: 1%;
 
         }
+       
 
         form {
           width: 90%;
@@ -723,6 +732,12 @@
           font-size: 300%;
           font-weight: 500%;
           font-family: url('../sf-sports-night/TrueType/SFSportsNight.ttf');
+
+        }
+        .matchup-middle{
+          height: 100%;
+          margin: auto 0;
+          margin-top: 19.25em;
 
         }
 
@@ -789,14 +804,14 @@
         }
 
         #champ {
-          width: 40%;
-          font-size: 800%;
+          width: 50%;
+          font-size: 120%;
           padding: 3%;
-          height: 40%;
+          height: 35%;
           line-height: 800%;
-          color: white;
-          margin: 0 auto;
-          margin-top: 1%;
+          /* color: white; */
+          /* margin: 0 auto; */
+          /* margin-top: 1%; */
         }
 
         .save-bracket-btn {
@@ -833,6 +848,11 @@
         .container {
           width: 80%;
           margin: 0 auto;
+        }
+
+         .final-four {
+          /* height:80%; */
+
         }
 
         /*-------- Mobile media breakpoint ---------*/
