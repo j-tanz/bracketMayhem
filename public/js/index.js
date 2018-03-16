@@ -1,111 +1,104 @@
-function getUserBrackets(userid) {
-    let queryURL = "/api/userBrackets/" + userid;
-    $.get(queryURL, function (data) {
-        for (var i = 0; i < data.length; i++) {
-            console.log(data[i].bracketName)
-            bracketName = data[i].bracketName
-            var panelBracketClass = "panel-" + bracketName.split(" ").join("-");
-            console.log(panelBracketClass);
-            var newPanel = $("<div class ='panel panel-primary bracket-btn'> <div class='panel-heading' style='width:50%; margin: 0 auto;'><h2 class='panel-title " + panelBracketClass + "'>")
-            console.log(newPanel)
-            // var bracketBtn = $("<button class='brac-btn'>");
-            // $(bracketBtn).text("hi");
-            // $("#portfolio").append(bracketBtn);
+// Get user inputs for pw1 pw2 and email -done
+// check if p1 and pw2 match and if yes rtn true
+//if check returns true, check if  inputemail exists in database
+//return true or false
+// if check returns false, create post request to logins database
 
-            $(".user-brackets-panels").append(newPanel);
-            $("h2." + panelBracketClass).text(bracketName);
+$(document).ready(function () {
+    function emailExists(email, pass) {
+        var queryURL = "/api/logins/" + email;
+        $.get(queryURL, function (data) {
+            console.log("data stuff", data)
+            if (!data) {
+                console.log(" > this email doesnt exist")
+                createAccount({
+                    loginEmail: email,
+                    loginPassword: pass
+                });
+                login(email);
+            
 
+            } else {
+                $("#signup-alert").text("This email is already in use.");
+                $("#signup-alert").removeClass("hidden");
+                // console.log(" > email already exist");
+            }
+        })
+    }
+    function login(email){
+        var loginQueryURL = "/api/logins/" + email;
+        $.get(loginQueryURL, function (data) {
+            // console.log(data.loginPassword);
+            localStorage.setItem("userID", JSON.stringify(data.id));
+            location.replace("/loggedin");
+        })
+    }
+
+    function validateEmail(email) {
+        var emailFormat = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+        return emailFormat.test(email);
+    }
+    $("#signup-btn").click(signupClick);
+
+    function signupClick(evt) {
+        evt.preventDefault();
+        var inputEmail = $("#signupInputEmail").val().trim();
+        var inputPass1 = $("#signupInputPassword1").val().trim();
+        var inputPass2 = $("#signupInputPassword2").val().trim();
+        // console.log(inputEmail, inputPass1, inputPass2);
+        if (validateEmail(inputEmail) === false) {
+            $("#signup-alert").text("Please enter a valid email address.");
+            $("#signup-alert").removeClass("hidden");
+            // console.log("please enter a valid email");
+            return;
         }
-        $(".bracket-btn").on("click", clickBracketBtn);
+        if (!inputEmail || !inputPass1 || !inputPass2) {
+            $("#signup-alert").text("Please fill in all the required fields.");
+            $("#signup-alert").removeClass("hidden");
+            // console.log("please fill out all the fields")
+            return;
+        }
+        if (inputPass1 !== inputPass2) {
+            console.log("retyped password does not match")
+            return;
+        }
+        emailExists(inputEmail, inputPass2);
+    }
 
-    });
+    function createAccount(newUserData) {
+        $.post("/api/logins", newUserData);
+    }
+
+function correctPassword(evt) {
+    evt.preventDefault();
+    var inputEmail = $("#loginInputEmail1").val().trim();
+    var inputPass = $("#loginInputPassword1").val().trim();
+    // console.log(inputEmail, inputPass);
+    var loginQueryURL = "/api/logins/" + inputEmail;
+    $.get(loginQueryURL, function (data) {
+        // console.log(data.loginPassword);
+        if (data.loginPassword !== inputPass) {
+            console.log("bad pw");
+            return;
+        }
+        localStorage.setItem("userID", JSON.stringify(data.id));
+        location.replace("/loggedin");
+    })
 }
 
-function renderUserBrackets(userid) {
-    getUserBrackets(userid);
-    //    $(".user-brackets-panels").
-}
-userID = JSON.parse(localStorage.getItem("userID"));
-console.log("userid: ", userID);
-renderUserBrackets(userID);
+$(".signin-btn").click(correctPassword);
 
-function clickBracketBtn(){
-    console.log("this",$(this).text().trim());
-    bracketName=$(this).text();
-    localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
-    location.assign("../bracket/savedBracket.html")
-}
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// console.log('mergedFinalArr: ', mergedFinalArr);
-
-
-
-
-
-
-
-//************************************************
-// SAVE FOR NOW JUST IN CASE WE NEED TO LOOK UP OFF OF OTHER API!
-//*********************************************** */
-
-    // function lookUpEnded() {
-    //     let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/games/" + yyyy + "/" + mm + "/" + dd + "/schedule.json?"
-
-    //     $.ajax({
-    //         url: 'https://cors-anywhere.herokuapp.com/' + getURL + apiKey,
-    //         method: 'GET'
-
-    //     }).done(function (result) {
-    //         scheduleObj = { 
-    //             games: result.games
-    //         }
-    //         for (let i = 0; i < scheduleObj.games.length; i++) {
-    //             if (scheduleObj.games[i].status === "closed") {
-    //                 finalizedGamesArr.push(scheduleObj.games[i]);
-    //             }
-    //         }
-    //         for (let i = 0; i < finalizedGamesArr.length; i++) {
-    //             finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ?
-    //                 winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } : winnerArr[i] = { winner: "awayTeam", didHomeTeamWin: false }
-    //             let mergedFinalArr = _.assign({}, finalizedGamesArr[i], winnerArr[i]);
-    //             //  console.log('mergedFinalArr: ', mergedFinalArr);
-    //         }    
-    //     });
-    // }
-
-    // function lookUpTomorrow() {
-    //     let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/games/" + yyyy + "/" + mm + "/" + tomorrow + "/schedule.json?"
-
-    //     $.ajax({
-    //         url: 'https://cors-anywhere.herokuapp.com/' + getURL + apiKey,
-    //         method: 'GET'
-
-    //     }).done(function (result) {
-    //         tomorrowObj = {
-    //             games: result.games
-    //         }
-    //         for (let i = 0; i < tomorrowObj.games.length; i++) {
-    //             if (tomorrowObj.games[i].status === "scheduled") {
-    //                 tomorrowScheduleArr.push(tomorrowObj.games[i]);
-    //             }
-    //         }
-    //         console.log("tomorrowScheduleArr", tomorrowScheduleArr);
-
-    //     })
-    // }
+// $('#ourTabs a').click(function (e) {
+//     console.log('we hit our ourTabs click !!!!!!!');
+//     e.preventDefault()
+//     $(this).tab('show')
 // })
- // let endedGames = [...finalizedGamesArr].filter(e => e.home_points < e.away_points).map(elem => ({...elem})); 
+// Get user inputs for pw and email
+//check if  inputemail exists in database
+    //if check return true, return correct password
+    //if check return false, show error message to user
+// if check returns true, check if email matches correct pw
+    // Go to brackets page for specific user if check returns true
+
