@@ -1,0 +1,32 @@
+ body {
+     background-color: black;
+ }
+#head-btn{
+
+}
+ #account {
+     padding: 20px;
+     background-color: rgb(10, 10, 11);
+ }
+
+ .container.account {
+     padding: 40px 30px;
+     background-color: rgba(255, 248, 240, .81);
+     background-color: rgba(30, 30, 36, 1);
+     background-color: rgba(255, 248, 240, 1);
+     margin: auto;
+     width: 100%;
+     max-width: 700px;
+     border-radius: 20px;
+     color: rgba(30, 30, 36, 1);
+ }
+ .signup-head{
+    /* color: rgba(179, 0, 27, 1); */
+    font-size: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* text-align: center; */
+
+    font-weight: 700;
+    /* font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+ }
