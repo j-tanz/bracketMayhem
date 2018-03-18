@@ -1147,32 +1147,36 @@ $(document).on("click", ".team", function () {
             if (advanceTo == rounds[i][j].player1.slot) {
                 rounds[i][j].player1.ID = pick
                 rounds[i][j].player1.name = "" + pickName
-                $('#' + advanceTo + "").html('<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>') 
+                $('#' + advanceTo + "").html("" + pickName + '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>') 
                 // $('#' + advanceTo + "").text("" + pickName);
                 $('#' + advanceTo + "").attr({
-                    "data-advance": rounds[i][j].player1.advance
-                })
+                    "data-advance": rounds[i][j].player1.advance,
+                    "data-id": pick,
+                    "data-pickname": pickName
+                });
             }
             if (advanceTo == rounds[i][j].player2.slot) {
                 rounds[i][j].player2.ID = pick
                 rounds[i][j].player2.name = "" + pickName
-                $('#' + advanceTo + "").html("" + pickName + '<a href="#" class="popMe" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game" src="../img/icons/fi-info.svg" alt="info icon" style="width:21px;height:21px;float:right;"></a>') 
+                $('#' + advanceTo + "").html("" + pickName + '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>') 
                 // $('#' + advanceTo + "").text("" + pickName);
                 $('#' + advanceTo + "").attr({
-                    "data-advance": rounds[i][j].player2.advance
-                })
+                    "data-advance": rounds[i][j].player2.advance,
+                    "data-id": pick,
+                    "data-pickname": pickName
+                });
             }
         }
         $('#R5WX1a').text($("#R5WX1").text());
-        $('#R5WX2a').text($('#R5WX2').text())
-        $('#R5YZ1a').text($('#R5YZ1').text())
-        $('#R5YZ2a').text($('#R5YZ2').text())
+        $('#R5WX2a').text($('#R5WX2').text());
+        $('#R5YZ1a').text($('#R5YZ1').text());
+        $('#R5YZ2a').text($('#R5YZ2').text());
     }
 })
 
-$(document).on("click", ".game", function (e) {
+$(document).on("click", ".game-info-icon", function (e) {
     e.preventDefault();
-    $('.popMe').popover('toggle');
+    $('.pop-over').popover('toggle');
     console.log("working??????")
     return false;
 })
@@ -1186,80 +1190,77 @@ $(".save-bracket-btn").click(saveBracket);
 function saveBracket(evt) {
     evt.preventDefault();
     var inputBracketName = $("#bracketNameInput").val().trim();
-    let pickR2W1 = $("#R2W1").attr('data-id');
-    let pickR2W2 = $("#R2W2").attr('data-id');
-    let pickR2W3 = $("#R2W3").attr('data-id');
-    let pickR2W4 = $("#R2W4").attr('data-id');
-    let pickR2W5 = $("#R2W5").attr('data-id');
-    let pickR2W6 = $("#R2W6").attr('data-id');
-    let pickR2W7 = $("#R2W7").attr('data-id');
-    let pickR2W8 = $("#R2W8").attr('data-id');
+    let pickR2W1 = $("#R2W1").attr('data-id') + " " + $("#R2W1").attr('data-pickname');
+    let pickR2W2 = $("#R2W2").attr('data-id') + " " + $("#R2W2").attr('data-pickname');
+    let pickR2W3 = $("#R2W3").attr('data-id') + " " + $("#R2W3").attr('data-pickname');
+    let pickR2W4 = $("#R2W4").attr('data-id') + " " + $("#R2W4").attr('data-pickname');
+    let pickR2W5 = $("#R2W5").attr('data-id') + " " + $("#R2W5").attr('data-pickname');
+    let pickR2W6 = $("#R2W6").attr('data-id') + " " + $("#R2W6").attr('data-pickname');
+    let pickR2W7 = $("#R2W7").attr('data-id') + " " + $("#R2W7").attr('data-pickname');
+    let pickR2W8 = $("#R2W8").attr('data-id') + " " + $("#R2W8").attr('data-pickname');
 
-    let pickR2X1 = $("#R2X1").attr('data-id');
-    let pickR2X2 = $("#R2X2").attr('data-id');
-    let pickR2X3 = $("#R2X3").attr('data-id');
-    let pickR2X4 = $("#R2X4").attr('data-id');
-    let pickR2X5 = $("#R2X5").attr('data-id');
-    let pickR2X6 = $("#R2X6").attr('data-id');
-    let pickR2X7 = $("#R2X7").attr('data-id');
-    let pickR2X8 = $("#R2X8").attr('data-id');
+    let pickR2X1 = $("#R2X1").attr('data-id') + " " + $("#R2X1").attr('data-pickname');
+    let pickR2X2 = $("#R2X2").attr('data-id') + " " + $("#R2X2").attr('data-pickname');
+    let pickR2X3 = $("#R2X3").attr('data-id') + " " + $("#R2X3").attr('data-pickname');
+    let pickR2X4 = $("#R2X4").attr('data-id') + " " + $("#R2X4").attr('data-pickname');
+    let pickR2X5 = $("#R2X5").attr('data-id') + " " + $("#R2X5").attr('data-pickname');
+    let pickR2X6 = $("#R2X6").attr('data-id') + " " + $("#R2X6").attr('data-pickname');
+    let pickR2X7 = $("#R2X7").attr('data-id') + " " + $("#R2X7").attr('data-pickname');
+    let pickR2X8 = $("#R2X8").attr('data-id') + " " + $("#R2X8").attr('data-pickname');
 
-    let pickR2Y1 = $("#R2Y1").attr('data-id');
-    let pickR2Y2 = $("#R2Y2").attr('data-id');
-    let pickR2Y3 = $("#R2Y3").attr('data-id');
-    let pickR2Y4 = $("#R2Y4").attr('data-id');
-    let pickR2Y5 = $("#R2Y5").attr('data-id');
-    let pickR2Y6 = $("#R2Y6").attr('data-id');
-    let pickR2Y7 = $("#R2Y7").attr('data-id');
-    let pickR2Y8 = $("#R2Y8").attr('data-id');
+    let pickR2Y1 = $("#R2Y1").attr('data-id') + " " + $("#R2Y1").attr('data-pickname');
+    let pickR2Y2 = $("#R2Y2").attr('data-id') + " " + $("#R2Y2").attr('data-pickname');
+    let pickR2Y3 = $("#R2Y3").attr('data-id') + " " + $("#R2Y3").attr('data-pickname');
+    let pickR2Y4 = $("#R2Y4").attr('data-id') + " " + $("#R2Y4").attr('data-pickname');
+    let pickR2Y5 = $("#R2Y5").attr('data-id') + " " + $("#R2Y5").attr('data-pickname');
+    let pickR2Y6 = $("#R2Y6").attr('data-id') + " " + $("#R2Y6").attr('data-pickname');
+    let pickR2Y7 = $("#R2Y7").attr('data-id') + " " + $("#R2Y7").attr('data-pickname');
+    let pickR2Y8 = $("#R2Y8").attr('data-id') + " " + $("#R2Y8").attr('data-pickname');
 
-    let pickR2Z1 = $("#R2Z1").attr('data-id');
-    let pickR2Z2 = $("#R2Z2").attr('data-id');
-    let pickR2Z3 = $("#R2Z3").attr('data-id');
-    let pickR2Z4 = $("#R2Z4").attr('data-id');
-    let pickR2Z5 = $("#R2Z5").attr('data-id');
-    let pickR2Z6 = $("#R2Z6").attr('data-id');
-    let pickR2Z7 = $("#R2Z7").attr('data-id');
-    let pickR2Z8 = $("#R2Z8").attr('data-id');
+    let pickR2Z1 = $("#R2Z1").attr('data-id') + " " + $("#R2Z1").attr('data-pickname');
+    let pickR2Z2 = $("#R2Z2").attr('data-id') + " " + $("#R2Z2").attr('data-pickname');
+    let pickR2Z3 = $("#R2Z3").attr('data-id') + " " + $("#R2Z3").attr('data-pickname');
+    let pickR2Z4 = $("#R2Z4").attr('data-id') + " " + $("#R2Z4").attr('data-pickname');
+    let pickR2Z5 = $("#R2Z5").attr('data-id') + " " + $("#R2Z5").attr('data-pickname');
+    let pickR2Z6 = $("#R2Z6").attr('data-id') + " " + $("#R2Z6").attr('data-pickname');
+    let pickR2Z7 = $("#R2Z7").attr('data-id') + " " + $("#R2Z7").attr('data-pickname');
+    let pickR2Z8 = $("#R2Z8").attr('data-id') + " " + $("#R2Z8").attr('data-pickname');
 
-    let pickR3W1 = $("#R3W1").attr('data-id');
-    let pickR3W2 = $("#R3W2").attr('data-id');
-    let pickR3W3 = $("#R3W3").attr('data-id');
-    let pickR3W4 = $("#R3W4").attr('data-id');
+    let pickR3W1 = $("#R3W1").attr('data-id') + " " + $("#R3W1").attr('data-pickname');
+    let pickR3W2 = $("#R3W2").attr('data-id') + " " + $("#R3W2").attr('data-pickname');
+    let pickR3W3 = $("#R3W3").attr('data-id') + " " + $("#R3W3").attr('data-pickname');
+    let pickR3W4 = $("#R3W4").attr('data-id') + " " + $("#R3W4").attr('data-pickname');
+    let pickR3X1 = $("#R3X1").attr('data-id') + " " + $("#R3X1").attr('data-pickname');
+    let pickR3X2 = $("#R3X2").attr('data-id') + " " + $("#R3X2").attr('data-pickname');
+    let pickR3X3 = $("#R3X3").attr('data-id') + " " + $("#R3X3").attr('data-pickname');
+    let pickR3X4 = $("#R3X4").attr('data-id') + " " + $("#R3X4").attr('data-pickname');
 
-    let pickR3X1 = $("#R3X1").attr('data-id');
-    let pickR3X2 = $("#R3X2").attr('data-id');
-    let pickR3X3 = $("#R3X3").attr('data-id');
-    let pickR3X4 = $("#R3X4").attr('data-id');
+    let pickR3Y1 = $("#R3Y1").attr('data-id') + " " + $("#R3Y1").attr('data-pickname');
+    let pickR3Y2 = $("#R3Y2").attr('data-id') + " " + $("#R3Y2").attr('data-pickname');
+    let pickR3Y3 = $("#R3Y3").attr('data-id') + " " + $("#R3Y3").attr('data-pickname');
+    let pickR3Y4 = $("#R3Y4").attr('data-id') + " " + $("#R3Y4").attr('data-pickname');
+    let pickR3Z1 = $("#R3Z1").attr('data-id') + " " + $("#R3Z1").attr('data-pickname');
+    let pickR3Z2 = $("#R3Z2").attr('data-id') + " " + $("#R3Z2").attr('data-pickname');
+    let pickR3Z3 = $("#R3Z3").attr('data-id') + " " + $("#R3Z3").attr('data-pickname');
+    let pickR3Z4 = $("#R3Z4").attr('data-id') + " " + $("#R3Z4").attr('data-pickname');
+    let pickR4W1 = $("#R4W1").attr('data-id') + " " + $("#R4W1").attr('data-pickname');
+    let pickR4W2 = $("#R4W2").attr('data-id') + " " + $("#R4W2").attr('data-pickname');
+    let pickR4X1 = $("#R4X1").attr('data-id') + " " + $("#R4X1").attr('data-pickname');
+    let pickR4X2 = $("#R4X2").attr('data-id') + " " + $("#R4X2").attr('data-pickname');
+    let pickR4Y1 = $("#R4Y1").attr('data-id') + " " + $("#R4Y1").attr('data-pickname');
+    let pickR4Y2 = $("#R4Y2").attr('data-id') + " " + $("#R4Y2").attr('data-pickname');
+    let pickR4Z1 = $("#R4Z1").attr('data-id') + " " + $("#R4Z1").attr('data-pickname');
+    let pickR4Z2 = $("#R4Z2").attr('data-id') + " " + $("#R4Z2").attr('data-pickName');
 
-    let pickR3Y1 = $("#R3X1").attr('data-id');
-    let pickR3Y2 = $("#R3Y2").attr('data-id');
-    let pickR3Y3 = $("#R3Y3").attr('data-id');
-    let pickR3Y4 = $("#R3Y4").attr('data-id');
+    let pickR5WX1 = $("#R5WX1").attr('data-id') + " " + $("#R5WX1").attr('data-pickname');
+    let pickR5WX2 = $("#R5WX2").attr('data-id') + " " + $("#R5WX2").attr('data-pickname');
+    let pickR5YZ1 = $("#R5YZ1").attr('data-id') + " " + $("#R5YZ1").attr('data-pickname');
+    let pickR5YZ2 = $("#R5YZ2").attr('data-id') + " " + $("#R5YZ2").attr('data-pickname');
 
-    let pickR3Z1 = $("#R3Z1").attr('data-id');
-    let pickR3Z2 = $("#R3Z2").attr('data-id');
-    let pickR3Z3 = $("#R3Z3").attr('data-id');
-    let pickR3Z4 = $("#R3Z4").attr('data-id');
+    let pickR6C1 = $("#R6C1").attr('data-id') + " " + $("#R6C1").attr('data-pickname');
+    let pickR6C2 = $("#R6C2").attr('data-id') + " " + $("#R6C2").attr('data-pickname');
 
-    let pickR4W1 = $("#R4W1").attr('data-id');
-    let pickR4W2 = $("#R4W2").attr('data-id');
-    let pickR4X1 = $("#R4X1").attr('data-id');
-    let pickR4X2 = $("#R4X2").attr('data-id');
-    let pickR4Y1 = $("#R4Y1").attr('data-id');
-    let pickR4Y2 = $("#R4Y2").attr('data-id');
-    let pickR4Z1 = $("#R4Z1").attr('data-id');
-    let pickR4Z2 = $("#R4Z2").attr('data-id');
-
-    let pickR5WX1 = $("#R5WX1").attr('data-id');
-    let pickR5WX2 = $("#R5WX2").attr('data-id');
-    let pickR5YZ1 = $("#R5YZ1").attr('data-id');
-    let pickR5YZ2 = $("#R5YZ2").attr('data-id');
-
-    let pickR6C1 = $("#R6C1").attr('data-id');
-    let pickR6C2 = $("#R6C2").attr('data-id');
-
-    let pickCHAMP = $("#CHAMP").attr('data-id');
+    let pickCHAMP = $("#CHAMP").attr('data-id') + " " + $("#CHAMP").attr('data-pickname');
     console.log(inputBracketName)
     userID = JSON.parse(localStorage.getItem("userID"));
     console.log("userid: ", userID);
@@ -1290,10 +1291,10 @@ function saveBracket(evt) {
         R2Y6: pickR2Y6,
         R2Y7: pickR2Y7,
         R2Y8: pickR2Y8,
-        R3Z1: pickR3Z1,
-        R3Z2: pickR3Z2,
-        R3Z3: pickR3Z3,
-        R3Z4: pickR3Z4,
+        R2Z1: pickR2Z1,
+        R2Z2: pickR2Z2,
+        R2Z3: pickR2Z3,
+        R2Z4: pickR2Z4,
         R2Z5: pickR2Z5,
         R2Z6: pickR2Z6,
         R2Z7: pickR2Z7,

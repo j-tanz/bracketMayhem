@@ -4,6 +4,7 @@ var userBracket = require("../models/userBracket.js");
 var massey = require("../models/massey_ordinal.js");
 var ncaaSeedRoundSlot = require("../models/ncaa_seed_round_slot.js");
 var ncaa_tourney_result = require("../models/ncaa_tourney_result.js");
+var masterKey = require("../models/master_key.js");
 
 module.exports = function (app) {
     app.get("/api/liveResults", function (req, res) {
@@ -55,6 +56,11 @@ module.exports = function (app) {
         login.create(req.body).then(function (dblogin) {
             res.json(dblogin);
         });
+    });
+
+    app.get("/api/masterKeys", function(req, res){
+        masterKey.findAll({    
+        }).then((results) => res.json(results));
     });
     
     // app.get("/api/ncaa_seed_round_slot", function (req, res) {

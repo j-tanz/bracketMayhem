@@ -246,7 +246,7 @@ var userBracket = sequelize.define("userBracket", {
         type: Sequelize.STRING
     },
 
-    R6C1: {
+    R6C2: {
         type: Sequelize.STRING
     },
 
