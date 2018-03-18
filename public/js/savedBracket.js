@@ -1,24 +1,4 @@
-
-const apiKey = "api_key=vf4kt7vxupytvw5px3z2t34x";
-
-var today = new Date();
-
-var dd = today.getDate();
-var mm = today.getMonth() + 1;
-var yyyy = today.getFullYear();
-var tomorrow = dd++;
-
-// $(document).ready(function () {
-var today = new Date();
-if (dd < 10) {
-    dd = "0" + dd;
-}
-if (tomorrow < 10) {
-    tomorrow = "0" + tomorrow;
-}
-if (mm < 10) {
-    mm = "0" + mm;
-}
+const apiKey = "api_key=gmz5hfe68mvuuh7tbfx7sxxn";
 
 let finalizedGamesArr = [];
 let scheduleObj = {};
@@ -75,16 +55,14 @@ function tourneyLookup() {
     })
 }
 let gameIdsArr = [];
-// let bracketGamesArr =[];
-
 
 function appendIdent(gamesList) {
     let bracketGamesArr = [];
-    // console.log('gamesList: ', gamesList);
     for (let i = 0; i < gamesList.length; i++) {
         let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
         let num = gameNumber.slice(5);
-        // console.log("num", num);
+        // let nextNum = Math.ceil((parseInt(num))/2)
+        let nextNum = parseInt(num)
 
         if (_.includes(gamesList[i].title, "South")) {
             region = "W";
@@ -122,18 +100,36 @@ function appendIdent(gamesList) {
         if (_.includes(gamesList[i].title, "Championship")) {
             round = "6"
         }
+        let homeSeed = gamesList[i].home.seed
+        let awaySeed = gamesList[i].away.seed
+        let winnerSeed;
+
+        if (homeSeed < 10) {
+            homeSeed = "0" + homeSeed;
+        }
+        if (awaySeed < 10) {
+            awaySeed = "0" + awaySeed;
+        }
+        if (gamesList[i].didHomeTeamWin !== undefined) {
+            gamesList[i].didHomeTeamWin ?  
+                winnerSeed= "" + region + "" + homeSeed :
+                winnerSeed= "" + region + "" + awaySeed ;  
+            }
         let workObj = {};
         workObj[i] = {
             gameId: "R" + "" + round + "" + region + "" + num,
             round: round,
             region: region,
             regionNum: regionNum,
-            gameNum: num
+            gameNum: num,
+            winnerSeedId: winnerSeed || "tbd",
+            advanceTo: "R" + "" + (parseInt(round) + 1) + "" + region + nextNum.toString()
         }
+
         gameIdsArr.push(workObj[i]);
         bracketGamesArr.push(_.merge({}, gamesList[i], gameIdsArr[i]));
     }
-    updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31));
+    updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31), bracketGamesArr);
 }
 
 function checkCompleted(gsObj) {
@@ -152,11 +148,12 @@ function checkCompleted(gsObj) {
     }
     combinedMasterArr(mergedFinalArr, pendingArr);
 }
+
 function combinedMasterArr(arr1, arr2) {
+    let completedArr = [...arr1]
     Array.prototype.push.apply(arr1, arr2);
     masterArr = arr1;
     appendIdent(masterArr);
-    return masterArr;
 }
 
 tourneyLookup();
@@ -1075,7 +1072,7 @@ let regionMap = {
     Z: 3
 };
 
-function updateTeamNames(bracketGamesArr) {
+function updateTeamNames(bracketGamesArr, completeArr) {
     // console.log("rounds ,", rounds);
     _.forEach(bracketGamesArr, function (val, z) {
         let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
@@ -1088,51 +1085,231 @@ function updateTeamNames(bracketGamesArr) {
         rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
         rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias;
     })
-    renderBracket();
+    populateBracket(completeArr);
 };
 
-function renderBracket() {
-    //-- JSON with matches of each round
-    $('selector').brackets({
-        rounds: rounds
-    });
-    //dont touch-will break display
-    $(".brackets").brackets({
-        titles: titles, //-- (Array) with titles for each round -- default: false -- if the value is true, then add titles automatically
-        rounds: rounds, //-- (Required) Array with matches ( JSON ) for each round
-        // color_title: 'black', //-- (String) Color of the title text
-        // border_color: '#00F', //-- (String) Border color of the line of brackets
-        // color_player: 'black', //-- (String) Color of the player text (name)
-        // bg_player: 'white', //-- (String) Background color of the player container
-        // color_player_hover: 'white', //-- (String) Color of the player text (name) when mouse is hover
-        // bg_player_hover: 'blue', //-- (String) Background color of the player container when mouse is hover
-        border_radius_player: '10px', //-- (String) Border radius of the player container
-        border_radius_lines: '10px', //-- (String) Border radius of the lines that join rounds
-    });
-    //dont touch-will break display
-    $(".brackets").brackets({
-        titles: false, //-- If the value is true, then add titles automatically
-        color_title: 'black',
-        border_color: 'black',
-        color_player: 'black',
-        bg_player: 'white',
-        color_player_hover: 'black',
-        bg_player_hover: 'white',
-        border_radius_player: '0px',
-        border_radius_lines: '0px'
-    });
+function populateBracket(completeArr) {
+
+    // $("#W01").text(rounds[0][0].player1.name)
+    //******************************** */
+    // Save for livebracket
+    // for (let h = 0; h < rounds.length; h++) {
+    //     console.log("h len", (rounds[h].length)/2 +1)
+    for (let i = 1; i < 17; i++) {
+        let ii = i;
+        if (ii < 10) {
+            ii = "0" + ii;
+        }
+        for (let j = 0; j < rounds[0].length; j++) {
+            if (rounds[0][j].player1.ID == "W" + ii) {
+                $("#W" + ii).text(rounds[0][j].player1.name);
+                $("#W" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance
+                })
+            } if (rounds[0][j].player2.ID == "W" + ii) {
+                $("#W" + ii).text(rounds[0][j].player2.name);
+                $("#W" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
+            }
+            if (rounds[0][j].player1.ID == "X" + ii) {
+                $("#X" + ii).text(rounds[0][j].player1.name);
+                $("#X" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance
+                })
+            } if (rounds[0][j].player2.ID == "X" + ii) {
+                $("#X" + ii).text(rounds[0][j].player2.name);
+                $("#X" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
+            }
+            if (rounds[0][j].player1.ID == "Y" + ii) {
+                $("#Y" + ii).text(rounds[0][j].player1.name);
+                $("#Y" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance
+                })
+            } if (rounds[0][j].player2.ID == "Y" + ii) {
+                $("#Y" + ii).text(rounds[0][j].player2.name);
+                $("#Y" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
+            }
+            if (rounds[0][j].player1.ID == "Z" + ii) {
+                $("#Z" + ii).text(rounds[0][j].player1.name);
+                $("#Z" + ii).attr({
+                    "data-id": rounds[0][j].player1.ID,
+                    "data-advance": rounds[0][j].player1.advance
+                })
+            } if (rounds[0][j].player2.ID == "Z" + ii) {
+                $("#Z" + ii).text(rounds[0][j].player2.name);
+                $("#Z" + ii).attr({
+                    "data-id": rounds[0][j].player2.ID,
+                    "data-advance": rounds[0][j].player2.advance
+                })
+            }
+        }
+    }
+    getBracketData(completeArr);
 }
 
-function getBracketData(){
+
+function getBracketData(completeArr) {
     var userID = JSON.parse(localStorage.getItem("userID"));
-    console.log(selectedBracketName)
     var selectedBracketName = JSON.parse(localStorage.getItem("selectedBracketName")).trim();
     console.log(selectedBracketName);
 
-    var userBracketQueryURL = "/api/userBrackets/" + userID +"/"+ selectedBracketName;
-    console.log(userBracketQueryURL)
-    $.get(userBracketQueryURL, function (bracketdata) {
-        console.log(bracketdata);
+    var userBracketQueryURL = "/api/userBrackets/" + userID + "/" + selectedBracketName;
+    $.get(userBracketQueryURL, function (userPicks) {
+        renderUserPicks(userPicks, completeArr);
     })
 }
-getBracketData();
+
+function renderUserPicks(userPicks, completeArr) {
+    $("#user-bracket-name").text(userPicks[0].bracketName);
+
+    $("#R2W1").text((userPicks[0].R2W1).slice(4));
+    $("#R2W2").text((userPicks[0].R2W2).slice(4));
+    $("#R2W3").text((userPicks[0].R2W3).slice(4));
+    $("#R2W4").text((userPicks[0].R2W4).slice(4));
+    $("#R2W5").text((userPicks[0].R2W5).slice(4));
+    $("#R2W6").text((userPicks[0].R2W6).slice(4));
+    $("#R2W7").text((userPicks[0].R2W7).slice(4));
+    $("#R2W8").text((userPicks[0].R2W8).slice(4));
+
+    $("#R2X1").text((userPicks[0].R2X1).slice(4));
+    $("#R2X2").text((userPicks[0].R2X2).slice(4));
+    $("#R2X3").text((userPicks[0].R2X3).slice(4));
+    $("#R2X4").text((userPicks[0].R2X4).slice(4));
+    $("#R2X5").text((userPicks[0].R2X5).slice(4));
+    $("#R2X6").text((userPicks[0].R2X6).slice(4));
+    $("#R2X7").text((userPicks[0].R2X7).slice(4));
+    $("#R2X8").text((userPicks[0].R2X8).slice(4));
+
+    $("#R2Y1").text((userPicks[0].R2Y1).slice(4));
+    $("#R2Y2").text((userPicks[0].R2Y2).slice(4));
+    $("#R2Y3").text((userPicks[0].R2Y3).slice(4));
+    $("#R2Y4").text((userPicks[0].R2Y4).slice(4));
+    $("#R2Y5").text((userPicks[0].R2Y5).slice(4));
+    $("#R2Y6").text((userPicks[0].R2Y6).slice(4));
+    $("#R2Y7").text((userPicks[0].R2Y7).slice(4));
+    $("#R2Y8").text((userPicks[0].R2Y8).slice(4));
+
+    $("#R2Z1").text((userPicks[0].R2Z1).slice(4));
+    $("#R2Z2").text((userPicks[0].R2Z2).slice(4));
+    $("#R2Z3").text((userPicks[0].R2Z3).slice(4));
+    $("#R2Z4").text((userPicks[0].R2Z4).slice(4));
+    $("#R2Z5").text((userPicks[0].R2Z5).slice(4));
+    $("#R2Z6").text((userPicks[0].R2Z6).slice(4));
+    $("#R2Z7").text((userPicks[0].R2Z7).slice(4));
+    $("#R2Z8").text((userPicks[0].R2Z8).slice(4));
+
+    $("#R3W1").text((userPicks[0].R3W1).slice(4));
+    $("#R3W2").text((userPicks[0].R3W2).slice(4));
+    $("#R3W3").text((userPicks[0].R3W3).slice(4));
+    $("#R3W4").text((userPicks[0].R3W4).slice(4));
+
+    $("#R3X1").text((userPicks[0].R3X1).slice(4));
+    $("#R3X2").text((userPicks[0].R3X2).slice(4));
+    $("#R3X3").text((userPicks[0].R3X3).slice(4));
+    $("#R3X4").text((userPicks[0].R3X4).slice(4));
+
+    $("#R3Y1").text((userPicks[0].R3Y1).slice(4));
+    $("#R3Y2").text((userPicks[0].R3Y2).slice(4));
+    $("#R3Y3").text((userPicks[0].R3Y3).slice(4));
+    $("#R3Y4").text((userPicks[0].R3Y4).slice(4));
+
+    $("#R3Z1").text((userPicks[0].R3Z1).slice(4));
+    $("#R3Z2").text((userPicks[0].R3Z2).slice(4));
+    $("#R3Z3").text((userPicks[0].R3Z3).slice(4));
+    $("#R3Z4").text((userPicks[0].R3Z4).slice(4));
+
+    $("#R4W1").text((userPicks[0].R4W1).slice(4));
+    $("#R4W2").text((userPicks[0].R4W2).slice(4));
+    $("#R4X1").text((userPicks[0].R4X1).slice(4));
+    $("#R4X2").text((userPicks[0].R4X2).slice(4));
+    $("#R4Y1").text((userPicks[0].R4Y1).slice(4));
+    $("#R4Y2").text((userPicks[0].R4Y2).slice(4));
+    $("#R4Z1").text((userPicks[0].R4Z1).slice(4));
+    $("#R4Z2").text((userPicks[0].R4Z2).slice(4));
+
+    $("#R5WX1").text((userPicks[0].R5WX1).slice(4));
+    $("#R5WX2").text((userPicks[0].R5WX2).slice(4));
+    $("#R5YZ1").text((userPicks[0].R5YZ1).slice(4));
+    $("#R5YZ2").text((userPicks[0].R5YZ2).slice(4));
+
+    $('#R5WX1a').text($("#R5WX1").text());
+    $('#R5WX2a').text($('#R5WX2').text());
+    $('#R5YZ1a').text($('#R5YZ1').text());
+    $('#R5YZ2a').text($('#R5YZ2').text());
+
+    $("#R6C1").text((userPicks[0].R6C1).slice(4));
+    $("#R6C2").text((userPicks[0].R6C2).slice(4));
+    $("#CHAMP").text((userPicks[0].CHAMP).slice(4));
+
+    syncDBkey(completeArr, userPicks);
+}
+
+function syncDBkey(completeArr, userPicks) {
+    $.get("/api/masterKeys", function (masterKeyData) {
+        gradeOutPicks(completeArr, userPicks, masterKeyData)
+    })
+}
+
+function gradeOutPicks(completeArr, userPicks, masterKeyData) {
+
+    console.log('userPicks: ', userPicks);
+    console.log('completeArr: ', completeArr);
+    console.log('masterKeyData: ', masterKeyData);
+    let bustArr = [];
+    _.forEach(completeArr, function (game) {
+        if (game.status == "closed") {
+            if((userPicks[0][game.advanceTo]).slice(0,3) != game.winnerSeedId ){
+                console.log('(userPicks[0][game.advanceTo]).slice(0,3): ', (userPicks[0][game.advanceTo]).slice(0,3), "game.winnderseedID", game.winnerSeedId, "game", game);
+                $("#" + game.advanceTo).attr({
+                    style: "background-color: red;"
+                });
+                let badSeed = (userPicks[0][game.advanceTo].slice(0,3));
+                console.log('badSeed: ', badSeed);
+                 _.forEach(_.toPairs(userPicks[0]), function(pick){
+                        if( _.startsWith( pick[1], badSeed )){
+                            $("#" + pick[0]).attr({
+                                style: "background-color: red;"
+                            })
+
+                        }
+                        
+                 })
+                    
+                   
+               
+                // Object.keys(userPicks[0])
+                
+            
+
+
+            } else {
+                $("#" + game.advanceTo).attr({
+                    style: "background-color: green;"
+                });
+            }
+            // console.log('userPicks[0][checkGame]: ', (userPicks[0][game.advanceTo]).slice(0,3), "gaem.advanceto", game.advanceTo, "game.winnerseedid", game.winnerSeedId);
+        }
+        // console.log("bustarr", bustArr)
+    })
+
+
+    _.filter(userPicks[0], function (pick) {
+        // pick.slice(0,3)
+        // console.log('pick.slice(0,3): ', (pick).slice(0,3));
+
+        
+    })
+
+
+}
