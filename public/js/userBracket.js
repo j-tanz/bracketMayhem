@@ -1331,6 +1331,8 @@ function saveBracket(evt) {
         R6C2: pickR6C2,
         CHAMP: pickCHAMP
     });
+
+    window.location.href=window.location.href;
 }
 function postBracketData(newbracketData) {
     $.post("/api/userBrackets", newbracketData);
