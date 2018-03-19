@@ -4,160 +4,13 @@ let finalizedGamesArr = [];
 let scheduleObj = {};
 let winnerArr = [];
 let mergedFinalArr = [];
-let tomorrowScheduleArr = [];
 let sortArr = [];
 let tourneyRounds = [];
 let gameState = [];
 let masterArr = [];
 let pendingArr = [];
-let placeArr = [];
 let gamesArr = [];
-
-function tourneyLookup() {
-    // let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
-    let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
-
-    let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/tournaments/" + tournamentID + "/schedule.json?"
-
-    $.ajax({
-        url: 'https://cors-anywhere.herokuapp.com/' + getURL + apiKey,
-        method: 'GET'
-    }).done(function (result) {
-        scheduleObj = {
-            allData: result
-        }
-
-        for (let i = 1; i < scheduleObj.allData.rounds.length; i++) {
-            tourneyRounds.push(_.forEach(scheduleObj.allData.rounds[i]));
-        }
-        _.forEach(tourneyRounds, function (val, z) {
-            if (val.bracketed.length !== 0) {
-                sortArr.push(val.bracketed);
-            }
-            if (val.games.length !== 0) {
-                sortArr.push(val.games);
-            }
-        })
-        _.forEach(sortArr, function (elem, y) {
-            _.forEach(elem, function (sub) {
-                if (sub.id) {
-                    gameState.push(sub);
-                } else {
-                    _.forEach(sub.games, function (nest1) {
-                        if (nest1) {
-                            gameState.push(nest1)
-                        }
-                    })
-                }
-            })
-        })
-        checkCompleted(gameState);
-    })
-}
 let gameIdsArr = [];
-
-function appendIdent(gamesList) {
-    let bracketGamesArr = [];
-    for (let i = 0; i < gamesList.length; i++) {
-        let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
-        let num = gameNumber.slice(5);
-        // let nextNum = Math.ceil((parseInt(num))/2)
-        let nextNum = parseInt(num)
-
-        if (_.includes(gamesList[i].title, "South")) {
-            region = "W";
-            regionNum = "0";
-        } if (_.includes(gamesList[i].title, "West")) {
-            region = "X";
-            regionNum = "1";
-        } if (_.includes(gamesList[i].title, "East")) {
-            region = "Y";
-            regionNum = "2";
-        } if (_.includes(gamesList[i].title, "Midwest")) {
-            region = "Z";
-            regionNum = "3";
-        } if (_.includes(gamesList[i].title, "Championship")) {
-            region = "";
-            num = "CH";
-        } if (_.includes(gamesList[i].title, "Final")) {
-            region = "";
-        }
-        if (_.includes(gamesList[i].title, "First")) {
-            round = "1"
-        }
-        if (_.includes(gamesList[i].title, "Second")) {
-            round = "2"
-        }
-        if (_.includes(gamesList[i].title, "Sweet")) {
-            round = "3"
-        }
-        if (_.includes(gamesList[i].title, "Elite")) {
-            round = "4"
-        }
-        if (_.includes(gamesList[i].title, "Semifinals")) {
-            round = "5"
-        }
-        if (_.includes(gamesList[i].title, "Championship")) {
-            round = "6"
-        }
-        let homeSeed = gamesList[i].home.seed
-        let awaySeed = gamesList[i].away.seed
-        let winnerSeed;
-
-        if (homeSeed < 10) {
-            homeSeed = "0" + homeSeed;
-        }
-        if (awaySeed < 10) {
-            awaySeed = "0" + awaySeed;
-        }
-        if (gamesList[i].didHomeTeamWin !== undefined) {
-            gamesList[i].didHomeTeamWin ?  
-                winnerSeed= "" + region + "" + homeSeed :
-                winnerSeed= "" + region + "" + awaySeed ;  
-            }
-        let workObj = {};
-        workObj[i] = {
-            gameId: "R" + "" + round + "" + region + "" + num,
-            round: round,
-            region: region,
-            regionNum: regionNum,
-            gameNum: num,
-            winnerSeedId: winnerSeed || "tbd",
-            advanceTo: "R" + "" + (parseInt(round) + 1) + "" + region + nextNum.toString()
-        }
-
-        gameIdsArr.push(workObj[i]);
-        bracketGamesArr.push(_.merge({}, gamesList[i], gameIdsArr[i]));
-    }
-    updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31), bracketGamesArr);
-}
-
-function checkCompleted(gsObj) {
-    for (let i = 0; i < gsObj.length; i++) {
-        if (gsObj[i].status === "closed") {
-            finalizedGamesArr.push(gsObj[i]);
-        } else {
-            pendingArr.push(gsObj[i]);
-        }
-    }
-    for (let i = 0; i < finalizedGamesArr.length; i++) {
-        finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ?
-            winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } :
-            winnerArr[i] = { winner: "awayTeam", didHomeTeamWin: false };
-        mergedFinalArr.push(_.assign({}, finalizedGamesArr[i], winnerArr[i]));
-    }
-    combinedMasterArr(mergedFinalArr, pendingArr);
-}
-
-function combinedMasterArr(arr1, arr2) {
-    let completedArr = [...arr1]
-    Array.prototype.push.apply(arr1, arr2);
-    masterArr = arr1;
-    appendIdent(masterArr);
-}
-
-tourneyLookup();
-
 
 let titles = [
     'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
@@ -1072,6 +925,152 @@ let regionMap = {
     Z: 3
 };
 
+(function tourneyLookup() {
+    // let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
+    let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
+
+    let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/tournaments/" + tournamentID + "/schedule.json?"
+
+    $.ajax({
+        url: 'https://cors-anywhere.herokuapp.com/' + getURL + apiKey,
+        method: 'GET'
+    }).done(function (result) {
+        scheduleObj = {
+            allData: result
+        }
+
+        for (let i = 1; i < scheduleObj.allData.rounds.length; i++) {
+            tourneyRounds.push(_.forEach(scheduleObj.allData.rounds[i]));
+        }
+        _.forEach(tourneyRounds, function (val, z) {
+            if (val.bracketed.length !== 0) {
+                sortArr.push(val.bracketed);
+            }
+            if (val.games.length !== 0) {
+                sortArr.push(val.games);
+            }
+        })
+        _.forEach(sortArr, function (elem, y) {
+            _.forEach(elem, function (sub) {
+                if (sub.id) {
+                    gameState.push(sub);
+                } else {
+                    _.forEach(sub.games, function (nest1) {
+                        if (nest1) {
+                            gameState.push(nest1)
+                        }
+                    })
+                }
+            })
+        })
+        checkCompleted(gameState);
+    })
+})();
+
+function checkCompleted(gsObj) {
+    for (let i = 0; i < gsObj.length; i++) {
+        if (gsObj[i].status === "closed") {
+            finalizedGamesArr.push(gsObj[i]);
+        } else {
+            pendingArr.push(gsObj[i]);
+        }
+    }
+    for (let i = 0; i < finalizedGamesArr.length; i++) {
+        finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ?
+            winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } :
+            winnerArr[i] = { winner: "awayTeam", didHomeTeamWin: false };
+        mergedFinalArr.push(_.assign({}, finalizedGamesArr[i], winnerArr[i]));
+    }
+    combinedMasterArr(mergedFinalArr, pendingArr);
+}
+
+function combinedMasterArr(arr1, arr2) {
+    let completedArr = [...arr1]
+    Array.prototype.push.apply(arr1, arr2);
+    masterArr = arr1;
+    appendIdent(masterArr);
+}
+
+function appendIdent(gamesList) {
+    let bracketGamesArr = [];
+    for (let i = 0; i < gamesList.length; i++) {
+        let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
+        let num = gameNumber.slice(5);
+        // let nextNum = Math.ceil((parseInt(num))/2)
+        let nextNum = parseInt(num)
+
+        if (_.includes(gamesList[i].title, "South")) {
+            region = "W";
+            regionNum = "0";
+        } if (_.includes(gamesList[i].title, "West")) {
+            region = "X";
+            regionNum = "1";
+        } if (_.includes(gamesList[i].title, "East")) {
+            region = "Y";
+            regionNum = "2";
+        } if (_.includes(gamesList[i].title, "Midwest")) {
+            region = "Z";
+            regionNum = "3";
+        } if (_.includes(gamesList[i].title, "Championship")) {
+            region = "";
+            num = "CH";
+        } if (_.includes(gamesList[i].title, "Final")) {
+            region = "";
+        }
+        if (_.includes(gamesList[i].title, "First")) {
+            round = "1"
+        }
+        if (_.includes(gamesList[i].title, "Second")) {
+            round = "2"
+        }
+        if (_.includes(gamesList[i].title, "Sweet")) {
+            round = "3"
+        }
+        if (_.includes(gamesList[i].title, "Elite")) {
+            round = "4"
+        }
+        if (_.includes(gamesList[i].title, "Semifinals")) {
+            round = "5"
+        }
+        if (_.includes(gamesList[i].title, "Championship")) {
+            round = "6"
+        }
+        let homeSeed = gamesList[i].home.seed
+        let awaySeed = gamesList[i].away.seed
+        let winnerSeed;
+
+        if (homeSeed < 10) {
+            homeSeed = "0" + homeSeed;
+        }
+        if (awaySeed < 10) {
+            awaySeed = "0" + awaySeed;
+        }
+        if (gamesList[i].didHomeTeamWin !== undefined) {
+            gamesList[i].didHomeTeamWin ?
+                winnerSeed = "" + region + "" + homeSeed :
+                winnerSeed = "" + region + "" + awaySeed;
+        }
+        let workObj = {};
+        workObj[i] = {
+            gameId: "R" + "" + round + "" + region + "" + num,
+            round: round,
+            region: region,
+            regionNum: regionNum,
+            gameNum: num,
+            winnerSeedId: winnerSeed || "tbd",
+            homeSeed: region + "" + homeSeed,
+            awaySeed: region + "" + awaySeed,
+            advanceTo: "R" + "" + (parseInt(round) + 1) + "" + region + nextNum.toString(),
+            idHome: "R" + "" + round + "" + region + "" + ((parseInt(num) * 2)),
+            idAway: "R" + "" + round + "" + region + "" + ((parseInt(num) * 2 - 1))
+        }
+
+        gameIdsArr.push(workObj[i]);
+        bracketGamesArr.push(_.merge({}, gamesList[i], gameIdsArr[i]));
+    }
+    updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31), bracketGamesArr);
+}
+
 function updateTeamNames(bracketGamesArr, completeArr) {
     // console.log("rounds ,", rounds);
     _.forEach(bracketGamesArr, function (val, z) {
@@ -1157,7 +1156,6 @@ function populateBracket(completeArr) {
     }
     getBracketData(completeArr);
 }
-
 
 function getBracketData(completeArr) {
     var userID = JSON.parse(localStorage.getItem("userID"));
@@ -1261,55 +1259,64 @@ function syncDBkey(completeArr, userPicks) {
     })
 }
 
+let bustArr = [];
+let scoreArr = [];
+
 function gradeOutPicks(completeArr, userPicks, masterKeyData) {
 
     console.log('userPicks: ', userPicks);
     console.log('completeArr: ', completeArr);
     console.log('masterKeyData: ', masterKeyData);
-    let bustArr = [];
+    
     _.forEach(completeArr, function (game) {
         if (game.status == "closed") {
-            if((userPicks[0][game.advanceTo]).slice(0,3) != game.winnerSeedId ){
-                console.log('(userPicks[0][game.advanceTo]).slice(0,3): ', (userPicks[0][game.advanceTo]).slice(0,3), "game.winnderseedID", game.winnerSeedId, "game", game);
-                $("#" + game.advanceTo).attr({
-                    style: "background-color: red;"
-                });
-                let badSeed = (userPicks[0][game.advanceTo].slice(0,3));
-                console.log('badSeed: ', badSeed);
-                 _.forEach(_.toPairs(userPicks[0]), function(pick){
-                        if( _.startsWith( pick[1], badSeed )){
-                            $("#" + pick[0]).attr({
-                                style: "background-color: red;"
-                            })
+            if ((userPicks[0][game.advanceTo]).slice(0, 3) != game.winnerSeedId) {
+                // console.log('(userPicks[0][game.advanceTo]).slice(0,3): ', (userPicks[0][game.advanceTo]).slice(0, 3), "game.winnderseedID", game.winnerSeedId, "game", game);
 
+                let badSeed = (userPicks[0][game.advanceTo].slice(0, 3));
+                _.forEach(_.toPairs(userPicks[0]), function (pick) {
+                    if (_.startsWith(pick[1], badSeed)) {
+                        bustArr.indexOf(pick[0]) === -1 ? bustArr.push(pick[0]): bustArr;
+                        $("#" + game.advanceTo).attr({
+                            style: "background-color: red;"
+                        });
+                        $("#" + pick[0]).attr({
+                            style: "background-color: red;"
+                        });
+                        if (pick[0] == "R5WX1" || pick[0] == "R5WX2" || pick[0] == "R5YZ1" || pick[0] == "R5YZ2") {
+                            $("#" + pick[0] + "a").attr({ style: "background-color: red;" });
                         }
-                        
-                 })
-                    
-                   
-               
-                // Object.keys(userPicks[0])
-                
-            
-
-
+                        if (game.round == "1"){
+                            $("#" + badSeed).attr({
+                                style: "background-color: red;"
+                            });
+                        }
+                        if (( pick[0] == game.idAway && (pick[1]).slice(0,3) == game.awaySeed) || (pick[0] == game.idHome && (pick[1]).slice(0,3) == game.homeSeed)){
+                            // console.log('game.didHomeTeamWin: ', game.didHomeTeamWin);
+                            $("#" + pick[0]).attr({
+                                style: "background-color: green;"
+                            })
+                        }
+                    }
+                })
             } else {
+                // console.log('game.advanceTo: ', game);
                 $("#" + game.advanceTo).attr({
                     style: "background-color: green;"
                 });
+                if (game.advanceTo == "R5WX1" || game.advanceTo == "R5WX2" || game.advanceTo == "R5YZ1" || game.advanceTo == "R5YZ2") {
+                    $("#" + game.advanceTo + "a").attr({
+                        style: "background-color: green;"
+                    })
+                }
+                if (game.round == "1"){
+                    $("#" + game.winnerSeedId).attr({
+                        style: "background-color: green;"
+                    })
+                }
             }
-            // console.log('userPicks[0][checkGame]: ', (userPicks[0][game.advanceTo]).slice(0,3), "gaem.advanceto", game.advanceTo, "game.winnerseedid", game.winnerSeedId);
+            // console.log('userPicks[0][checkGame]: ', (userPicks[0][game.advanceTo]).slice(0,3), "game.advanceto", game.advanceTo, "game.winnerseedid", game.winnerSeedId);
         }
-        // console.log("bustarr", bustArr)
+         console.log("bustarr", bustArr)
     })
-
-
-    _.filter(userPicks[0], function (pick) {
-        // pick.slice(0,3)
-        // console.log('pick.slice(0,3): ', (pick).slice(0,3));
-
-        
-    })
-
-
 }

@@ -87,11 +87,10 @@
                     </form>
 
                     <div class="master">
+
                         <!--   SOUTH REGION 1  -->
-                        <div class="left">
-                            <!-- <button onclick="$( '#region1' ).toggle('show');" id="south">
-                South
-              </button> -->
+                        <div class="top">
+
                             <div class="region" id="region1">
                                 <div class="wrapper">
                                     <div class="columns column1">
@@ -171,9 +170,7 @@
                             </div>
 
                             <!--  EAST REGION 2 -->
-                            <!-- <button onclick="$( '#region2' ).toggle('show');" id="east">
-                East
-              </button> -->
+
                             <div class="region" id="region2">
                                 <div class="wrapper">
                                     <div class="columns column5">
@@ -253,11 +250,10 @@
                             </div>
                         </div>
 
-                        <div class="left">
+                        <div class="bottom">
+
                             <!--  WEST REGION 4  -->
-                            <!-- <button onclick="$( '#region4' ).toggle('show');" id="west">
-                West
-              </button> -->
+
                             <div class="region" id="region4">
                                 <div class="wrapper">
                                     <div class="columns column1">
@@ -340,9 +336,7 @@
                             </div>
 
                             <!--  MIDWEST REGION 3  -->
-                            <!-- <button onclick="$( '#region3' ).toggle('show');" id="midwest">
-                Midwest
-              </button> -->
+    
                             <div class="region" id="region3">
                                 <div class="wrapper">
                                     <div class="columns column5">
@@ -423,9 +417,8 @@
                             </div>
                         </div>
 
-                        <!-- <button onclick="$( '#champ' ).toggle('show');" id="four">
-              Final Four to Champion
-            </button> -->
+              <!-- Final Four to Natl' Champion -->
+
                         <div class="champ-align">
                             <div class="region" id="champs">
                                 <div class="wrapper">
@@ -488,20 +481,11 @@
 
         }
 
-        .left {
+        .top, .bottom {
             /* float: left; */
             font-weight: 300%;
             text-align: center;
             width: 100%;
-
-        }
-
-        .right {
-            /* float: right; */
-            font-weight: 300%;
-            text-align: center;
-            width: 50%;
-
         }
 
         #bracketNameInput {
@@ -695,7 +679,11 @@
         }
 
         .column5>div {
-            margin-top: 47.3em;
+            margin-top: 57em;
+        }
+
+        .bottom .region .wrapper .column5>div {
+            margin-top: 33em;
         }
 
         .column5 {
