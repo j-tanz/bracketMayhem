@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <!DOCTYPE html>
-  <html>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
@@ -20,10 +17,6 @@
 
   <!-- <script src="js/jquery-1.11.3.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- <script src="js/brackets.min.js"></script> -->
-  <!-- <script src="./js/brackets.js"></script> -->
-  <!-- <script src="js/brackets.js"></script> -->
-
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,10 +35,10 @@
   <title>Bracket Mayhem</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="css/style.css" type="text/css"> -->
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="css/loggedin.css" type="text/css">
 
 </head>
 
@@ -62,15 +55,16 @@
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
+
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Create A Bracket</a>
+            <a class="nav-link js-scroll-trigger" href="#mybrackets">Saved Brackets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Saved Brackets</a>
+            <a class="nav-link js-scroll-trigger" href="#createbracket">Create A Bracket</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">Pools</a>
-          </li>
+          </li> -->
           <li>
             <a href="index.html">
               <button type="button" class="btn sign-out navbar-btn navbar-right">Sign out</button>
@@ -81,22 +75,37 @@
     </div>
   </nav>
 
-  <header class="masthead">
-    <div class="intro-text">
-      <div class="intro-lead-in">March Madness Bracket Mayhem</div>
-      <div class="intro-heading text-uppercase">Create All of Your Bracket Madness</div>
-      <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Start Here</a>
-    </div>
-  </header>
 
-  <!-- Services -->
-  <section id="services">
+  <!-- User's Bracket List -->
+  <section  id="mybrackets">
+    <div class="container mybracket-container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">My Brackets</h2>
+          <br>
+          <br>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-12 text-center ">
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-xs-12  col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
+          <div class="panel-group user-brackets-panels " id="accordion">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Create A Bracket -->
+  <section id="createbracket">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 id="create" class="section-heading text-uppercase">Create a bracket</h2>
-          <hr/>
-          <h1 class="title">MY BRACKET</h1>
           <hr/>
           <form>
             <div class="form-group">
@@ -486,6 +495,7 @@
       </div>
     </div>
   </section>
+<<<<<<< HEAD
   <!-- <div class=header>
         <div>
             <h2>First Round</h2>
@@ -870,21 +880,26 @@
 
     }
   </style>
+=======
 
+>>>>>>> f63920a493f708dee781c06eb6ec31e71b6c0c99
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="copyright">Copyright &copy; 2018 Bracket Mayhem</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="../vendor/lodash/lodash.js"></script>
-  <!-- <script src='../js/liveBracket.js'></script> -->
-
   <script src='../js/userBracket.js'></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-
   <script>
-    // let player = {
-    //     name: "ucla",
-    // }
-    // $("#W01").text(player.name);
-
     $('#region1').on("click", function () {
       $('region1').show();
     });
@@ -904,94 +919,16 @@
       $('fullBracket').show();
     });
   </script>
-
-
-  <!-- Portfolio Grid -->
-  <section class="bg-light" id="portfolio">
-    <div class="container">
-
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">See Your Saved Brackets</h2>
-          <br>
-          <hr/>
-          <br>
-
-          <!-- <h3 class="section-subheading text-muted">Add Bracket Panels Here.</h3> -->
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 text-center ">
-
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <br>
-        <br>
-        <br>
-        <div class="panel-group user-brackets-panels " id="accordion">
-        </div>
-      </div>
-    </div>
-
-
-
-    </div>
-    </div>
-  </section>
-
-
-
-  <!-- About -->
-  <!-- <section id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Pool</h2>
-          <h3 class="section-subheading text-muted">Find Players to Join Your Pool</h3>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <span class="copyright">Copyright &copy; 2018 Bracket Mayhem</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-
-
-
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
   <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
   <script src="vendor/lodash/lodash.js"></script>
   <script src="js/loggedin.js"></script>
-  <!-- <script src="bracket/js/jquery-1.11.3.js"></script> -->
-  <!-- <script src="bracket/js/brackets.min.js"></script> -->
-  <!-- <script src="bracket/js/brackets.js"></script> -->
-  <!-- <script>
-    $.get("/api/logins", function (data) {
-      console.log(data);
-    });
-  </script> -->
-  <!-- Custom scripts for this template -->
   <script src="js/agency.min.js"></script>
-
-
 </body>
 
 </html>
