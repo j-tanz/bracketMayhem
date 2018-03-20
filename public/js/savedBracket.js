@@ -1038,6 +1038,7 @@ function appendIdent(gamesList) {
         let homeSeed = gamesList[i].home.seed
         let awaySeed = gamesList[i].away.seed
         let winnerSeed;
+        let loserSeed;
 
         if (homeSeed < 10) {
             homeSeed = "0" + homeSeed;
@@ -1050,6 +1051,12 @@ function appendIdent(gamesList) {
                 winnerSeed = "" + region + "" + homeSeed :
                 winnerSeed = "" + region + "" + awaySeed;
         }
+        if (gamesList[i].didHomeTeamWin !== undefined) {
+            gamesList[i].didHomeTeamWin ?
+                loserSeed = "" + region + "" + awaySeed :
+                loserSeed = "" + region + "" + homeSeed;
+        }
+
         let workObj = {};
         workObj[i] = {
             gameId: "R" + "" + round + "" + region + "" + num,
@@ -1058,6 +1065,7 @@ function appendIdent(gamesList) {
             regionNum: regionNum,
             gameNum: num,
             winnerSeedId: winnerSeed || "tbd",
+            loserSeedId: loserSeed || "tbd",
             homeSeed: region + "" + homeSeed,
             awaySeed: region + "" + awaySeed,
             advanceTo: "R" + "" + (parseInt(round) + 1) + "" + region + nextNum.toString(),
@@ -1259,7 +1267,7 @@ function syncDBkey(completeArr, userPicks) {
     })
 }
 
-let bustArr = [[],[],[],[],[],[]];
+let bustArr = [[], [], [], [], [], []];
 let scoreArr = [];
 
 function gradeOutPicks(completeArr, userPicks, masterKeyData) {
@@ -1267,7 +1275,7 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
     console.log('userPicks: ', userPicks);
     console.log('completeArr: ', completeArr);
     console.log('masterKeyData: ', masterKeyData);
-    
+
     _.forEach(completeArr, function (game) {
         if (game.status == "closed") {
             if ((userPicks[0][game.advanceTo]).slice(0, 3) != game.winnerSeedId) {
@@ -1275,36 +1283,53 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
 
                 let badSeed = (userPicks[0][game.advanceTo].slice(0, 3));
                 _.forEach(_.toPairs(userPicks[0]), function (pick) {
+                    console.log('pick: ', pick);
                     if (_.startsWith(pick[1], badSeed)) {
                         // bustArr.indexOf(pick[0]) === -1 ? bustArr.push(pick[0]): bustArr;
                         $("#" + game.advanceTo).attr({
-                            style: "background-color: pink;"
+                            style: "background-color: pink; text-decoration: line-through;"
                         });
                         $("#" + pick[0]).attr({
-                            style: "background-color: pink;"
+                            style: "background-color: pink; text-decoration: line-through;;"
                         });
+                        for (let i = 1; i < 7; i++) {
+                            if (game.round == [i]) {
+                                if (bustArr[i - 1].indexOf(badSeed) === -1) {
+                                    bustArr[i - 1].push(badSeed)
+                                };
+                                if (game.round =="1") {
+                                    $("#" + badSeed).attr({ style: "background-color: red;" });
+                                    $("#" + game.advanceTo).attr({
+                                        style: "background-color: pink; text-decoration: line-through;;"})
+                                } 
+                                if (_.startsWith(pick[0], i, 1)) {
+                                    if(badSeed == game.loserSeedId) {
+                                        $("#" + pick[0]).attr({ style: "background-color: red" });
+                                    }
+                                }
+                            }
+                        }
                         if (pick[0] == "R5WX1" || pick[0] == "R5WX2" || pick[0] == "R5YZ1" || pick[0] == "R5YZ2") {
-                            // $("#" + pick[0] + "a").attr($(pick[0]).css.backgroundColor("red") );
-                            let color = document.getElementById("" + pick[0] + "").style.backgroundColor
+                            let color = document.getElementById("" + pick[0] + "").style.backgroundColor;
+                            let strikeOut = document.getElementById("" + pick[0] + "").style.textDecoration;
                             document.getElementById("" + pick[0] + "a").style.backgroundColor = color;
-                            console.log('$("#" + pick[0] + "a"): ', $("#" + pick[0] + "a"));
+                            document.getElementById("" + pick[0] + "a").style.textDecoration = strikeOut;
                         }
-                        if (game.round == "1"){
-                            if( bustArr[0].indexOf(badSeed) === -1 ) {
-                                bustArr[0].push(badSeed)
-                            } 
-                            $("#" + pick[0]).attr({ style: "background-color: pink"});
-                            $("#" + badSeed).attr({
-                                style: "background-color: red;"
-                            });
 
-                        }
-                        if (( pick[0] == game.idAway && (pick[1]).slice(0,3) == game.awaySeed) || (pick[0] == game.idHome && (pick[1]).slice(0,3) == game.homeSeed)){
-                            // console.log('game.didHomeTeamWin: ', game.didHomeTeamWin);
-                            $("#" + pick[0]).attr({
-                                style: "background-color: red;"
-                            })
-                        }
+                            // if (game.round == "1") {
+                            //     if (bustArr[0].indexOf(badSeed) === -1) {
+                            //         bustArr[0].push(badSeed)
+                            //     }
+                            //     $("#" + pick[0]).attr({ style: "background-color: blue" });
+                            //     $("#" + badSeed).attr({
+                            //         style: "background-color: red;"
+                            //     });
+                            
+                        // if ((pick[0] == game.idAway && (pick[1]).slice(0, 3) == game.awaySeed) || (pick[0] == game.idHome && (pick[1]).slice(0, 3) == game.homeSeed)) {
+                        //     $("#" + pick[0]).attr({
+                        //         style: "background-color: red;"
+                        //     })
+                        // }
                     }
                 })
             } else {
@@ -1317,7 +1342,7 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                         style: "background-color: green;"
                     })
                 }
-                if (game.round == "1"){
+                if (game.round == "1") {
                     $("#" + game.winnerSeedId).attr({
                         style: "background-color: green;"
                     })
@@ -1325,6 +1350,6 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
             }
             // console.log('userPicks[0][checkGame]: ', (userPicks[0][game.advanceTo]).slice(0,3), "game.advanceto", game.advanceTo, "game.winnerseedid", game.winnerSeedId);
         }
-         console.log("bustarr", bustArr)
     })
+    console.log("bustarr", bustArr)
 }
