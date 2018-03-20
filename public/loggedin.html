@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <!DOCTYPE html>
-  <html>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
@@ -20,10 +17,6 @@
 
   <!-- <script src="js/jquery-1.11.3.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- <script src="js/brackets.min.js"></script> -->
-  <!-- <script src="./js/brackets.js"></script> -->
-  <!-- <script src="js/brackets.js"></script> -->
-
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,10 +35,12 @@
   <title>Bracket Mayhem</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="css/style.css" type="text/css"> -->
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="css/loggedin.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
 
 </head>
 
@@ -62,18 +57,16 @@
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
+
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Create A Bracket</a>
+            <a class="nav-link js-scroll-trigger" href="#mybrackets">Saved Brackets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Saved Brackets</a>
+            <a class="nav-link js-scroll-trigger" href="#createbracket">Create A Bracket</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Pools</a>
-          </li>
-          <li>
+          <li id="out">
             <a href="index.html">
-              <button type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+              <button type="button" class="btn sign-out navbar-btn ">Sign out</button>
             </a>
           </li>
         </ul>
@@ -81,22 +74,37 @@
     </div>
   </nav>
 
-  <header class="masthead">
-    <div class="intro-text">
-      <div class="intro-lead-in">March Madness Bracket Mayhem</div>
-      <div class="intro-heading text-uppercase">Create All of Your Bracket Madness</div>
-      <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Start Here</a>
-    </div>
-  </header>
 
-  <!-- Services -->
-  <section id="services">
+  <!-- User's Bracket List -->
+  <section  id="mybrackets">
+    <div class="container mybracket-container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">My Brackets</h2>
+          <br>
+          <br>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-12 text-center ">
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-xs-12  col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
+          <div class="panel-group user-brackets-panels " id="accordion">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Create A Bracket -->
+  <section id="createbracket">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 id="create" class="section-heading text-uppercase">Create a bracket</h2>
-          <hr/>
-          <h1 class="title">MY BRACKET</h1>
           <hr/>
           <form>
             <div class="form-group">
@@ -478,7 +486,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-default save-bracket-btn">
+          <button type="submit" class="btn save-bracket-btn">
             Save My Bracket
           </button>
 
@@ -486,398 +494,23 @@
       </div>
     </div>
   </section>
-  <!-- <div class=header>
-        <div>
-            <h2>First Round</h2>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="copyright">Copyright &copy; 2018 Bracket Mayhem</span>
         </div>
-        <div>
-            <h2>Second Round</h2>
-        </div>
-        <div>
-            <h2>Sweet Sixteen</h2>
-        </div>
-        <div>
-            <h2>Elite Eight</h2>
-        </div>
-        <div>
-            <h2>Final Four</h2>
-        </div>
-    </div> -->
-
-  <!-- END REGIONS -->
-  <style>
-    img {
-      width: 70%;
-      height: 60%;
-      margin: 0 auto;
-      text-align: center;
-      margin-bottom: -10%;
-    }
-
-    body {
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    * {
-      font-size: 11px;
-      font-family: 'Muli', sans-serif;
-      font-weight: lighter;
-
-    }
-
-    .left {
-      /* float: left; */
-      font-weight: 300%;
-      text-align: center;
-      width: 50%;
-
-    }
-
-    .right {
-      /* float: right; */
-      font-weight: 300%;
-      text-align: center;
-      width: 50%;
-
-    }
-
-    #bracketNameInput {
-      width: 55%;
-      margin: 0 auto;
-    }
-
-    #create {
-      font-family: 'Exo 2', sans-serif;
-      font-size: 580%;
-      color: rgba(179, 0, 27, 1)
-    }
-
-    .title {
-      font-family: 'Exo 2', sans-serif;
-      font-size: 600%;
-      font-weight: 900%;
-      margin: 0 auto;
-      width: 100%;
-      text-align: center;
-      color: rgba(37, 92, 153, 1);
-      padding: 1%;
-
-    }
-
-    .header {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-gap: .5em;
-      text-align: center;
-      font-weight: 300%;
-
-    }
-
-    .red {
-      color: rgba(179, 0, 27, 1);
-      font-size: 120%;
-      margin-bottom: 1%;
-      padding: 1%;
-
-    }
-
-    .wrapper {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-auto-rows: minmax(300px, auto);
-      grid-gap: .15em;
-      font-size: 85%;
-      background-color: rgba(109, 105, 107, 1);
-      border: 1px solid rgb(24, 11, 89);
-      width: 80%;
-      margin: 0 auto;
-      padding: 0;
-      font-weight: 100%;
-      overflow: auto;
-      overflow-y: hidden;
-
-    }
-
-    .columns {
-      /* background-color: #656582; */
-      padding: .5em 0 .5em 1em;
-    }
-
-    .columns {
-      display: grid;
-      grid-gap: 1em;
-    }
-
-    .columns>div {
-      background-color: white;
-      height: 10.9735em;
-      display: grid;
-      grid-auto-rows: 35%;
-      grid-gap: .5em;
-      width: 107.5%;
-      font-size: 50%;
-
-      /* border: 1px solid black; */
-    }
-
-    .team {
-      height: 5%;
-      margin: -20%;
-      padding: -5%;
-      position: relative;
-      top: 12.5%;
-      left: 6%;
-      float: left;
-    }
-
-    .matchup {
-      border: 1px solid rgba(37, 92, 153, 1);
-      border-radius: 15px;
-      width: 200%;
-    }
-
-    .matchup>div {
-      padding: 8px;
-      background-color: lightgray;
-      border: 1px solid gray;
-      height: 60%;
-      width: 85%;
-      align-items: center;
-      color: black;
-      font-size: 210%;
-      font-weight: bolder;
-      text-align: center;
-      line-height: 20%;
-      margin: 1%;
-
-    }
-
-    form {
-      width: 90%;
-      margin: 0 auto;
-    }
-
-    .form-group {
-      font-size: 200%;
-      color: rgba(37, 92, 153, 1);
-      text-align: center;
-
-
-    }
-
-    .form-control {
-      font-size: 90%;
-      width: 50%;
-      color: rgba(37, 92, 153, 1);
-      text-align: center;
-      font-weight: light;
-
-    }
-
-    #south,
-    #east,
-    #west,
-    #midwest {
-      font-size: 400%;
-      width: 40%;
-      padding: 3%;
-      margin: 1%;
-
-    }
-
-    @font-face {
-      font-family: 'sportsFont';
-      src: url('../sf-sports-night/TrueType/SFSportsNight.tff');
-      src: url('../sf-sports-night/TrueType/SFSportsNight.ttf') format('truetype'),
-    }
-
-    #four {
-      margin: 0 auto;
-      margin-top: 2%;
-      margin-left: 8%;
-      width: 35%;
-      height: 100%;
-      font-size: 300%;
-      font-weight: 500%;
-      font-family: url('../sf-sports-night/TrueType/SFSportsNight.ttf');
-
-    }
-
-    .two-one {
-      margin-top: 6.5em;
-    }
-
-    .two-two {
-      margin-top: 7em;
-    }
-
-    .two-three {
-      margin-top: 7em;
-    }
-
-    .two-four {
-      margin-top: 7em;
-    }
-
-    .three-one {
-      margin-top: 19.25em;
-    }
-
-    .three-two {
-      margin-top: 19.25em;
-    }
-
-    .column4>div {
-      margin-top: 44.5em;
-    }
-
-    .column5>div {
-      margin-top: 47.3em;
-    }
-
-    .column5 {
-      padding-right: 1.75em;
-    }
-
-    #region2>.wrapper>.column1,
-    #region3>.wrapper>.column1 {
-      padding-right: 1.75em;
-
-    }
-
-    .master {
-      display: grid;
-      grid-template-columns: repeat(1, 2fr);
-      padding: 1%;
-      width: 200%;
-      margin: 0 auto;
-    }
-
-    .region {
-      width: 100%;
-      font-weight: 300%;
-      display: none;
-      white-space: nowrap;
-      zoom: 100%;
-      /* overflow-y: scroll; */
-      height: 20%;
-    }
-
-    button {
-      background-color: rgba(179, 0, 27, 1);
-      font-weight: 300%;
-      color: white;
-      width: 50%;
-      font-size: 390%;
-      /* margin: 1%; */
-      border-radius: 20%;
-      margin: 0 auto;
-      flex-direction: space-between;
-    }
-
-    #champ {
-      width: 100%;
-      font-size: 800%;
-      padding: 3%;
-      height: 40%;
-      line-height: 800%;
-      color: white;
-      margin: 0 auto;
-      margin-top: 1%;
-    }
-
-    .save-bracket-btn {
-      font-family: 'Maven Pro', sans-serif;
-      font-size: 200%;
-      width: 35%;
-      background-color: rgba(37, 92, 153, 1);
-      text-align: center;
-      color: white;
-      margin-top: 5%;
-      margin-left: 33%;
-
-    }
-
-    #fullBracket {
-      display: none;
-      width: 100%;
-    }
-
-    #masterBracket {
-      height: 100%;
-      border-radius: 15%;
-      text-align: center;
-      margin-left: 25%;
-      margin-bottom: 1%;
-      width: 50%;
-      font-size: 250%;
-      line-height: 160%;
-      background-color: rgba(37, 92, 153, 1);
-      color: white;
-      padding: 1%;
-    }
-
-    .container {
-      width: 80%;
-      margin: 0 auto;
-    }
-
-    .game-info-icon {
-      position: relative;
-      right: -5%;
-      top: -6px;
-    }
-
-    #R5WX1a,
-    #R5WX2a,
-    #R5YZ1a,
-    #R5YZ2a {
-      height: 200%;
-      font-size: 500%;
-      line-height: 1em;
-    }
-
-    #champ>.region {
-      float: left;
-      margin: 0;
-      width: 80%;
-
-    }
-
-
-    /*-------- Mobile media breakpoint ---------*/
-
-    @media screen and (max-width: 768px) {
-      #wrapper {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      #header {
-        grid-template-columns: repeat(12, 1fr);
-      }
-      .game-info-icon {
-        right: -85%;
-        top: -7.5px;
-      }
-
-    }
-  </style>
-
+      </div>
+    </div>
+  </footer>
 
   <script src="../vendor/lodash/lodash.js"></script>
-  <!-- <script src='../js/liveBracket.js'></script> -->
-
   <script src='../js/userBracket.js'></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-
   <script>
-    // let player = {
-    //     name: "ucla",
-    // }
-    // $("#W01").text(player.name);
-
     $('#region1').on("click", function () {
       $('region1').show();
     });
@@ -897,94 +530,16 @@
       $('fullBracket').show();
     });
   </script>
-
-
-  <!-- Portfolio Grid -->
-  <section class="bg-light" id="portfolio">
-    <div class="container">
-
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">See Your Saved Brackets</h2>
-          <br>
-          <hr/>
-          <br>
-
-          <!-- <h3 class="section-subheading text-muted">Add Bracket Panels Here.</h3> -->
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 text-center ">
-
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <br>
-        <br>
-        <br>
-        <div class="panel-group user-brackets-panels " id="accordion">
-        </div>
-      </div>
-    </div>
-
-
-
-    </div>
-    </div>
-  </section>
-
-
-
-  <!-- About -->
-  <!-- <section id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Pool</h2>
-          <h3 class="section-subheading text-muted">Find Players to Join Your Pool</h3>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <span class="copyright">Copyright &copy; 2018 Bracket Mayhem</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-
-
-
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
   <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
   <script src="vendor/lodash/lodash.js"></script>
   <script src="js/loggedin.js"></script>
-  <!-- <script src="bracket/js/jquery-1.11.3.js"></script> -->
-  <!-- <script src="bracket/js/brackets.min.js"></script> -->
-  <!-- <script src="bracket/js/brackets.js"></script> -->
-  <!-- <script>
-    $.get("/api/logins", function (data) {
-      console.log(data);
-    });
-  </script> -->
-  <!-- Custom scripts for this template -->
   <script src="js/agency.min.js"></script>
-
-
 </body>
 
 </html>

@@ -62,9 +62,14 @@ p
 .navbar{
     margin:0 auto;
 }
-.navbar-btn {
-    margin: 8px;
+
+#out {
+    background-color:rgba(255, 248, 240, 1);
+    width: 25%;
+    height: 20%;
 }
+
+
 /* Signup/Login Page */
 label{
     color: gray;
