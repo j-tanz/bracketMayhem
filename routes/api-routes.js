@@ -10,10 +10,10 @@ module.exports = function (app) {
     app.get("/api/liveResults", function (req, res) {
         liveResult.findAll({}).then((results) => res.json(results));
     });
-
     app.get("/api/userBrackets", function (req, res) {
         userBracket.findAll({}).then((data) => res.json(data));
     });
+    //Get request to show all of user's created brackets
     app.get("/api/userBrackets/:userid", function (req, res) {
         userBracket.findAll({
             where: {
@@ -21,7 +21,7 @@ module.exports = function (app) {
             }
         }).then((data) => res.json(data));
     });
-
+    //Get request to show a specific user bracket 
     app.get("/api/userBrackets/:userid/:bracketname", function (req, res) {
         userBracket.findAll({
             where: {
@@ -30,19 +30,19 @@ module.exports = function (app) {
             }
         }).then((data) => res.json(data));
     });
-    // Need post route for userBrackets table
+    //Post request to create a new user bracket  
     app.post("/api/userBrackets", function (req, res) {
         userBracket.create(req.body).then(function (dbuserBracket) {
             res.json(dbuserBracket);
         });
     });
-    //get route to get all user logins
+    //Get request to get login details of all user accounts
     app.get("/api/logins", function (req, res) {
         login.findAll({
         }).then((results) => res.json(results));
     });
 
-    //get route for the user login with specific loginemail
+    //Get route for the user login with specific loginemail
     app.get("/api/logins/:loginEmail", function (req, res) {
         login.findOne({
             where: {
@@ -51,22 +51,19 @@ module.exports = function (app) {
         }).then((data) => res.json(data));
     })
 
-    // Need post route for to add new user to logins table
+    // Post route to add new user to logins table
     app.post("/api/logins", function (req, res) {
         login.create(req.body).then(function (dblogin) {
             res.json(dblogin);
         });
     });
 
+    
     app.get("/api/masterKeys", function(req, res){
         masterKey.findAll({    
         }).then((results) => res.json(results));
     });
     
-    // app.get("/api/ncaa_seed_round_slot", function (req, res) {
-    //     ncaa_seed_round_slot.findAll({
-    //     }).then((results) => res.json(results));
-    // });
     app.get("/api/ncaa_tourney_result", function (req, res) {
         ncaa_tourney_result.findAll({
         }).then((results) => res.json(results));
@@ -79,9 +76,4 @@ module.exports = function (app) {
         massey.findAll({
         }).then((results) => res.json(results));
     });
-    // app.get("/api/tourney/:loginEmail", function (req, res) {
-    //    .findAll({
-    //         attributes: ['foo', 'bar']
-    //       }).then((data) => res.json(data));
-    // })
 }
