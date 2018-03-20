@@ -181,8 +181,23 @@
             font-size: 400%;
             width: 40%;
             padding: 3%;
+            height: 10%;
             margin: 1%;
 
+        }
+
+        .sign-out {
+            font-family: 'Muli', sans-serif;
+            font-size: 150%;
+            font-weight: 200%
+            width: 100%;
+            padding: 10%;
+            height: 70%;
+            line-height: 150%;
+            background-color: white;
+            color: rgba(179, 0, 27, 1);
+            text-align: center;
+            border-radius: 10%;
         }
 
         @font-face {
@@ -258,14 +273,12 @@
             width: 50%;
             font-size: 390%;
             border-radius: 20%;
-            border: 1px solid rgba(37, 92, 153, 1);;
+            border: 1px solid rgba(37, 92, 153, 1);
             margin: 0 auto;
             flex-direction: space-between;
         }
 
-        .save-bracket-btn {
-            width: 130px;
-        }
+ 
 
         #champ {
             width: 40%;
@@ -279,13 +292,17 @@
         }
 
         .save-bracket-btn {
-            font-family: 'Maven Pro', sans-serif;
+            font-family: 'Muli', sans-serif;
             font-size: 200%;
+            font-weight: bold;
             width: 35%;
-            height: 120%;
+            height: 10%;
+            background-color: rgba(37, 92, 153, 1);
             text-align: center;
             color: white;
-            margin-top: 5%;            
+            margin-top: 5%;    
+            border-radius: 10%;
+
         }
 
         #fullBracket {
@@ -294,16 +311,18 @@
         }
 
         #masterBracket {
-            height: 100%;
-            border-radius: 15%;
+          font-family: 'Muli', sans-serif;
+            font-size: 200%;
+            font-weight: bold;
+            width: 35%;
+            height: 10%;
+            background-color: rgba(37, 92, 153, 1);
             text-align: center;
-            margin-left: 25%;
-            margin-bottom: 1%;
-            width: 50%;
-            font-size: 250%;
-            line-height: 160%;
             color: white;
-            padding: 1%;
+            margin-top: 5%;    
+            border-radius: 10%;
+            margin: 0 auto;
+            padding: 2%;
         }
 
         .container {
