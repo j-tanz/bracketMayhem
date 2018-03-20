@@ -6,6 +6,7 @@
      padding: 20px;
      background-color: rgb(10, 10, 11);
  }
+
  div.container.account {
      padding: 10px 200px;
      background-color: rgba(255, 248, 240, .81);
@@ -16,327 +17,306 @@
      border-radius: 10px;
      color: rgba(30, 30, 36, 1);
  }
- 
-     
-        img {
-            width: 70%;
-            height: 60%;
-            margin: 0 auto;
-            text-align: center;
-            margin-bottom: -10%;
-        }
 
-        body {
-            width: 65%;
-            margin: 0 auto;
-        }
+ img {
+     width: 70%;
+     height: 60%;
+     margin: 0 auto;
+     text-align: center;
+     margin-bottom: -10%;
+ }
 
-        * {
-            font-size: 11px;
-            font-family: 'Muli', sans-serif;
-            font-weight: lighter;
+ body {
+     width: 65%;
+     margin: 0 auto;
+ }
 
-        }
+ * {
+     font-size: 11px;
+     font-family: 'Muli', sans-serif;
+     font-weight: lighter;
+ }
 
-        .left {
-            /* float: left; */
-            font-weight: 300%;
-            text-align: center;
-            width: 50%;
+ .left {
+     /* float: left; */
+     font-weight: 300%;
+     text-align: center;
+     width: 50%;
+ }
 
-        }
+ .right {
+     /* float: right; */
+     font-weight: 300%;
+     text-align: center;
+     width: 50%;
+ }
 
-        .right {
-            /* float: right; */
-            font-weight: 300%;
-            text-align: center;
-            width: 50%;
+ #bracketNameInput {
+     width: 55%;
+     margin: 0 auto;
+ }
 
-        }
+ .title {
+     font-family: 'Exo 2', sans-serif;
+     font-size: 600%;
+     font-weight: 900%;
+     margin: 0 auto;
+     width: 100%;
+     text-align: center;
+     color: rgba(37, 92, 153, 1);
+     padding: 1%;
+ }
 
-        #bracketNameInput {
-            width: 55%;
-            margin: 0 auto;
-        }
+ .header {
+     margin-top: 20px;
+     display: grid;
+     grid-template-columns: repeat(5, 1fr);
+     grid-gap: .5em;
+     text-align: center;
+     font-weight: 300%;
+ }
 
-        .title {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 600%;
-            font-weight: 900%;
-            margin: 0 auto;
-            width: 100%;
-            text-align: center;
-            color: rgba(37, 92, 153, 1);
-            padding: 1%;
+ .red {
+     color: rgba(179, 0, 27, 1);
+     font-size: 120%;
+     margin-bottom: 1%;
+     padding: 1%;
+ }
 
-        }
+ .wrapper {
+     display: grid;
+     grid-template-columns: repeat(5, 1fr);
+     grid-auto-rows: minmax(300px, auto);
+     grid-gap: .15em;
+     font-size: 85%;
+     border: 1px solid rgb(24, 11, 89);
+     width: 80%;
+     margin: 0 auto;
+     margin-right: 90%;
+     padding: 0;
+     font-weight: 100%;
+     overflow: auto;
+     overflow-y: hidden;
+     border-radius: 10%;
+ }
 
-        .header {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-gap: .5em;
-            text-align: center;
-            font-weight: 300%;
+ .columns {
+     padding: 2em;
+ }
 
-        }
+ .columns {
+     display: grid;
+     grid-gap: 1.25em;
+ }
 
-        .red {
-            color: rgba(179, 0, 27, 1);
-            font-size: 120%;
-            margin-bottom: 1%;
-            padding: 1%;
+ .columns>div {
+     height: 10.9735em;
+     display: grid;
+     grid-auto-rows: 35%;
+     grid-gap: .5em;
+     width: 90%;
+     font-size: 50%;
+ }
 
-        }
+ .team {
+     height: 5%;
+     margin: -20%;
+     padding: 4%;
+ }
 
-        .wrapper {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-auto-rows: minmax(300px, auto);
-            grid-gap: .15em;
-            font-size: 85%;
-            border: 1px solid rgb(24, 11, 89);
-            width: 80%;
-            margin: 0 auto;
-            margin-right: 90%;
-            padding: 0;
-            font-weight: 100%;
-            overflow: auto;
-            overflow-y: hidden;
-            border-radius: 10%;
+ .matchup {
+     border: 1px solid rgba(37, 92, 153, 1);
+ }
 
-        }
+ .matchup>div {
+     padding: 1%;
+     background-color: rgba(179, 0, 27, 1);
+     ;
+     border: 1px solid gray;
+     height: 60%;
+     width: 85%;
+     align-items: center;
+     color: rgba(255, 248, 240, 1);
+     font-size: 150%;
+     text-align: center;
+     line-height: 150%;
+     margin: 1%;
+     border-radius: 30%;
+ }
 
-        .columns {
-            padding: 2em;
-        }
+ form {
+     width: 90%;
+     margin: 0 auto;
+ }
 
-        .columns {
-            display: grid;
-            grid-gap: 1.25em;
-        }
+ .form-group {
+     font-size: 200%;
+     color: rgba(37, 92, 153, 1);
+     text-align: center;
+ }
 
-        .columns>div {
-            height: 10.9735em;
-            display: grid;
-            grid-auto-rows: 35%;
-            grid-gap: .5em;
-            width: 90%;
-            font-size: 50%;
-        }
+ .form-control {
+     font-size: 90%;
+     width: 50%;
+     color: rgba(37, 92, 153, 1);
+     text-align: center;
+     font-weight: light;
+ }
 
-        .team {
-            height: 5%;
-            margin: -20%;
-            padding: 4%;
-        }
+ #south,
+ #east,
+ #west,
+ #midwest {
+     font-size: 400%;
+     width: 40%;
+     padding: 3%;
+     height: 10%;
+     margin: 1%;
+ }
 
-        .matchup {
-            border: 1px solid rgba(37, 92, 153, 1);
-        }
+ .sign-out {
+     font-family: 'Muli', sans-serif;
+     width: 150%;
+     padding: 10%;
+     height: 70%;
+     line-height: 150%;
+     text-align: center;
+     border-radius: 10%;
+ }
 
-        .matchup>div {
-            padding: 1%;
-            background-color: rgba(179, 0, 27, 1);;
-            border: 1px solid gray;
-            height: 60%;
-            width: 85%;
-            align-items: center;
-            color: rgba(255, 248, 240, 1);
-            font-size: 150%;
-            text-align: center;
-            line-height: 150%;
-            margin: 1%;
-            border-radius: 30%;
+ @font-face {
+     font-family: 'sportsFont';
+     src: url('../sf-sports-night/TrueType/SFSportsNight.tff');
+     src: url('../sf-sports-night/TrueType/SFSportsNight.ttf') format('truetype'),
+ }
 
+ #four {
+     margin: 0 auto;
+     margin-top: 2%;
+     margin-left: 8%;
+     width: 35%;
+     height: 100%;
+     font-size: 300%;
+     font-weight: 500%;
+     font-family: url('../sf-sports-night/TrueType/SFSportsNight.ttf');
+ }
 
-        }
+ .two-one {
+     margin-top: 6.5em;
+ }
 
-        form {
-            width: 90%;
-            margin: 0 auto;
-        }
+ .two-two {
+     margin-top: 7em;
+ }
 
-        .form-group {
-            font-size: 200%;
-            color: rgba(37, 92, 153, 1);
-            text-align: center;
+ .two-three {
+     margin-top: 7em;
+ }
 
+ .two-four {
+     margin-top: 7em;
+ }
 
-        }
+ .three-one {
+     margin-top: 19.25em;
+ }
 
-        .form-control {
-            font-size: 90%;
-            width: 50%;
-            color: rgba(37, 92, 153, 1);
-            text-align: center;
-            font-weight: light;
+ .three-two {
+     margin-top: 19.25em;
+ }
 
-        }
+ .column4>div {
+     margin-top: 44.5em;
+ }
 
-        #south,
-        #east,
-        #west,
-        #midwest {
-            font-size: 400%;
-            width: 40%;
-            padding: 3%;
-            height: 10%;
-            margin: 1%;
+ .column5>div {
+     margin-top: 47.3em;
+ }
 
-        }
+ .master {
+     display: grid;
+     grid-template-columns: repeat(1, 2fr);
+     padding: 1%;
+     width: 200%;
+     margin: 0 auto;
+ }
 
-        .sign-out {
-            font-family: 'Muli', sans-serif;
-            font-size: 150%;
-            font-weight: 200%
-            width: 100%;
-            padding: 10%;
-            height: 70%;
-            line-height: 150%;
-            background-color: white;
-            color: rgba(179, 0, 27, 1);
-            text-align: center;
-            border-radius: 10%;
-        }
+ .region {
+     width: 200%;
+     font-weight: 300%;
+     display: none;
+     white-space: nowrap;
+     zoom: 120%;
+     height: 100%;
+ }
 
-        @font-face {
-            font-family: 'sportsFont';
-            src: url('../sf-sports-night/TrueType/SFSportsNight.tff');
-            src: url('../sf-sports-night/TrueType/SFSportsNight.ttf') format('truetype'),
-        }
+ button {
+     font-weight: 300%;
+     color: rgba(179, 0, 27, 1);
+     width: 50%;
+     font-size: 390%;
+     border-radius: 20%;
+     border: 1px solid rgba(37, 92, 153, 1);
+     margin: 0 auto;
+     flex-direction: space-between;
+ }
 
-        #four {
-            margin: 0 auto;
-            margin-top: 2%;
-            margin-left: 8%;
-            width: 35%;
-            height: 100%;
-            font-size: 300%;
-            font-weight: 500%;
-            font-family: url('../sf-sports-night/TrueType/SFSportsNight.ttf');
+ #champ {
+     width: 40%;
+     font-size: 800%;
+     padding: 3%;
+     height: 40%;
+     line-height: 800%;
+     color: white;
+     margin: 0 auto;
+     margin-top: 1%;
+ }
 
-        }
+ .save-bracket-btn {
+     font-family: 'Muli', sans-serif;
+     font-size: 200%;
+     font-weight: bold;
+     width: 35%;
+     height: 10%;
+     background-color: rgba(37, 92, 153, 1);
+     text-align: center;
+     color: white;
+     margin-top: 5%;
+     border-radius: 10%;
+ }
 
-        .two-one {
-            margin-top: 6.5em;
-        }
+ #fullBracket {
+     display: none;
+     width: 100%;
+ }
 
-        .two-two {
-            margin-top: 7em;
-        }
+ #masterBracket {
+     font-family: 'Muli', sans-serif;
+     font-size: 200%;
+     font-weight: bold;
+     width: 35%;
+     height: 10%;
+     background-color: rgba(37, 92, 153, 1);
+     text-align: center;
+     color: white;
+     margin-top: 5%;
+     border-radius: 10%;
+     margin: 0 auto;
+     padding: 2%;
+ }
 
-        .two-three {
-            margin-top: 7em;
-        }
+ .container {
+     width: 80%;
+     margin: 0 auto;
+ }
 
-        .two-four {
-            margin-top: 7em;
-        }
+ /*-------- Mobile media breakpoint ---------*/
 
-        .three-one {
-            margin-top: 19.25em;
-        }
-
-        .three-two {
-            margin-top: 19.25em;
-        }
-
-        .column4>div {
-            margin-top: 44.5em;
-        }
-
-        .column5>div {
-            margin-top: 47.3em;
-        }
-
-        .master {
-            display: grid;
-            grid-template-columns: repeat(1, 2fr);
-            padding: 1%;
-            width: 200%;
-            margin: 0 auto;
-        }
-
-        .region {
-            width: 200%;
-            font-weight: 300%;
-            display: none;
-            white-space: nowrap;
-            zoom: 120%;
-            height: 100%;
-        }
-
-        button {
-            font-weight: 300%;
-            color: rgba(179, 0, 27, 1);
-            width: 50%;
-            font-size: 390%;
-            border-radius: 20%;
-            border: 1px solid rgba(37, 92, 153, 1);
-            margin: 0 auto;
-            flex-direction: space-between;
-        }
-
- 
-
-        #champ {
-            width: 40%;
-            font-size: 800%;
-            padding: 3%;
-            height: 40%;
-            line-height: 800%;
-            color: white;
-            margin: 0 auto;
-            margin-top: 1%;
-        }
-
-        .save-bracket-btn {
-            font-family: 'Muli', sans-serif;
-            font-size: 200%;
-            font-weight: bold;
-            width: 35%;
-            height: 10%;
-            background-color: rgba(37, 92, 153, 1);
-            text-align: center;
-            color: white;
-            margin-top: 5%;    
-            border-radius: 10%;
-
-        }
-
-        #fullBracket {
-            display: none;
-            width: 100%;
-        }
-
-        #masterBracket {
-          font-family: 'Muli', sans-serif;
-            font-size: 200%;
-            font-weight: bold;
-            width: 35%;
-            height: 10%;
-            background-color: rgba(37, 92, 153, 1);
-            text-align: center;
-            color: white;
-            margin-top: 5%;    
-            border-radius: 10%;
-            margin: 0 auto;
-            padding: 2%;
-        }
-
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        /*-------- Mobile media breakpoint ---------*/
-
-        @media screen and (max-width: 768px) {
-            #wrapper {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            #header {
-                grid-template-columns: repeat(12, 1fr);
-            }
-        }
+ @media screen and (max-width: 768px) {
+     #wrapper {
+         grid-template-columns: repeat(2, 1fr);
+     }
+     #header {
+         grid-template-columns: repeat(12, 1fr);
+     }
+ }
