@@ -1,4 +1,4 @@
-const apiKey = "api_key=gmz5hfe68mvuuh7tbfx7sxxn";
+const apiKey = "api_key=jecrqz25rfftgybudkxx66nj";
 
 let finalizedGamesArr = [];
 let scheduleObj = {};
@@ -1287,10 +1287,10 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                     if (_.startsWith(pick[1], badSeed)) {
                         // bustArr.indexOf(pick[0]) === -1 ? bustArr.push(pick[0]): bustArr;
                         $("#" + game.advanceTo).attr({
-                            style: "background-color: pink; text-decoration: line-through;"
+                            style: "background-color: FireBrick; text-decoration: line-through;"
                         });
                         $("#" + pick[0]).attr({
-                            style: "background-color: pink; text-decoration: line-through;;"
+                            style: "background-color: FireBrick; text-decoration: line-through;;"
                         });
                         for (let i = 1; i < 7; i++) {
                             if (game.round == [i]) {
@@ -1298,13 +1298,13 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                                     bustArr[i - 1].push(badSeed)
                                 };
                                 if (game.round =="1") {
-                                    $("#" + badSeed).attr({ style: "background-color: red;" });
+                                    $("#" + badSeed).attr({ style: "background-color: Red;" });
                                     $("#" + game.advanceTo).attr({
-                                        style: "background-color: pink; text-decoration: line-through;;"})
+                                        style: "background-color: FireBrick; text-decoration: line-through;;"})
                                 } 
                                 if (_.startsWith(pick[0], i, 1)) {
                                     if(badSeed == game.loserSeedId) {
-                                        $("#" + pick[0]).attr({ style: "background-color: red" });
+                                        $("#" + pick[0]).attr({ style: "background-color: Red" });
                                     }
                                 }
                             }
@@ -1324,7 +1324,7 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                             //     $("#" + badSeed).attr({
                             //         style: "background-color: red;"
                             //     });
-                            
+
                         // if ((pick[0] == game.idAway && (pick[1]).slice(0, 3) == game.awaySeed) || (pick[0] == game.idHome && (pick[1]).slice(0, 3) == game.homeSeed)) {
                         //     $("#" + pick[0]).attr({
                         //         style: "background-color: red;"
@@ -1335,16 +1335,16 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
             } else {
                 // console.log('game.advanceTo: ', game);
                 $("#" + game.advanceTo).attr({
-                    style: "background-color: green;"
+                    style: "background-color: LimeGreen;"
                 });
                 if (game.advanceTo == "R5WX1" || game.advanceTo == "R5WX2" || game.advanceTo == "R5YZ1" || game.advanceTo == "R5YZ2") {
                     $("#" + game.advanceTo + "a").attr({
-                        style: "background-color: green;"
+                        style: "background-color: LimeGreen;"
                     })
                 }
                 if (game.round == "1") {
                     $("#" + game.winnerSeedId).attr({
-                        style: "background-color: green;"
+                        style: "background-color: LimeGreen;"
                     })
                 }
             }

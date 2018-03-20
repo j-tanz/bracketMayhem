@@ -1,4 +1,4 @@
-const apiKey = "api_key=gmz5hfe68mvuuh7tbfx7sxxn";
+const apiKey = "api_key=jecrqz25rfftgybudkxx66nj";
 
 let finalizedGamesArr = [];
 let scheduleObj = {};
