@@ -62,45 +62,6 @@ section h3.section-subheading {
   }
 }
 
-.btn {
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-}
-
-.btn-xl {
-  font-size: 18px;
-  padding: 20px 40px;
-}
-
-.btn-primary {
-    background-color: rgba(179, 0, 27, 1);
-    border-color: rgba(179, 0, 27, 1);
-}
-
-.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-    background-color: rgba(179, 0, 27, 1)!important;
-    border-color: rgba(179, 0, 27, 1)!important;
-  color: white;
-}
-
-.btn-primary:active, .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(254, 209, 55, 0.5) !important;
-}
-
-::-moz-selection {
-  background: rgba(179, 0, 27, 1);
-  ;
-  text-shadow: none;
-}
-
-::selection {
-  background: rgba(179, 0, 27, 1);
-  text-shadow: none;
-}
-
-
-
-
 
 #mainNav .navbar-toggler {
   font-size: 12px;
@@ -667,33 +628,6 @@ footer span.copyright {
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-footer ul.quicklinks {
-  font-size: 90%;
-  line-height: 40px;
-  margin-bottom: 0;
-  text-transform: none;
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
 
-ul.social-buttons {
-  margin-bottom: 0;
-}
 
-ul.social-buttons li a {
-  font-size: 20px;
-  line-height: 40px;
-  display: block;
-  width: 40px;
-  height: 40px;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-  color: white;
-  border-radius: 100%;
-  outline: none;
-  background-color: #212529;
-}
 
-ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
-  background-color: rgba(179, 0, 27, 1);
-}
