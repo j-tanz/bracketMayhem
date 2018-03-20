@@ -308,9 +308,9 @@
    width: 35%;
    background-color: rgba(37, 92, 153, 1);
    text-align: center;
-   color: white;
+   color: black;
    margin-top: 5%;
-   margin-left: 33%;
+   /* margin-left: 33%; */
 
  }
 
@@ -359,7 +359,22 @@
    width: 80%;
 
  }
-
+ .panel{
+     border:none;
+ }
+ #mybrackets{
+     padding: 120px 0 50px;; 
+     background-color: rgb(233, 233, 233);
+ }
+.mybracket-container{
+    margin:0 auto;
+}
+#createbracket{
+    padding-top: 50px;
+}
+.userbrackets-panels{
+    text-align:center;
+}
 
  /*-------- Mobile media breakpoint ---------*/
 
