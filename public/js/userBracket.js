@@ -12,132 +12,7 @@ let masterArr = [];
 let pendingArr = [];
 let placeArr = [];
 let gamesArr = [];
-
-function tourneyLookup() {
-    // let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
-    let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
-
-    let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/tournaments/" + tournamentID + "/schedule.json?"
-
-    $.ajax({
-        url: 'https://cors-anywhere.herokuapp.com/' + getURL + apiKey,
-        method: 'GET'
-    }).done(function (result) {
-        scheduleObj = {
-            allData: result
-        }
-
-        for (let i = 1; i < scheduleObj.allData.rounds.length; i++) {
-            tourneyRounds.push(_.forEach(scheduleObj.allData.rounds[i]));
-        }
-        _.forEach(tourneyRounds, function (val, z) {
-            if (val.bracketed.length !== 0) {
-                sortArr.push(val.bracketed);
-            }
-            if (val.games.length !== 0) {
-                sortArr.push(val.games);
-            }
-        })
-        _.forEach(sortArr, function (elem, y) {
-            _.forEach(elem, function (sub) {
-                if (sub.id) {
-                    gameState.push(sub);
-                } else {
-                    _.forEach(sub.games, function (nest1) {
-                        if (nest1) {
-                            gameState.push(nest1)
-                        }
-                    })
-                }
-            })
-        })
-        checkCompleted(gameState);
-    })
-}
 let gameIdsArr = [];
-
-function appendIdent(gamesList) {
-    let bracketGamesArr = [];
-    // console.log('gamesList: ', gamesList);
-    for (let i = 0; i < gamesList.length; i++) {
-        let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
-        let num = gameNumber.slice(5);
-        // console.log("num", num);
-
-        if (_.includes(gamesList[i].title, "South")) {
-            region = "W";
-            regionNum = "0";
-        } if (_.includes(gamesList[i].title, "West")) {
-            region = "X";
-            regionNum = "1";
-        } if (_.includes(gamesList[i].title, "East")) {
-            region = "Y";
-            regionNum = "2";
-        } if (_.includes(gamesList[i].title, "Midwest")) {
-            region = "Z";
-            regionNum = "3";
-        } if (_.includes(gamesList[i].title, "Championship")) {
-            region = "";
-            num = "CH";
-        } if (_.includes(gamesList[i].title, "Final")) {
-            region = "";
-        }
-        if (_.includes(gamesList[i].title, "First")) {
-            round = "1"
-        }
-        if (_.includes(gamesList[i].title, "Second")) {
-            round = "2"
-        }
-        if (_.includes(gamesList[i].title, "Sweet")) {
-            round = "3"
-        }
-        if (_.includes(gamesList[i].title, "Elite")) {
-            round = "4"
-        }
-        if (_.includes(gamesList[i].title, "Semifinals")) {
-            round = "5"
-        }
-        if (_.includes(gamesList[i].title, "Championship")) {
-            round = "6"
-        }
-        let workObj = {};
-        workObj[i] = {
-            gameId: "R" + "" + round + "" + region + "" + num,
-            round: round,
-            region: region,
-            regionNum: regionNum,
-            gameNum: num
-        }
-        gameIdsArr.push(workObj[i]);
-        bracketGamesArr.push(_.merge({}, gamesList[i], gameIdsArr[i]));
-    }
-    updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31));
-}
-
-function checkCompleted(gsObj) {
-    for (let i = 0; i < gsObj.length; i++) {
-        if (gsObj[i].status === "closed") {
-            finalizedGamesArr.push(gsObj[i]);
-        } else {
-            pendingArr.push(gsObj[i]);
-        }
-    }
-    for (let i = 0; i < finalizedGamesArr.length; i++) {
-        finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ?
-            winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } :
-            winnerArr[i] = { winner: "awayTeam", didHomeTeamWin: false };
-        mergedFinalArr.push(_.assign({}, finalizedGamesArr[i], winnerArr[i]));
-    }
-    combinedMasterArr(mergedFinalArr, pendingArr);
-}
-function combinedMasterArr(arr1, arr2) {
-    Array.prototype.push.apply(arr1, arr2);
-    masterArr = arr1;
-    appendIdent(masterArr);
-    return masterArr;
-}
-
-tourneyLookup();
 
 let rounds = [
     //round of 64 - 32 games
@@ -1041,6 +916,7 @@ let rounds = [
         },
     ]
 ];
+
 let regionMap = {
     W: 0,
     X: 1,
@@ -1048,29 +924,182 @@ let regionMap = {
     Z: 3
 };
 
+/**
+ * Makes call to Sportradar API, returns a JSON object detailing the curent state of the NCAA Men's Basketball Tournament,
+ * and sorts all pertinent game/match-up data into an array of objects
+ */
+(function tourneyLookup() {
+    // let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
+    let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
+
+    let getURL = "http://api.sportradar.us/ncaamb/trial/v4/en/tournaments/" + tournamentID + "/schedule.json?"
+
+    $.ajax({
+        url: 'https://cors-anywhere.herokuapp.com/' + getURL + apiKey,
+        method: 'GET'
+    }).done(function (result) {
+        scheduleObj = {
+            allData: result
+        }
+
+        for (let i = 1; i < scheduleObj.allData.rounds.length; i++) {
+            tourneyRounds.push(_.forEach(scheduleObj.allData.rounds[i]));
+        }
+        _.forEach(tourneyRounds, function (val, z) {
+            if (val.bracketed.length !== 0) {
+                sortArr.push(val.bracketed);
+            }
+            if (val.games.length !== 0) {
+                sortArr.push(val.games);
+            }
+        })
+        _.forEach(sortArr, function (elem, y) {
+            _.forEach(elem, function (sub) {
+                if (sub.id) {
+                    gameState.push(sub);
+                } else {
+                    _.forEach(sub.games, function (nest1) {
+                        if (nest1) {
+                            gameState.push(nest1)
+                        }
+                    })
+                }
+            })
+        })
+        checkCompleted(gameState);
+    })
+})();
+
+/**
+ *  Checks and sorts all games based upon the current status of the game (ie scheduled, in progress, closed).
+ * 
+ * @param {array} gsObj - The full array of 63 tournament game objects
+ */
+function checkCompleted(gsObj) {
+    console.log('gsObj: ', gsObj);
+    for (let i = 0; i < gsObj.length; i++) {
+        if (gsObj[i].status === "closed") {
+            /**
+             * @param {array} finalizedGamesArr - Array comprising all completed games
+             */
+            finalizedGamesArr.push(gsObj[i]);
+        } else {
+            /**
+             * @param {array} pendingArr - Array comprising all games yet to be scheduled, bracketed, or currently in progress
+             */
+            pendingArr.push(gsObj[i]);
+        }
+    }
+    /**
+     * Creates an array of objects with outcome properties of completed games and merges these properties with {@link finalizedGamesArr}
+     * 
+     * @param {array} winnerArr - work array
+     * @param {array} mergedFinalArr - merges objects comprised within {@link winnerArr} and {@link finalizedGamesArr} 
+     */
+    for (let i = 0; i < finalizedGamesArr.length; i++) {
+        finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ?
+            winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } :
+            winnerArr[i] = { winner: "awayTeam", didHomeTeamWin: false };
+        mergedFinalArr.push(_.assign({}, finalizedGamesArr[i], winnerArr[i]));
+    }
+    combinedMasterArr(mergedFinalArr, pendingArr);
+}
+
+/**
+ * Pushes the completed and tbd games back onto same array; 
+ * 
+ * @param {array} arr1 - {@link mergedFinalArr}
+ * @param {array} arr2 - {@link pendingArr}
+ */
+function combinedMasterArr(arr1, arr2) {
+    Array.prototype.push.apply(arr1, arr2);
+    masterArr = arr1;
+    appendIdent(masterArr);
+    return masterArr;
+}
+
+/**
+ * Assigns properties to each object in the games array based upon Region, Round, and the position of the game within that specific region/round
+ * 
+ * @param {array} gamesList - array of all sorted game objects
+ */
+function appendIdent(gamesList) {
+    let bracketGamesArr = [];
+    for (let i = 0; i < gamesList.length; i++) {
+        let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
+        let num = gameNumber.slice(5);
+
+        if (_.includes(gamesList[i].title, "South")) {
+            region = "W";
+            regionNum = "0";
+        } if (_.includes(gamesList[i].title, "West")) {
+            region = "X";
+            regionNum = "1";
+        } if (_.includes(gamesList[i].title, "East")) {
+            region = "Y";
+            regionNum = "2";
+        } if (_.includes(gamesList[i].title, "Midwest")) {
+            region = "Z";
+            regionNum = "3";
+        } if (_.includes(gamesList[i].title, "Championship")) {
+            region = "";
+            num = "CH";
+        } if (_.includes(gamesList[i].title, "Final")) {
+            region = "";
+        }
+        if (_.includes(gamesList[i].title, "First")) {
+            round = "1"
+        }
+        if (_.includes(gamesList[i].title, "Second")) {
+            round = "2"
+        }
+        if (_.includes(gamesList[i].title, "Sweet")) {
+            round = "3"
+        }
+        if (_.includes(gamesList[i].title, "Elite")) {
+            round = "4"
+        }
+        if (_.includes(gamesList[i].title, "Semifinals")) {
+            round = "5"
+        }
+        if (_.includes(gamesList[i].title, "Championship")) {
+            round = "6"
+        }
+        let workObj = {};
+        workObj[i] = {
+            gameId: "R" + "" + round + "" + region + "" + num,
+            round: round,
+            region: region,
+            regionNum: regionNum,
+            gameNum: num
+        }
+        gameIdsArr.push(workObj[i]);
+        bracketGamesArr.push(_.merge({}, gamesList[i], gameIdsArr[i]));
+    }
+    updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31));
+}
+
+/**
+ * Renders team seed and name onto the bracket UI
+ * 
+ * @param {array} bracketGamesArr - newly created array of objects with appended properties
+ */
 function updateTeamNames(bracketGamesArr) {
     console.log('bracketGamesArr: ', bracketGamesArr);
     _.forEach(bracketGamesArr, function (val, z) {
         let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
         index = index !== 2.5 ? index : 0;
-        // if (parseInt(val.away.seed) < 10) { 
-        //     val.away.seed = " " + val.away.seed;
-        //     console.log('val.away.seed: ', val.away.seed);
-        // }
-        // if (val.round == "1") {
         rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
         rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias;
     })
     populateBracket();
 };
 
+/**
+ *  Sorts all first round games by region and home/away team.  Appends html data elements to the respective divs in order to keep track of where teams exist,
+ * as well as create the logical bracket structure. 
+ */
 function populateBracket() {
-
-    // $("#W01").text(rounds[0][0].player1.name)
-    //******************************** */
-    // Save for livebracket
-    // for (let h = 0; h < rounds.length; h++) {
-    //     console.log("h len", (rounds[h].length)/2 +1)
     for (let i = 1; i < 17; i++) {
         let ii = i;
         if (ii < 10) {
@@ -1133,6 +1162,9 @@ function populateBracket() {
     }
 }
 
+/**
+ * Click Listener to determine a team selection within the bracket; ie User makes a pick.
+ */
 $(document).on("click", ".team", function () {
     let pick = $(this).attr("data-id");
     let pickName = this.innerText;
@@ -1143,8 +1175,7 @@ $(document).on("click", ".team", function () {
             if (advanceTo == rounds[i][j].player1.slot) {
                 rounds[i][j].player1.ID = pick
                 rounds[i][j].player1.name = "" + pickName
-                $('#' + advanceTo + "").html("" + pickName + '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>')
-                // $('#' + advanceTo + "").text("" + pickName);
+                $('#' + advanceTo + "").html("" + pickName /*+ '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>'*/ ) 
                 $('#' + advanceTo + "").attr({
                     "data-advance": rounds[i][j].player1.advance,
                     "data-id": pick,
@@ -1154,8 +1185,7 @@ $(document).on("click", ".team", function () {
             if (advanceTo == rounds[i][j].player2.slot) {
                 rounds[i][j].player2.ID = pick
                 rounds[i][j].player2.name = "" + pickName
-                $('#' + advanceTo + "").html("" + pickName + '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>')
-                // $('#' + advanceTo + "").text("" + pickName);
+                $('#' + advanceTo + "").html("" + pickName /*+ '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>'*/ )
                 $('#' + advanceTo + "").attr({
                     "data-advance": rounds[i][j].player2.advance,
                     "data-id": pick,
@@ -1170,6 +1200,7 @@ $(document).on("click", ".team", function () {
     }
 })
 
+// WORK IN PROGRESS (and above commented out portion)
 // $(document).on("click", ".game-info-icon", function (e) {
 //     e.preventDefault();
 //     $('.pop-over').popover('toggle');
@@ -1177,11 +1208,9 @@ $(document).on("click", ".team", function () {
 //     return false;
 // })
 
-console.log('rounds: ', rounds);
-
-//Saves Bracket data once complete
-// check if whole bracket is filled out
-// posts request to database
+/**
+ * Saves user's bracket pick selections and the bracket name
+ */
 $(".save-bracket-btn").click(saveBracket);
 function saveBracket(evt) {
     evt.preventDefault();
@@ -1258,6 +1287,11 @@ function saveBracket(evt) {
 
     let pickCHAMP = $("#CHAMP").attr('data-id') + " " + $("#CHAMP").attr('data-pickname');
 
+    /**
+     * Tests to ensure user bracket is entirely completed (no blank selections), and bracket name is alphanumeric only.
+     * 
+     * @return {boolean} isValid - Returns false if bracket fails to pass validation.
+     */
     function validateBracket() {
         let isValid = true
         if (/[^a-zA-Z0-9\-\/]/.test(inputBracketName)){
@@ -1334,6 +1368,9 @@ function saveBracket(evt) {
     };
     console.log('validateBracket: ', validateBracket());
 
+    /**
+     * evaluates {@link isValid}; if true, posts user data to database, else alert validation failed.
+     */
     if (validateBracket()) {
         console.log(inputBracketName)
         userID = JSON.parse(localStorage.getItem("userID"));
