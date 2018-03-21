@@ -1335,3 +1335,8 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
     })
     console.log("bustarr", bustArr)
 }
+window.onbeforeunload = function() {
+    localStorage.removeItem("selectedBracketName");
+    alert("bye");
+  };
+  
