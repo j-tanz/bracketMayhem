@@ -40,7 +40,7 @@ renderUserBrackets(userID);
 */
 function clickBracketBtn(){
     // console.log("this",$(this).text().trim());
-    bracketName=$(this).text();
+    bracketName = $(this).text();
     localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
     location.assign("../bracket/savedBracket.html")
 }
@@ -54,3 +54,12 @@ function clickSignoutBtn(){
     location.assign("/index");
 }
 $(".signout-btn").click(clickSignoutBtn);
+
+
+function clickSaveBracket() {
+
+    location.assign("/index");
+}
+$(".signout-btn").click(clickSaveBracket);
+
+

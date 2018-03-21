@@ -1399,3 +1399,15 @@ window.onbeforeunload = function () {
     localStorage.removeItem("selectedBracketName");
     alert("bye");
 };
+
+
+function clickSignoutBtn(){
+    localStorage.clear();
+    location.assign("/index");
+}
+
+$(".signout-btn").click(clickSignoutBtn);
+$(".nav-home-logo").click(function () {
+    location.assign("/loggedin")
+}
+)  

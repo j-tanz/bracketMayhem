@@ -1368,7 +1368,8 @@ function saveBracket(evt) {
      * evaluates {@link isValid}; if true, posts user data to database, else alert validation failed.
      */
     if (validateBracket()) {
-        userID = JSON.parse(localStorage.getItem("userID"));
+        console.log(inputBracketName)
+        console.log("userid: ", userID);
         postBracketData({
             userID: userID,
             bracketName: inputBracketName,
@@ -1436,6 +1437,9 @@ function saveBracket(evt) {
             R6C2: pickR6C2,
             CHAMP: pickCHAMP
         });
+        localStorage.setItem("selectedBracketName", JSON.stringify(inputBracketName));
+        userID = JSON.parse(localStorage.getItem("userID"));
+
         window.location.href = "/savedBracket";
 
 /**
