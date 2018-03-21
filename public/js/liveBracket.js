@@ -31,6 +31,11 @@ let pendingArr = [];
 let placeArr = [];
 let gamesArr = [];
 
+/*** 
+/ * @function tourneyLookup
+/ * 
+/ * @return {object}: tournament live result data
+  */
 function tourneyLookup() {
     let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
     // let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
@@ -73,7 +78,11 @@ function tourneyLookup() {
     })
 }
 
-
+/*** 
+/ @function appendIdent
+/ @param {array of strings}: gamesList
+/ @return {object of arrays}: gameIds array
+*/
 function appendIdent(gamesList) {
     let bracketGamesArr = [];
     let gameIdsArr = [];
@@ -147,6 +156,11 @@ gameIds.forEach(function (x) {
     console.log(counts); 
 }
 );
+/*** 
+/ @function updateTeamNames
+/ @param {array of objects}: gameIdsArray
+/ @return {string}: update bracket with correct team names
+*/
 function updateTeamNames(gameIdsArr){   
     console.log(gameIdsArr);
     console.log(counts);
@@ -160,7 +174,11 @@ function updateTeamNames(gameIdsArr){
 }
 
 
-
+/*** 
+/ * @function checkCompleted
+/ * @param {object}: games object
+/ * @return {array of objects}: full array of objects
+  */
 function checkCompleted(gsObj) {
     for (let i = 0; i < gsObj.length; i++) {
         if (gsObj[i].status === "closed") {
@@ -178,6 +196,12 @@ function checkCompleted(gsObj) {
     combinedMasterArr(mergedFinalArr, pendingArr);
     // console.log('mergedFinalArr: ', mergedFinalArr); 
 }
+/*** 
+/ * @function combinedMasterArr
+/ * @param {array}: arr1
+/ * @param {array}: arr2
+/ @return {array}: master array
+*/
 function combinedMasterArr(arr1, arr2) {
     Array.prototype.push.apply(arr1, arr2);
     masterArr = arr1;
@@ -1068,15 +1092,18 @@ let regionMap = {
 
   
 
-//  * @function updateTeamNames
-//  * @parameter{string}: gameId variable
-//  * @return {string}: awayName, homeName
+
  
 
 
 // console.log("val.gameId: ", (val));
 // console.log("val.gameId: ", (val.gameId));
 // console.log("val.gameId: ", (val.gameId[1]-1));
+/*
+/  * @function updateTeamNames
+/  * @param{array}: bracket of games array
+// * @return {strings}: awayName, homeName
+*/
 function updateTeamNames(bracketGamesArr) {
     console.log('bracketGamesArr: ', bracketGamesArr);
     console.log("rounds ,", rounds);
