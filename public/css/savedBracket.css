@@ -17,6 +17,7 @@ img {
 body {
     width: 100%;
     margin: 0 auto;
+    background-color: rgba(159, 158, 158);
 }
 
 * {

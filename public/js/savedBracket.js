@@ -15,7 +15,6 @@ let gameIdsArr = [];
 let titles = [
     'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
 ];
-
 let rounds = [
     //round of 64 - 32 games
     [
@@ -1347,7 +1346,7 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                             style: "background-color:  rgba(179, 0, 27, 1); text-decoration: line-through;"
                         });
                         $("#" + pick[0]).attr({
-                            style: "background-color:  rgba(179, 0, 27, 1); text-decoration: line-through;;"
+                            style: "background-color: rgb(68, 157, 209); text-decoration: line-through;;"
                         });
                         for (let i = 1; i < 7; i++) {
                             if (game.round == [i]) {
@@ -1383,7 +1382,7 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                     $("#" + game.advanceTo + "a").attr({
                         style: "background-color: rgba(37, 92, 153, 1);"
                     })
-                }
+                }68, 157, 209
                 if (game.round == "1") {
                     $("#" + game.winnerSeedId).attr({
                         style: "background-color: rgba(37, 92, 153, 1);"
