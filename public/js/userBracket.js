@@ -976,7 +976,6 @@ let regionMap = {
  * @param {array} gsObj - The full array of 63 tournament game objects
  */
 function checkCompleted(gsObj) {
-    console.log('gsObj: ', gsObj);
     for (let i = 0; i < gsObj.length; i++) {
         if (gsObj[i].status === "closed") {
             /**
@@ -1080,12 +1079,11 @@ function appendIdent(gamesList) {
 }
 
 /**
- * Renders team seed and name onto the bracket UI
+ * Renders the intial 64 team seeds and names onto the bracket UI
  * 
- * @param {array} bracketGamesArr - newly created array of objects with appended properties
+ * @param {array} bracketGamesArr - the 1st 32 elements spliced from the newly created and appended the games array; this populates the initial field of 64 teams
  */
 function updateTeamNames(bracketGamesArr) {
-    console.log('bracketGamesArr: ', bracketGamesArr);
     _.forEach(bracketGamesArr, function (val, z) {
         let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
         index = index !== 2.5 ? index : 0;
@@ -1204,7 +1202,6 @@ $(document).on("click", ".team", function () {
 // $(document).on("click", ".game-info-icon", function (e) {
 //     e.preventDefault();
 //     $('.pop-over').popover('toggle');
-//     console.log("working??????")
 //     return false;
 // })
 
@@ -1366,15 +1363,12 @@ function saveBracket(evt) {
         } 
         return isValid;
     };
-    console.log('validateBracket: ', validateBracket());
 
     /**
      * evaluates {@link isValid}; if true, posts user data to database, else alert validation failed.
      */
     if (validateBracket()) {
-        console.log(inputBracketName)
         userID = JSON.parse(localStorage.getItem("userID"));
-        console.log("userid: ", userID);
         postBracketData({
             userID: userID,
             bracketName: inputBracketName,
@@ -1444,6 +1438,10 @@ function saveBracket(evt) {
         });
         window.location.href = "/savedBracket";
 
+/**
+ * 
+ * @param {object} newbracketData - Object containing user's picks and data to be posted to database 
+ */
         function postBracketData(newbracketData) {
             $.post("/api/userBrackets", newbracketData);
         }
