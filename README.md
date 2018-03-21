@@ -15,8 +15,10 @@ Live Site: https://bracket-mayhem.herokuapp.com/
 * [Sports Radar API](https://developer.sportradar.com/?_ga=2.147556215.1969954472.1521047756-1620640583.1520368452) - gets live game data for the current season 
 
 ## Preview
-![login](https://raw.githubusercontent.com/kjesek/bracketMayhem/master/public/img/login.js)
-
+![home](https://raw.githubusercontent.com/kjesek/bracketMayhem/loggedin/public/img/home.png)
+![login](https://raw.githubusercontent.com/kjesek/bracketMayhem/loggedin/public/img/login.png)
+![newbracket](https://raw.githubusercontent.com/kjesek/bracketMayhem/loggedin/public/img/newbracket.png)
+![fullbracket](https://raw.githubusercontent.com/kjesek/bracketMayhem/loggedin/public/img/bracket.png)
 
 ## Contributors
 * [John Tansor](https://github.com/j-tanz)
