@@ -1173,7 +1173,7 @@ $(document).on("click", ".team", function () {
             if (advanceTo == rounds[i][j].player1.slot) {
                 rounds[i][j].player1.ID = pick
                 rounds[i][j].player1.name = "" + pickName
-                $('#' + advanceTo + "").html("" + pickName /*+ '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>'*/ ) 
+                $('#' + advanceTo + "").html("" + pickName /*+ '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>'*/)
                 $('#' + advanceTo + "").attr({
                     "data-advance": rounds[i][j].player1.advance,
                     "data-id": pick,
@@ -1183,7 +1183,7 @@ $(document).on("click", ".team", function () {
             if (advanceTo == rounds[i][j].player2.slot) {
                 rounds[i][j].player2.ID = pick
                 rounds[i][j].player2.name = "" + pickName
-                $('#' + advanceTo + "").html("" + pickName /*+ '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>'*/ )
+                $('#' + advanceTo + "").html("" + pickName /*+ '<a href="#" class="pop-over" data-toggle="popover" title="STATS" data-content="SHIT GOESHERE" data-container="body"><img class="game-info-icon" src="../img/icons/Get-Info-icon.png" alt="info icon" style="width:12px;height:12px;float:right;"></a>'*/)
                 $('#' + advanceTo + "").attr({
                     "data-advance": rounds[i][j].player2.advance,
                     "data-id": pick,
@@ -1290,13 +1290,18 @@ function saveBracket(evt) {
      * @return {boolean} isValid - Returns false if bracket fails to pass validation.
      */
     function validateBracket() {
-        let isValid = true
-        if (/[^a-zA-Z0-9\-\/]/.test(inputBracketName)){
+        var isValid = false
+        let userid = JSON.parse(localStorage.getItem("userID"));
+        let queryURL = "/api/userBrackets/" + userid + "/" + inputBracketName.split(" ").join("%20");
+console.log(queryURL);
+        if (/[^a-zA-Z\d\s\:]/.test(inputBracketName)) {
             alert("Bracket Name must not contain special characters");
             isValid = false;
+            console.log("regex", isValid);
             return isValid;
         }
-        if (!$("#R2W1").attr('data-pickname') ||
+
+        else if (!$("#R2W1").attr('data-pickname') ||
             !$("#R2W2").attr('data-pickname') ||
             !$("#R2W3").attr('data-pickname') ||
             !$("#R2W4").attr('data-pickname') ||
@@ -1360,96 +1365,113 @@ function saveBracket(evt) {
             !$("#R6C2").attr('data-pickname') ||
             !$("#CHAMP").attr('data-pickname')) {
             isValid = false;
-        } 
-        return isValid;
-    };
+            console.log("incomp", isValid);
+            alert("Please fill out a complete Bracket");
 
-    /**
-     * evaluates {@link isValid}; if true, posts user data to database, else alert validation failed.
-     */
-    if (validateBracket()) {
-        console.log(inputBracketName)
-        console.log("userid: ", userID);
-        postBracketData({
-            userID: userID,
-            bracketName: inputBracketName,
-            R2W1: pickR2W1,
-            R2W2: pickR2W2,
-            R2W3: pickR2W3,
-            R2W4: pickR2W4,
-            R2W5: pickR2W5,
-            R2W6: pickR2W6,
-            R2W7: pickR2W7,
-            R2W8: pickR2W8,
-            R2X1: pickR2X1,
-            R2X2: pickR2X2,
-            R2X3: pickR2X3,
-            R2X4: pickR2X4,
-            R2X5: pickR2X5,
-            R2X6: pickR2X6,
-            R2X7: pickR2X7,
-            R2X8: pickR2X8,
-            R2Y1: pickR2Y1,
-            R2Y2: pickR2Y2,
-            R2Y3: pickR2Y3,
-            R2Y4: pickR2Y4,
-            R2Y5: pickR2Y5,
-            R2Y6: pickR2Y6,
-            R2Y7: pickR2Y7,
-            R2Y8: pickR2Y8,
-            R2Z1: pickR2Z1,
-            R2Z2: pickR2Z2,
-            R2Z3: pickR2Z3,
-            R2Z4: pickR2Z4,
-            R2Z5: pickR2Z5,
-            R2Z6: pickR2Z6,
-            R2Z7: pickR2Z7,
-            R2Z8: pickR2Z8,
-            R3W1: pickR3W1,
-            R3W2: pickR3W2,
-            R3W3: pickR3W3,
-            R3W4: pickR3W4,
-            R3X1: pickR3X1,
-            R3X2: pickR3X2,
-            R3X3: pickR3X3,
-            R3X4: pickR3X4,
-            R3Y1: pickR3Y1,
-            R3Y2: pickR3Y2,
-            R3Y3: pickR3Y3,
-            R3Y4: pickR3Y4,
-            R3Z1: pickR3Z1,
-            R3Z2: pickR3Z2,
-            R3Z3: pickR3Z3,
-            R3Z4: pickR3Z4,
-            R4W1: pickR4W1,
-            R4W2: pickR4W2,
-            R4X1: pickR4X1,
-            R4X2: pickR4X2,
-            R4Y1: pickR4Y1,
-            R4Y2: pickR4Y2,
-            R4Z1: pickR4Z1,
-            R4Z2: pickR4Z2,
-            R5WX1: pickR5WX1,
-            R5WX2: pickR5WX2,
-            R5YZ1: pickR5YZ1,
-            R5YZ2: pickR5YZ2,
-            R6C1: pickR6C1,
-            R6C2: pickR6C2,
-            CHAMP: pickCHAMP
-        });
-        localStorage.setItem("selectedBracketName", JSON.stringify(inputBracketName));
-        userID = JSON.parse(localStorage.getItem("userID"));
+            return isValid;
 
-        window.location.href = "/savedBracket";
-
-/**
- * 
- * @param {object} newbracketData - Object containing user's picks and data to be posted to database 
- */
-        function postBracketData(newbracketData) {
-            $.post("/api/userBrackets", newbracketData);
         }
-    } else {
-        alert("Please fill out a complete Bracket");
-    }
+
+        else {
+            $.get(queryURL, function (data) {
+                console.log("data: ", data[0])
+                if (data[0]) {
+                    alert("You've already created a bracket with this name.");
+                }
+                if (!data[0]) {
+                    console.log("Bracket Name is free");
+
+                    isValid = true;
+                    console.log(isValid)
+                    console.log("posting ", inputBracketName)
+                    console.log("userid: ", userID);
+                    postBracketData({
+                        userID: userID,
+                        bracketName: inputBracketName,
+                        R2W1: pickR2W1,
+                        R2W2: pickR2W2,
+                        R2W3: pickR2W3,
+                        R2W4: pickR2W4,
+                        R2W5: pickR2W5,
+                        R2W6: pickR2W6,
+                        R2W7: pickR2W7,
+                        R2W8: pickR2W8,
+                        R2X1: pickR2X1,
+                        R2X2: pickR2X2,
+                        R2X3: pickR2X3,
+                        R2X4: pickR2X4,
+                        R2X5: pickR2X5,
+                        R2X6: pickR2X6,
+                        R2X7: pickR2X7,
+                        R2X8: pickR2X8,
+                        R2Y1: pickR2Y1,
+                        R2Y2: pickR2Y2,
+                        R2Y3: pickR2Y3,
+                        R2Y4: pickR2Y4,
+                        R2Y5: pickR2Y5,
+                        R2Y6: pickR2Y6,
+                        R2Y7: pickR2Y7,
+                        R2Y8: pickR2Y8,
+                        R2Z1: pickR2Z1,
+                        R2Z2: pickR2Z2,
+                        R2Z3: pickR2Z3,
+                        R2Z4: pickR2Z4,
+                        R2Z5: pickR2Z5,
+                        R2Z6: pickR2Z6,
+                        R2Z7: pickR2Z7,
+                        R2Z8: pickR2Z8,
+                        R3W1: pickR3W1,
+                        R3W2: pickR3W2,
+                        R3W3: pickR3W3,
+                        R3W4: pickR3W4,
+                        R3X1: pickR3X1,
+                        R3X2: pickR3X2,
+                        R3X3: pickR3X3,
+                        R3X4: pickR3X4,
+                        R3Y1: pickR3Y1,
+                        R3Y2: pickR3Y2,
+                        R3Y3: pickR3Y3,
+                        R3Y4: pickR3Y4,
+                        R3Z1: pickR3Z1,
+                        R3Z2: pickR3Z2,
+                        R3Z3: pickR3Z3,
+                        R3Z4: pickR3Z4,
+                        R4W1: pickR4W1,
+                        R4W2: pickR4W2,
+                        R4X1: pickR4X1,
+                        R4X2: pickR4X2,
+                        R4Y1: pickR4Y1,
+                        R4Y2: pickR4Y2,
+                        R4Z1: pickR4Z1,
+                        R4Z2: pickR4Z2,
+                        R5WX1: pickR5WX1,
+                        R5WX2: pickR5WX2,
+                        R5YZ1: pickR5YZ1,
+                        R5YZ2: pickR5YZ2,
+                        R6C1: pickR6C1,
+                        R6C2: pickR6C2,
+                        CHAMP: pickCHAMP
+                    });
+                    localStorage.setItem("selectedBracketName", JSON.stringify(inputBracketName));
+                    userID = JSON.parse(localStorage.getItem("userID"));
+
+                    window.location.href = "/savedBracket";
+
+                    /**
+                     * 
+                     * @param {object} newbracketData - Object containing user's picks and data to be posted to database 
+                     */
+                    function postBracketData(newbracketData) {
+                        $.post("/api/userBrackets", newbracketData);
+                    }
+                }
+            });
+            // return isValid;
+        };
+        console.log("func eval to: ", isValid)
+
+        return isValid;
+
+    };
+    console.log("func is: ", validateBracket())
 }

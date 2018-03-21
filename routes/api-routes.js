@@ -25,7 +25,7 @@ module.exports = function (app) {
     app.get("/api/userBrackets/:userid/:bracketname", function (req, res) {
         userBracket.findAll({
             where: {
-                // userID: req.params.userid,
+                userID: req.params.userid,
                 bracketName: req.params.bracketname
             }
         }).then((data) => res.json(data));
