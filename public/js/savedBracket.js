@@ -1346,7 +1346,7 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                             style: "background-color:  rgba(179, 0, 27, 1); text-decoration: line-through;"
                         });
                         $("#" + pick[0]).attr({
-                            style: "background-color: rgb(68, 157, 209); text-decoration: line-through;;"
+                            style: "background-color: rgb(179, 0, 27, 1); text-decoration: line-through;;"
                         });
                         for (let i = 1; i < 7; i++) {
                             if (game.round == [i]) {
