@@ -1354,14 +1354,14 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                                     bustArr[i - 1].push(badSeed)
                                 };
                                 if (game.round == "1") {
-                                    $("#" + badSeed).attr({ style: "background-color:   rgb(255, 123, 0);" });
+                                    $("#" + badSeed).attr({ style: "background-color:   rgb(142, 68, 61);" });
                                     $("#" + game.advanceTo).attr({
                                         style: "background-color: rgba(179, 0, 27, 1); text-decoration: line-through;;"
                                     })
                                 }
                                 if (_.startsWith(pick[0], i, 1)) {
                                     if (badSeed == game.loserSeedId) {
-                                        $("#" + pick[0]).attr({ style: "background-color:  rgb(255, 123, 0);" });
+                                        $("#" + pick[0]).attr({ style: "background-color:  rgb(142, 68, 61);" });
                                     }
                                 }
                             }
