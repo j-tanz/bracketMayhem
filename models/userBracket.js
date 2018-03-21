@@ -7,7 +7,8 @@ var userBracket = sequelize.define("userBracket", {
         type: Sequelize.INTEGER
     },
     bracketName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
     },
     R2W1: {
         type: Sequelize.STRING

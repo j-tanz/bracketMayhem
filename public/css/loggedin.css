@@ -246,7 +246,7 @@
      grid-template-columns: repeat(1, 2fr);
      padding: 1%;
      width: 200%;
-     margin: 0 auto;
+     /* margin: 0 auto; */
  }
 
  .region {

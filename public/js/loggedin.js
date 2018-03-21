@@ -54,12 +54,3 @@ function clickSignoutBtn(){
     location.assign("/index");
 }
 $(".signout-btn").click(clickSignoutBtn);
-
-
-function clickSaveBracket() {
-
-    location.assign("/index");
-}
-$(".signout-btn").click(clickSaveBracket);
-
-
