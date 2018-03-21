@@ -924,6 +924,10 @@ let regionMap = {
     Z: 3
 };
 
+/**
+ * Makes call to Sportradar API, returns a JSON object detailing the curent state of the NCAA Men's Basketball Tournament,
+ * and sorts all pertinent game/match-up data into an array of objects
+ */
 (function tourneyLookup() {
     // let tournamentID = "74db39e5-be49-4ec8-9169-0cc20ed9f792"
     let tournamentID = "caa4fb9e-12f1-4429-a160-8e6f4de1d84c"
@@ -966,14 +970,31 @@ let regionMap = {
     })
 })();
 
+/**
+ *  Checks and sorts all games based upon the current status of the game (ie scheduled, in progress, closed).
+ * 
+ * @param {array} gsObj - The full array of 63 tournament game objects
+ */
 function checkCompleted(gsObj) {
     for (let i = 0; i < gsObj.length; i++) {
         if (gsObj[i].status === "closed") {
+            /**
+             * @param {array} finalizedGamesArr - Array comprising all completed games
+             */
             finalizedGamesArr.push(gsObj[i]);
         } else {
+            /**
+             * @param {array} pendingArr - Array comprising all games yet to be scheduled, bracketed, or currently in progress
+             */
             pendingArr.push(gsObj[i]);
         }
     }
+    /**
+     * Creates an array of objects with outcome properties of completed games and merges these properties with {@link finalizedGamesArr}
+     * 
+     * @param {array} winnerArr - work array
+     * @param {array} mergedFinalArr - merges objects comprised within {@link winnerArr} and {@link finalizedGamesArr} 
+     */
     for (let i = 0; i < finalizedGamesArr.length; i++) {
         finalizedGamesArr[i].home_points > finalizedGamesArr[i].away_points ?
             winnerArr[i] = { winner: "homeTeam", didHomeTeamWin: true } :
@@ -983,6 +1004,12 @@ function checkCompleted(gsObj) {
     combinedMasterArr(mergedFinalArr, pendingArr);
 }
 
+/**
+ * Pushes the completed and tbd games back onto same array; 
+ * 
+ * @param {array} arr1 - {@link mergedFinalArr}
+ * @param {array} arr2 - {@link pendingArr}
+ */
 function combinedMasterArr(arr1, arr2) {
     let completedArr = [...arr1]
     Array.prototype.push.apply(arr1, arr2);
@@ -990,6 +1017,12 @@ function combinedMasterArr(arr1, arr2) {
     appendIdent(masterArr);
 }
 
+/**
+ * Assigns properties to each object in the games array based upon Region, Round, game#, seedIDs, home/away stats, and the
+ *  specific game the winning team advances to 
+ * 
+ * @param {array} gamesList - array of all sorted game objects
+ */
 function appendIdent(gamesList) {
     let bracketGamesArr = [];
     for (let i = 0; i < gamesList.length; i++) {
@@ -1055,6 +1088,9 @@ function appendIdent(gamesList) {
                 loserSeed = "" + region + "" + homeSeed;
         }
 
+/**
+ *  @param {object} workObj - Creating a corresponding object for each object with needed key value data
+ */
         let workObj = {};
         workObj[i] = {
             gameId: "R" + "" + round + "" + region + "" + num,
@@ -1077,29 +1113,29 @@ function appendIdent(gamesList) {
     updateTeamNames(bracketGamesArr.slice(0, bracketGamesArr.length - 31), bracketGamesArr);
 }
 
+/**
+ * Renders the initial 64 team seeds and names onto the bracket UI
+ *  
+ * @param {array} bracketGamesArr - the 1st 32 elements spliced from the newly created and appended games array; this populates the initial field of 64 teams
+ * @param {*} completeArr - passing through the full 63 element newly created game objects array.  
+ */
 function updateTeamNames(bracketGamesArr, completeArr) {
-    // console.log("rounds ,", rounds);
     _.forEach(bracketGamesArr, function (val, z) {
         let index = regionMap[val.gameId[2]] * ((rounds[val.gameId[1] - 1].length) / 4) + parseInt(val.gameId[3]) - 1;
         index = index !== 2.5 ? index : 0;
-        // if (parseInt(val.away.seed) < 10) { 
-        //     val.away.seed = " " + val.away.seed;
-        //     console.log('val.away.seed: ', val.away.seed);
-        // }
-        // if (val.round == "1") {
         rounds[val.gameId[1] - 1][index].player1.name = val.home.seed + " " + val.home.alias;
         rounds[val.gameId[1] - 1][index].player2.name = val.away.seed + " " + val.away.alias;
     })
     populateBracket(completeArr);
 };
 
+/**
+ *  Sorts all first round games by region and home/away team.  Appends html data elements to the respective divs in order to keep track of where teams exist,
+ * as well as create the logical bracket structure. 
+ * 
+ * @param {array} completeArr - Passing through the full newly created game objects array. 
+ */
 function populateBracket(completeArr) {
-
-    // $("#W01").text(rounds[0][0].player1.name)
-    //******************************** */
-    // Save for livebracket
-    // for (let h = 0; h < rounds.length; h++) {
-    //     console.log("h len", (rounds[h].length)/2 +1)
     for (let i = 1; i < 17; i++) {
         let ii = i;
         if (ii < 10) {
@@ -1163,17 +1199,34 @@ function populateBracket(completeArr) {
     getBracketData(completeArr);
 }
 
+/**
+ * Looking up the User name and bracket name from local storage
+ * 
+ * @param {string} userID - User Id atored in local storage.
+ * @param {string} selectedBracketName - Name of user bracket to render
+ * @param {array} completeArr - Passing through the full newly created game objects array. 
+ */
 function getBracketData(completeArr) {
     var userID = JSON.parse(localStorage.getItem("userID"));
     var selectedBracketName = JSON.parse(localStorage.getItem("selectedBracketName")).trim();
-    console.log(selectedBracketName);
 
+/**  
+ * Queries database via get call and retrieves all saved data associated with that bracket.
+ * 
+ * @param {object} userPicks - The bracket's selections data object returned from database.
+ */
     var userBracketQueryURL = "/api/userBrackets/" + userID + "/" + selectedBracketName;
     $.get(userBracketQueryURL, function (userPicks) {
         renderUserPicks(userPicks, completeArr);
     })
 }
 
+/**
+ * Populates bracket UI with the pick selections stored in database 
+ * 
+ * @param {object} userPicks - The bracket's selections data object returned from database.
+ * @param {array} completeArr - Passing through the full game objects array. 
+ */
 function renderUserPicks(userPicks, completeArr) {
     $("#user-bracket-name").text(userPicks[0].bracketName);
 
@@ -1259,6 +1312,13 @@ function renderUserPicks(userPicks, completeArr) {
     syncDBkey(completeArr, userPicks);
 }
 
+/**
+ * Retrieves detailed team information data object from database
+ * 
+ * @param {array} completeArr - Passing through the full game objects array.
+ * @param {object} userPicks - The bracket's selections data object returned from database.
+ * @param {object} masterKeyData - Master team id, name, seed info returned from database.
+ */
 function syncDBkey(completeArr, userPicks) {
     $.get("/api/masterKeys", function (masterKeyData) {
         gradeOutPicks(completeArr, userPicks, masterKeyData)
@@ -1268,22 +1328,20 @@ function syncDBkey(completeArr, userPicks) {
 let bustArr = [[], [], [], [], [], []];
 let scoreArr = [];
 
+/**
+ * Evaluates user's bracket selections against any games that have been finalized and renders style attributes to bracket UI. 
+ * 
+ * @param {array} completeArr - The full game objects array
+ * @param {object} userPicks - The selections data object returned from database
+ * @param {object} masterKeyData - Master key table of team id, name, seed info returned from database
+ */
 function gradeOutPicks(completeArr, userPicks, masterKeyData) {
-
-    console.log('userPicks: ', userPicks);
-    console.log('completeArr: ', completeArr);
-    console.log('masterKeyData: ', masterKeyData);
-
     _.forEach(completeArr, function (game) {
         if (game.status == "closed") {
             if ((userPicks[0][game.advanceTo]).slice(0, 3) != game.winnerSeedId) {
-                // console.log('(userPicks[0][game.advanceTo]).slice(0,3): ', (userPicks[0][game.advanceTo]).slice(0, 3), "game.winnderseedID", game.winnerSeedId, "game", game);
-
                 let badSeed = (userPicks[0][game.advanceTo].slice(0, 3));
                 _.forEach(_.toPairs(userPicks[0]), function (pick) {
-                    console.log('pick: ', pick);
                     if (_.startsWith(pick[1], badSeed)) {
-                        // bustArr.indexOf(pick[0]) === -1 ? bustArr.push(pick[0]): bustArr;
                         $("#" + game.advanceTo).attr({
                             style: "background-color:  rgba(179, 0, 27, 1); text-decoration: line-through;"
                         });
@@ -1294,15 +1352,16 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                             if (game.round == [i]) {
                                 if (bustArr[i - 1].indexOf(badSeed) === -1) {
                                     bustArr[i - 1].push(badSeed)
-                                }; 
-                                if (game.round =="1") {
-                                    $("#" + badSeed).attr({ style: "background-color:   rgb(142, 68, 61);" });
+                                };
+                                if (game.round == "1") {
+                                    $("#" + badSeed).attr({ style: "background-color:   rgb(255, 123, 0);" });
                                     $("#" + game.advanceTo).attr({
-                                        style: "background-color: rgba(179, 0, 27, 1); text-decoration: line-through;;"})
-                                } 
+                                        style: "background-color: rgba(179, 0, 27, 1); text-decoration: line-through;;"
+                                    })
+                                }
                                 if (_.startsWith(pick[0], i, 1)) {
-                                    if(badSeed == game.loserSeedId) {
-                                        $("#" + pick[0]).attr({ style: "background-color:  rgb(142, 68, 61);" });
+                                    if (badSeed == game.loserSeedId) {
+                                        $("#" + pick[0]).attr({ style: "background-color:  rgb(255, 123, 0);" });
                                     }
                                 }
                             }
@@ -1332,10 +1391,11 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
             }
         }
     })
-    console.log("bustarr", bustArr)
 }
-window.onbeforeunload = function() {
+/**
+ * Removes old bracket name from local storage data cache
+ */
+window.onbeforeunload = function () {
     localStorage.removeItem("selectedBracketName");
     alert("bye");
-  };
-  
+};
