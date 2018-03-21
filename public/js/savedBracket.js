@@ -996,7 +996,6 @@ function appendIdent(gamesList) {
     for (let i = 0; i < gamesList.length; i++) {
         let gameNumber = gamesList[i].title.substring(gamesList[i].title.indexOf("Game"), gamesList[i].title.length);
         let num = gameNumber.slice(5);
-        // let nextNum = Math.ceil((parseInt(num))/2)
         let nextNum = parseInt(num)
 
         if (_.includes(gamesList[i].title, "South")) {
@@ -1298,13 +1297,13 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                                     bustArr[i - 1].push(badSeed)
                                 };
                                 if (game.round =="1") {
-                                    $("#" + badSeed).attr({ style: "background-color:  rgba(179, 0, 27, 1);" });
+                                    $("#" + badSeed).attr({ style: "background-color:   rgb(255, 123, 0);" });
                                     $("#" + game.advanceTo).attr({
                                         style: "background-color: rgba(179, 0, 27, 1); text-decoration: line-through;;"})
                                 } 
                                 if (_.startsWith(pick[0], i, 1)) {
                                     if(badSeed == game.loserSeedId) {
-                                        $("#" + pick[0]).attr({ style: "background-color: rgba(179, 0, 27, 1);" });
+                                        $("#" + pick[0]).attr({ style: "background-color:  rgb(255, 123, 0);" });
                                     }
                                 }
                             }
@@ -1315,25 +1314,9 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                             document.getElementById("" + pick[0] + "a").style.backgroundColor = color;
                             document.getElementById("" + pick[0] + "a").style.textDecoration = strikeOut;
                         }
-
-                            // if (game.round == "1") {
-                            //     if (bustArr[0].indexOf(badSeed) === -1) {
-                            //         bustArr[0].push(badSeed)
-                            //     }
-                            //     $("#" + pick[0]).attr({ style: "background-color: blue" });
-                            //     $("#" + badSeed).attr({
-                            //         style: "background-color: red;"
-                            //     });
-
-                        // if ((pick[0] == game.idAway && (pick[1]).slice(0, 3) == game.awaySeed) || (pick[0] == game.idHome && (pick[1]).slice(0, 3) == game.homeSeed)) {
-                        //     $("#" + pick[0]).attr({
-                        //         style: "background-color: red;"
-                        //     })
-                        // }
                     }
                 })
             } else {
-                // console.log('game.advanceTo: ', game);
                 $("#" + game.advanceTo).attr({
                     style: "background-color: rgba(37, 92, 153, 1);"
                 });
@@ -1348,7 +1331,6 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                     })
                 }
             }
-            // console.log('userPicks[0][checkGame]: ', (userPicks[0][game.advanceTo]).slice(0,3), "game.advanceto", game.advanceTo, "game.winnerseedid", game.winnerSeedId);
         }
     })
     console.log("bustarr", bustArr)
