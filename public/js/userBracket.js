@@ -139,10 +139,6 @@ function combinedMasterArr(arr1, arr2) {
 
 tourneyLookup();
 
-// let titles = [
-//     'Round 1', 'Round 2', 'Sweet Sixteen', 'Elite Eight', 'Final Four', 'Championship', 'Champion'
-// ];
-//dont touch-will break display
 let rounds = [
     //round of 64 - 32 games
     [
@@ -1174,12 +1170,12 @@ $(document).on("click", ".team", function () {
     }
 })
 
-$(document).on("click", ".game-info-icon", function (e) {
-    e.preventDefault();
-    $('.pop-over').popover('toggle');
-    console.log("working??????")
-    return false;
-})
+// $(document).on("click", ".game-info-icon", function (e) {
+//     e.preventDefault();
+//     $('.pop-over').popover('toggle');
+//     console.log("working??????")
+//     return false;
+// })
 
 console.log('rounds: ', rounds);
 
