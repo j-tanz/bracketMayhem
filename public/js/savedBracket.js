@@ -1296,13 +1296,14 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
                                 if (bustArr[i - 1].indexOf(badSeed) === -1) {
                                     bustArr[i - 1].push(badSeed)
                                 };
-                                if (game.round =="1") {
+                                if (game.round == "1") {
                                     $("#" + badSeed).attr({ style: "background-color:   rgb(255, 123, 0);" });
                                     $("#" + game.advanceTo).attr({
-                                        style: "background-color: rgba(179, 0, 27, 1); text-decoration: line-through;;"})
-                                } 
+                                        style: "background-color: rgba(179, 0, 27, 1); text-decoration: line-through;;"
+                                    })
+                                }
                                 if (_.startsWith(pick[0], i, 1)) {
-                                    if(badSeed == game.loserSeedId) {
+                                    if (badSeed == game.loserSeedId) {
                                         $("#" + pick[0]).attr({ style: "background-color:  rgb(255, 123, 0);" });
                                     }
                                 }
@@ -1335,8 +1336,19 @@ function gradeOutPicks(completeArr, userPicks, masterKeyData) {
     })
     console.log("bustarr", bustArr)
 }
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
     localStorage.removeItem("selectedBracketName");
     alert("bye");
-  };
-  
+};
+
+
+function clickSignoutBtn(){
+    localStorage.clear();
+    location.assign("/index");
+}
+
+$(".signout-btn").click(clickSignoutBtn);
+$(".nav-home-logo").click(function () {
+    location.assign("/loggedin")
+}
+)  

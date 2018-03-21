@@ -1,3 +1,4 @@
+
 function getUserBrackets(userid) {
     let queryURL = "/api/userBrackets/" + userid;
     $.get(queryURL, function (data) {
@@ -22,15 +23,24 @@ userID = JSON.parse(localStorage.getItem("userID"));
 // console.log("userid: ", userID);
 renderUserBrackets(userID);
 
-function clickBracketBtn(){
+function clickBracketBtn() {
     // console.log("this",$(this).text().trim());
-    bracketName=$(this).text();
+    bracketName = $(this).text();
     localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
     location.assign("../bracket/savedBracket.html")
 }
 
-function clickSignoutBtn(){
+function clickSignoutBtn() {
     localStorage.clear();
     location.assign("/index");
 }
 $(".signout-btn").click(clickSignoutBtn);
+
+
+function clickSaveBracket() {
+
+    location.assign("/index");
+}
+$(".signout-btn").click(clickSaveBracket);
+
+

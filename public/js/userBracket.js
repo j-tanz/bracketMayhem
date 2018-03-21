@@ -1336,7 +1336,6 @@ function saveBracket(evt) {
 
     if (validateBracket()) {
         console.log(inputBracketName)
-        userID = JSON.parse(localStorage.getItem("userID"));
         console.log("userid: ", userID);
         postBracketData({
             userID: userID,
@@ -1405,6 +1404,9 @@ function saveBracket(evt) {
             R6C2: pickR6C2,
             CHAMP: pickCHAMP
         });
+        localStorage.setItem("selectedBracketName", JSON.stringify(inputBracketName));
+        userID = JSON.parse(localStorage.getItem("userID"));
+
         window.location.href = "/savedBracket";
 
         function postBracketData(newbracketData) {
