@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Your bracket</title>
+    <script src="../vendor/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:400,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand " href="/index">
+                    Bracket Mayhem </a>
+            </div>
+        </nav>
+        <h1 class="title">MY BRACKET</h1>
+        <hr/>
+        <form>
+            <div class="form-group">
+                <label class="red" for="bracketName">BRACKET NAME</label>
+                <input class="form-control" id="bracketNameInput" placeholder="My Bracket">
+            </div>
+            <div id="masterBracket" onclick="$( '#fullBracket' ).toggle('show');">
+                See full bracket
+            </div>
+            <div id="fullBracket">
+                <img src="masterBracket.jpeg" alt="master bracket" />
+            </div>
+
+        </form>
+        <div class="master">
+            <!--   SOUTH REGION 1   -->
+            <div class="left">
+                <button onclick="$( '#region1' ).toggle('show');" id="south">
+                    South
+                </button>
+                <div class="region" id="region1">
+                    <div class="wrapper">
+                        <div class="columns column1">
+                            <div class="matchup">
+                                <div class="team" id="W01">Team</div>
+                                <div class="team" id="W16">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="W08">Team</div>
+                                <div class="team" id="W09">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="W05">Team</div>
+                                <div class="team" id="W12">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="W04">Team</div>
+                                <div class="team" id="W13">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="W06">Team</div>
+                                <div class="team" id="W11">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="W03">Team</div>
+                                <div class="team" id="W14">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="W07">Team</div>
+                                <div class="team" id="W10">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="W02">Team</div>
+                                <div class="team" id="W15">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column2">
+                            <div class="matchup two-one">
+                                <div class="team" id="R2W1">Team</div>
+                                <div class="team" id="R2W2">Team</div>
+                            </div>
+                            <div class="matchup two-two">
+                                <div class="team" id="R2W3">Team</div>
+                                <div class="team" id="R2W4">Team</div>
+                            </div>
+                            <div class="matchup two-three">
+                                <div class="team" id="R2W5">Team</div>
+                                <div class="team" id="R2W6">Team</div>
+                            </div>
+                            <div class="matchup two-four">
+                                <div class="team" id="R2W7">Team</div>
+                                <div class="team" id="R2W8">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column3">
+                            <div class="matchup three-one">
+                                <div class="team" id="R3W1">Team</div>
+                                <div class="team" id="R3W2">Team</div>
+                            </div>
+                            <div class="matchup three-two">
+                                <div class="team" id="R3W3">Team</div>
+                                <div class="team" id="R3W4">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column4">
+                            <div class="matchup">
+                                <div class="team" id="R4W1">Team</div>
+                                <div class="team" id="R4W2">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column5">
+                            <div class="matchup">
+                                <div class="team" id="R5W1">Team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  EAST REGION 2  -->
+                <button onclick="$( '#region2' ).toggle('show');" id="east">
+                    East
+                </button>
+                <div class="region" id="region2">
+                    <div class="wrapper">
+                        <div class="columns column5">
+                            <div class="matchup">
+                                <div class="team" id="R5Y1">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column4">
+                            <div class="matchup">
+                                <div class="team" id="R4Y1">Team</div>
+                                <div class="team" id="R4Y2">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column3">
+                            <div class="matchup three-one">
+                                <div class="team" id="R3Y1">Team</div>
+                                <div class="team" id="R3Y2">Team</div>
+                            </div>
+                            <div class="matchup three-two">
+                                <div class="team" id="R3Y3">Team</div>
+                                <div class="team" id="R3Y4">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column2">
+                            <div class="matchup two-one">
+                                <div class="team" id="R2Y1">Team</div>
+                                <div class="team" id="R2Y2">Team</div>
+                            </div>
+                            <div class="matchup two-two">
+                                <div class="team" id="R2Y3">Team</div>
+                                <div class="team" id="R2Y4">Team</div>
+                            </div>
+                            <div class="matchup two-three">
+                                <div class="team" id="R2Y5">Team</div>
+                                <div class="team" id="R2Y6">Team</div>
+                            </div>
+                            <div class="matchup two-four">
+                                <div class="team" id="R2Y7">Team</div>
+                                <div class="team" id="R2Y8">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column1">
+                            <div class="matchup">
+                                <div class="team" id="Y01">Team</div>
+                                <div class="team" id="Y16">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Y08">Team</div>
+                                <div class="team" id="Y09">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Y05">Team</div>
+                                <div class="team" id="Y12">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Y04">Team</div>
+                                <div class="team" id="Y13">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Y06">Team</div>
+                                <div class="team" id="Y11">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Y03">Team</div>
+                                <div class="team" id="Y14">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Y07">Team</div>
+                                <div class="team" id="Y10">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Y02">Team</div>
+                                <div class="team" id="Y15">Team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <!--  WEST REGION 4  -->
+                <button onclick="$( '#region4' ).toggle('show');" id="west">
+                    West
+                </button>
+                <div class="region" id="region4">
+                    <div class="wrapper">
+                        <div class="columns column1">
+                            <div class="matchup">
+                                <div class="team" id="X01">Team</div>
+                                <div class="team" id="X16">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="X08">Team</div>
+                                <div class="team" id="X09">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="X05">Team</div>
+                                <div class="team" id="X12">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="X04">Team</div>
+                                <div class="team" id="X13">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="X06">Team</div>
+                                <div class="team" id="X11">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="X03">Team</div>
+                                <div class="team" id="X14">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="X07">Team</div>
+                                <div class="team" id="X10">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="X02">Team</div>
+                                <div class="team" id="X15">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column2">
+                            <div class="matchup two-one">
+                                <div class="team" id="R2X1">Team</div>
+                                <div class="team" id="R2X2">Team</div>
+                            </div>
+                            <div class="matchup two-two">
+                                <div class="team" id="R2X3">Team</div>
+                                <div class="team" id="R2X4">Team</div>
+                            </div>
+                            <div class="matchup two-three">
+                                <div class="team" id="R2X5">Team</div>
+                                <div class="team" id="R2X6">Team</div>
+                            </div>
+                            <div class="matchup two-four">
+                                <div class="team" id="R2X7">Team</div>
+                                <div class="team" id="R2X8">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column3">
+                            <div class="matchup three-one">
+                                <div class="team" id="R3X1">Team</div>
+                                <div class="team" id="R3X2">Team</div>
+                            </div>
+                            <div class="matchup three-two">
+                                <div class="team" id="R3X3">Team</div>
+                                <div class="team" id="R3X4">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column4">
+                            <div class="matchup">
+                                <div class="team" id="R4X1">Team</div>
+                                <div class="team" id="R4X2">Team</div>
+                            </div>
+                        </div>
+
+                        <div class="columns column5">
+                            <div class="matchup">
+                                <div class="team" id="R5X1">Team</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!--  MIDWEST REGION 3  -->
+                <button onclick="$( '#region3' ).toggle('show');" id="midwest">
+                    Midwest
+                </button>
+                <div class="region" id="region3">
+                    <div class="wrapper">
+                        <div class="columns column5">
+                            <div class="matchup">
+                                <div class="team" id="R5Z1">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column4">
+                            <div class="matchup">
+                                <div class="team" id="R4Z1">Team</div>
+                                <div class="team" id="R4Z2">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column3">
+                            <div class="matchup three-one">
+                                <div class="team" id="R3Z1">Team</div>
+                                <div class="team" id="R3Z2">Team</div>
+                            </div>
+                            <div class="matchup three-two">
+                                <div class="team" id="R3Z3">Team</div>
+                                <div class="team" id="R3Z4">Team</div>
+                            </div>
+                        </div>
+                        <div class="columns column2">
+                            <div class="matchup two-one">
+                                <div class="team" id="R2Z1">Team</div>
+                                <div class="team" id="R2Z2">Team</div>
+                            </div>
+                            <div class="matchup two-two">
+                                <div class="team" id="R2Z3">Team</div>
+                                <div class="team" id="R2Z4">Team</div>
+                            </div>
+                            <div class="matchup two-three">
+                                <div class="team" id="R2Z5">Team</div>
+                                <div class="team" id="R2Z6">Team</div>
+                            </div>
+                            <div class="matchup two-four">
+                                <div class="team" id="R2Z7">Team</div>
+                                <div class="team" id="R2Z8">Team</div>
+                            </div>
+                        </div>
+
+                        <div class="columns column1">
+                            <div class="matchup">
+                                <div class="team" id="Z01">Team</div>
+                                <div class="team" id="Z16">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Z08">Team</div>
+                                <div class="team" id="Z09">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Z05">Team</div>
+                                <div class="team" id="Z12">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Z04">Team</div>
+                                <div class="team" id="Z13">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Z06">Team</div>
+                                <div class="team" id="Z11">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Z03">Team</div>
+                                <div class="team" id="Z14">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Z07">Team</div>
+                                <div class="team" id="Z10">Team</div>
+                            </div>
+                            <div class="matchup">
+                                <div class="team" id="Z02">Team</div>
+                                <div class="team" id="Z15">Team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="$( '#champ' ).toggle('show');" id="four">
+
+                Final Four to Champion
+
+            </button>
+            <div class="region" id="champ">
+                <div class="wrapper">
+                    <div class="columns column3">
+                        <div class="matchup three-one">
+                            <div class="team" id="R3S1">Team</div>
+                            <div class="team" id="R3S2">Team</div>
+                        </div>
+                        <div class="matchup three-two">
+                            <div class="team" id="R3S3">Team</div>
+                            <div class="team" id="R3S4">Team</div>
+                        </div>
+                    </div>
+                    <div class="columns column4">
+                        <div class="matchup">
+                            <div class="team" id="R4S1">Team</div>
+                            <div class="team" id="R4S2">Team</div>
+                        </div>
+                    </div>
+                    <div class="columns column5">
+                        <div class="matchup">
+                            <div class="team" id="R521">Team</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default save-bracket-btn">
+            Save My Bracket
+        </button>
+    </div>
+    <br>
+
+    </div>
+    <!-- END REGIONS -->
+    <style>
+        img {
+            width: 70%;
+            height: 60%;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: -10%;
+        }
+
+        body {
+            width: 65%;
+            margin: 0 auto;
+        }
+
+        * {
+            font-size: 11px;
+            font-family: 'Muli', sans-serif;
+            font-weight: lighter;
+        }
+
+        .left {
+            /* float: left; */
+            font-weight: 300%;
+            text-align: center;
+            width: 50%;
+        }
+
+        .right {
+            /* float: right; */
+            font-weight: 300%;
+            text-align: center;
+            width: 50%;
+        }
+
+        #bracketNameInput {
+            width: 55%;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 600%;
+            font-weight: 900%;
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+            color: rgba(37, 92, 153, 1);
+            padding: 1%;
+        }
+
+        .header {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: .5em;
+            text-align: center;
+            font-weight: 300%;
+        }
+
+        .red {
+            color: rgba(179, 0, 27, 1);
+            font-size: 120%;
+            margin-bottom: 1%;
+            padding: 1%;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-auto-rows: minmax(300px, auto);
+            grid-gap: .15em;
+            font-size: 85%;
+            border: 1px solid rgb(24, 11, 89);
+            width: 80%;
+            margin: 0 auto;
+            margin-right: 90%;
+            padding: 0;
+            font-weight: 100%;
+            overflow: auto;
+            overflow-y: hidden;
+            border-radius: 10%;
+        }
+
+        .columns {
+            padding: 2em;
+        }
+
+        .columns {
+            display: grid;
+            grid-gap: 1.25em;
+        }
+
+        .columns>div {
+            height: 10.9735em;
+            display: grid;
+            grid-auto-rows: 35%;
+            grid-gap: .5em;
+            width: 90%;
+            font-size: 50%;
+        }
+
+        .team {
+            height: 5%;
+            margin: -20%;
+            padding: 4%;
+        }
+
+        .matchup {
+            border: 1px solid rgba(37, 92, 153, 1);
+        }
+
+        .matchup>div {
+            padding: 1%;
+            background-color: rgba(179, 0, 27, 1);
+            border: 1px solid gray;
+            height: 60%;
+            width: 85%;
+            align-items: center;
+            color: rgba(255, 248, 240, 1);
+            font-size: 150%;
+            text-align: center;
+            line-height: 150%;
+            margin: 1%;
+            border-radius: 30%;
+        }
+
+        form {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            font-size: 200%;
+            color: rgba(37, 92, 153, 1);
+            text-align: center;
+        }
+
+        .form-control {
+            font-size: 90%;
+            width: 50%;
+            color: rgba(37, 92, 153, 1);
+            text-align: center;
+            font-weight: light;
+        }
+
+        #south,
+        #east,
+        #west,
+        #midwest {
+            font-size: 400%;
+            width: 40%;
+            padding: 3%;
+            margin: 1%;
+        }
+
+        @font-face {
+            font-family: 'sportsFont';
+            src: url('../vendor/sf-sports-night/TrueType/SFSportsNight.tff');
+            src: url('../vendor/sf-sports-night/TrueType/SFSportsNight.ttf') format('truetype'),
+        }
+
+        #four {
+            margin: 0 auto;
+            margin-top: 2%;
+            margin-left: 8%;
+            width: 35%;
+            height: 100%;
+            font-size: 300%;
+            font-weight: 500%;
+            font-family: url('../vendor/sf-sports-night/TrueType/SFSportsNight.ttf');
+        }
+
+        .two-one {
+            margin-top: 6.5em;
+        }
+
+        .two-two {
+            margin-top: 7em;
+        }
+
+        .two-three {
+            margin-top: 7em;
+        }
+
+        .two-four {
+            margin-top: 7em;
+        }
+
+        .three-one {
+            margin-top: 19.25em;
+        }
+
+        .three-two {
+            margin-top: 19.25em;
+        }
+
+        .column4>div {
+            margin-top: 44.5em;
+        }
+
+        .column5>div {
+            margin-top: 47.3em;
+        }
+
+        .master {
+            display: grid;
+            grid-template-columns: repeat(1, 2fr);
+            padding: 1%;
+            width: 200%;
+            margin: 0 auto;
+        }
+
+        .region {
+            width: 200%;
+            font-weight: 300%;
+            display: none;
+            white-space: nowrap;
+            zoom: 120%;
+            height: 100%;
+        }
+
+        button {
+            background-color: rgba(179, 0, 27, 1);
+            font-weight: 300%;
+            color: white;
+            width: 50%;
+            font-size: 390%;
+            /* margin: 1%; */
+            border-radius: 20%;
+            margin: 0 auto;
+            flex-direction: space-between;
+        }
+
+        .save-bracket-btn {
+            width: 130px;
+        }
+
+        #champ {
+            width: 40%;
+            font-size: 800%;
+            padding: 3%;
+            height: 40%;
+            line-height: 800%;
+            color: white;
+            margin: 0 auto;
+            margin-top: 1%;
+        }
+
+        .save-bracket-btn {
+            font-family: 'Maven Pro', sans-serif;
+            font-size: 200%;
+            width: 35%;
+            height: 120%;
+            background-color: rgba(37, 92, 153, 1);
+            text-align: center;
+            color: white;
+            margin-top: 5%;
+            margin-left: 33%;
+        }
+
+        #fullBracket {
+            display: none;
+            width: 100%;
+        }
+
+        #masterBracket {
+            height: 100%;
+            border-radius: 15%;
+            text-align: center;
+            margin-left: 25%;
+            margin-bottom: 1%;
+            width: 50%;
+            font-size: 250%;
+            line-height: 160%;
+            color: white;
+            padding: 1%;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /*-------- Mobile media breakpoint ---------*/
+
+        @media screen and (max-width: 768px) {
+            #wrapper {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            #header {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+        
+    </style>
+
+</body>
+
+</html>
+
+<script src="../vendor/lodash/lodash.js"></script>
+
+<script src='../js/userBracket.js'></script>
+
+<script>
+    $('#region1').on("click", function () {
+        $('region1').show();
+    });
+    $('#region2').on("click", function () {
+        $('region2').show();
+    });
+    $('#region3').on("click", function () {
+        $('region3').show();
+    });
+    $('#region4').on("click", function () {
+        $('region4').show();
+    });
+    $('#four').on("click", function () {
+        $('champ').show();
+    });
+    $('#masterBracket').on("click", function () {
+        $('fullBracket').show();
+    });
+</script>
+
+</body>
+
+</html>

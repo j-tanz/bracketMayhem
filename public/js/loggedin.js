@@ -1,3 +1,8 @@
+/*** 
+/ @function getUserBrackets
+/ @param {string}: userid
+/ @return {string}: bracket names from api
+*/
 
 function getUserBrackets(userid) {
     let queryURL = "/api/userBrackets/" + userid;
@@ -16,6 +21,11 @@ function getUserBrackets(userid) {
     });
 }
 
+/*** 
+/ @function renderUserBrackets
+/ @param {string}: userid
+/ @return {string}: renders userBrackets
+*/
 function renderUserBrackets(userid) {
     getUserBrackets(userid);
 }
@@ -23,14 +33,23 @@ userID = JSON.parse(localStorage.getItem("userID"));
 // console.log("userid: ", userID);
 renderUserBrackets(userID);
 
-function clickBracketBtn() {
+/*** 
+/ @function clickBracketBtn
+/ @param {userOnclick}:  onclick of button 
+/ @return {string}: bracket names from saved bracket
+*/
+function clickBracketBtn(){
     // console.log("this",$(this).text().trim());
     bracketName = $(this).text();
     localStorage.setItem("selectedBracketName", JSON.stringify(bracketName));
     location.assign("../bracket/savedBracket.html")
 }
-
-function clickSignoutBtn() {
+/*** 
+/ @function clickSignoutBtn
+/ @param {userOnclick}: onclick of btn
+/ @return {string}: go back to the index sign in page
+*/
+function clickSignoutBtn(){
     localStorage.clear();
     location.assign("/index");
 }
