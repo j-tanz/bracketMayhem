@@ -1379,7 +1379,7 @@ console.log(queryURL);
                     alert("You've already created a bracket with this name.");
                 }
                 if (!data[0]) {
-                    alert("Bracket Name is free");
+                    console.log("Bracket Name is free");
 
                     isValid = true;
                     console.log(isValid)
